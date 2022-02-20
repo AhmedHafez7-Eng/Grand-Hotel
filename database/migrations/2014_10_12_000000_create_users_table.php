@@ -17,8 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('password')->min(6);
+            $table->string('national_ID')->unique()->min(14)->max(14);
+            $table->string('avatar_Img')->default('default_avatar.jpg');
+            $table->string('role')->default('client');
+            $table->string('country');
+            $table->string('gender');
+            $table->string('status')->default('unBan');
+            $table->bigInteger('creator_id')->unsigned();
+            $table->foreign('creator_id')->references('id')->on('users');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

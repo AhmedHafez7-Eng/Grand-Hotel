@@ -12,6 +12,31 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function receptionistCreator()
+    {
+        return $this->belongsTo('App\User', 'creator_id');
+    }
+
+    public function managerOfRecep()
+    {
+        return $this->hasMany('App\User', 'creator_id');
+    }
+
+    public function managerOfFloors()
+    {
+        return $this->hasMany('App\Floor', 'creator_id');
+    }
+
+    public function managerOfRooms()
+    {
+        return $this->hasMany('App\Room', 'creator_id');
+    }
+
+    public function clientOfReservation()
+    {
+        return $this->hasMany('App\Reservation', 'client_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,6 +46,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'national_ID',
+        'avatar_Img',
+        'role',
+        'country',
+        'gender',
+        'status',
+        'creator_id',
     ];
 
     /**
