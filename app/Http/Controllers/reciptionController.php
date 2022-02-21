@@ -28,6 +28,6 @@ class reciptionController extends Controller
         $reservation->status='nonapproved';
         else 
         $reservation->status='approved';
-        return(view('admin..manageReservation',[$mess=>'change saved']));
+        return(view('admin.manageReservation',[$mess=>'change saved']));
     }
 }
