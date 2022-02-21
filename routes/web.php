@@ -21,6 +21,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
 
 
+Route::get('/manager',function(){
+    return view('manager.show_doctors');
+});
+
 
 
 
