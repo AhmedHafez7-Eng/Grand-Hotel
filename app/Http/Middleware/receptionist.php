@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class receptionist
 {
@@ -16,8 +17,9 @@ class receptionist
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->role == 'receptionist') {
+        if (Auth::check() && Auth::user()->role == 'receptionist') {
                    return $next($request);
         }
+        abort(403);
     }
 }
