@@ -22,7 +22,7 @@ Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middlewa
 
 
 Route::get('/manager',function(){
-    return view('manager.show_doctors');
+    return view('manager.home');
 });
 
 
