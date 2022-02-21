@@ -23,11 +23,12 @@ class reciptionController extends Controller
         
     }
     public function change($id){
+        $mess='change saved';
         $reservation=Reservation::find($id);
         if($reservation->status=='approved')
         $reservation->status='nonapproved';
         else 
         $reservation->status='approved';
-        return(view('admin.manageReservation',[$mess=>'change saved']));
+        return(view('admin..manageReservation',['mess'=>$mess]));
     }
 }
