@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
+use App\Models\Floor;
+use App\Models\Room;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +19,11 @@ class HomeController extends Controller
         if (Auth::id()) {
             // Check if it's an Admin
             if (Auth::user()->role == 'admin') {
-                return view('admin.home');
+                $managers = User::all()->where('role', '=', 'manager');
+                $receps = User::all()->where('role', '=', 'receptionist');
+                $floors = Floor::all();
+                $rooms = Room::all();
+                return view('admin.home', compact('managers', $managers, 'receps', $receps, 'floors', $floors, 'rooms', $rooms));
             }
             // Check if it's a Manager
             elseif (Auth::user()->role == 'manager') {

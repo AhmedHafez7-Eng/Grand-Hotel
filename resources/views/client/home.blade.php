@@ -126,6 +126,7 @@
     </div> <!-- .bg-light -->
 
     @include('client.news')
+    @include('client.reservation')
 
     <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
         <div class="container py-5 py-lg-0">

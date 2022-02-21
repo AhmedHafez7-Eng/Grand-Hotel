@@ -18,32 +18,33 @@ class UsersSeeder extends Seeder
         //User::truncate();
         $users = [
             [
-                'name' => 'Moaaz Hafez',
-                'email' => 'manager1@manager.com',
-                'password' => '123567',
-                'national_ID' => '30027241230021',
-                'role' => 'manager',
+                'name' => 'Ahmed Hafez',
+                'email' => 'admin@admin.com',
+                'password' => '12345678',
+                'national_ID' => '29807247777734',
+                'role' => 'admin',
                 'country' => 'Egypt',
                 'gender' => 'male',
-            ],
-            [
-                'name' => 'Noha Ahmed',
-                'email' => 'manager2@manager.com',
-                'password' => '22455678',
-                'national_ID' => '27904221288877',
-                'role' => 'manager',
-                'country' => 'Egypt',
-                'gender' => 'female',
-            ],
-            [
-                'name' => 'Menna Abdo',
-                'email' => 'recep2@recep.com',
-                'password' => 'menna22419',
-                'national_ID' => '29876543212345',
-                'role' => 'receptionist',
-                'country' => 'Egypt',
-                'gender' => 'female',
             ]
+            // ,
+            // [
+            //     'name' => 'Noha Ahmed',
+            //     'email' => 'manager2@manager.com',
+            //     'password' => '22455678',
+            //     'national_ID' => '27904221288877',
+            //     'role' => 'manager',
+            //     'country' => 'Egypt',
+            //     'gender' => 'female',
+            // ],
+            // [
+            //     'name' => 'Menna Abdo',
+            //     'email' => 'recep2@recep.com',
+            //     'password' => 'menna22419',
+            //     'national_ID' => '29876543212345',
+            //     'role' => 'receptionist',
+            //     'country' => 'Egypt',
+            //     'gender' => 'female',
+            // ]
         ];
 
         //foreach($users as $user)
