@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//admin routes
+Route::get('/show_users', [AdminController::class, 'show_users']);
+Route::get('/add_doctor', [AdminController::class, 'addDoctor'])->middleware(['auth'])->middleware('admin');
+Route::post('/add_doctor', [AdminController::class, 'createDoctor'])->middleware(['auth'])->middleware('admin');
+Route::get('/updateDoctor/{id}', [AdminController::class, 'updateDoctor'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_doctor/{id}', [AdminController::class, 'edit_doctor'])->middleware(['auth'])->middleware('admin');
+Route::delete('/deleteDoctor/{id}', [AdminController::class, 'deleteDoctor'])->middleware(['auth'])->middleware('admin');
+
+Route::get('/show_appointments', [AdminController::class, 'show_appointments'])->middleware(['auth'])->middleware('admin');
+Route::get('/canceled/{id}', [AdminController::class, 'canceled'])->middleware(['auth'])->middleware('admin');
+Route::get('/approved/{id}', [AdminController::class, 'approved'])->middleware(['auth'])->middleware('admin');
+
+
+Route::get('/emailNotify/{id}', [AdminController::class, 'emailNotify'])->middleware(['auth'])->middleware('admin');
+Route::post('/sendEmail/{id}', [AdminController::class, 'sendEmail'])->middleware(['auth'])->middleware('admin');
+
