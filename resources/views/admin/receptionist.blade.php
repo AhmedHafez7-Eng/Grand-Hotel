@@ -150,7 +150,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($nonapprovedk as $approveds)
+                                        @foreach ($nonapproved as $approveds)
                                             <tr>
                                                 <td>{{ $approveds->id }}</td>
                                                 <td>{{ $approveds->client_name }}</td>

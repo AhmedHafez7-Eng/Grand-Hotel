@@ -12,14 +12,11 @@ class reciptionController extends Controller
         $approved= DB::table('reservations')
         ->where('status', 'approve')
         ->get();
-        return view('admin.receptionist',compact('approved'));
-        
-    }
-    public function shownonapproved(){
         $nonapproved= DB::table('reservations')
         ->where('status', 'nonapproved')
         ->get();
-        return view('admin.receptionist',compact('nonapprovedk')); 
+        return view('admin.receptionist',compact('approved','nonapproved'));
+        
     }
     public function change($id){
         $mess='change saved';

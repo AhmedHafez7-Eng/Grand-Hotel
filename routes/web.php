@@ -23,7 +23,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/receptionist',[reciptionController::class, 'showapproved','shownonapproved']);
+Route::get('/receptionist',[reciptionController::class, 'showapproved']);
 
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
