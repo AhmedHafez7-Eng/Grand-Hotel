@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,3 +36,23 @@ Route::get('/approved/{id}', [AdminController::class, 'approved'])->middleware([
 Route::get('/emailNotify/{id}', [AdminController::class, 'emailNotify'])->middleware(['auth'])->middleware('admin');
 Route::post('/sendEmail/{id}', [AdminController::class, 'sendEmail'])->middleware(['auth'])->middleware('admin');
 
+//====================== Redirection Routes [HomeController]
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
+Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

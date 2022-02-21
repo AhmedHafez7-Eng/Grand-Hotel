@@ -25,7 +25,8 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="{{url('/')}}"><span class="text-primary">Life</span>-Care</a>
+
+            <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Grand</span>-Hotel</a>
 
             <form action="#">
                 <div class="input-group input-navbar">
@@ -42,7 +43,42 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-           
+            <div class="collapse navbar-collapse" id="navbarSupport">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/home">Home</a>
+
+                        @if (Route::has('login'))
+                            @auth
+                                @if (Auth::user()->role == 'client')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('my_appointment') }}"
+                                style="background-color: rgb(12, 184, 12); color:#FFF;">My
+                                Reservations</a>
+                        </li>
+                        {{-- @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_doctors') }}">Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Appointments</a>
+                        </li> --}}
+                        @endif
+                        <x-app-layout>
+                        </x-app-layout>
+
+                    @else
+                        <li class="nav-item">
+                            <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
+                        </li>
+
+                    @endauth
+                    @endif
+                </ul>
+            </div> <!-- .navbar-collapse -->
         </div> <!-- .container -->
     </nav>
 </header>
