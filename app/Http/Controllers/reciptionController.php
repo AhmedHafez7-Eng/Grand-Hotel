@@ -10,9 +10,17 @@ class reciptionController extends Controller
     //
     public function showapproved(){
         $approved= DB::table('reservations')
-        ->where('status', 'approve')
+        ->where('status', 'approved')
         ->get();
         return view('admin.manageReservation',compact('approved'));
+        
+    }
+    public function showinprogress(){
+        $inprogress= DB::table('reservations')
+        ->where('status', 'In-Progress')
+        ->get();
+    
+        return view('admin.manageReservation',['inprogress'=>$inprogress]);
         
     }
     public function shownonapproved(){
@@ -23,12 +31,17 @@ class reciptionController extends Controller
         
     }
     public function change($id){
-        $mess='change saved';
+       
         $reservation=Reservation::find($id);
-        if($reservation->status=='approved')
-        $reservation->status='nonapproved';
-        else 
+        if($reservation->status=='In-Progress'){
         $reservation->status='approved';
-        return(view('admin..manageReservation',['mess'=>$mess]));
+        $mess='reservation has approved';
+        return(view('admin.manageReservation',['mess'=>$mess]));
+    
+    }
+        else 
+        $reservation->status='nonapproved';{
+        $mess='reservation has refused';
+        return(view('admin.manageReservation',['mess'=>$mess]));}
     }
 }
