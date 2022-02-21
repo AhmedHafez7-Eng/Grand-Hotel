@@ -11,11 +11,11 @@ class Room extends Model
 
     public function RoomCreator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 
     public function RelatedFloor()
     {
-        return $this->belongsTo('App\Floor', 'floor_number');
+        return $this->belongsTo(Floor::class, 'floor_number', 'number');
     }
 }

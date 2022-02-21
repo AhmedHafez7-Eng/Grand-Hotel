@@ -11,11 +11,11 @@ class Floor extends Model
 
     public function FloorOfRoom()
     {
-        return $this->hasMany('App\Room', 'floor_number');
+        return $this->hasMany(Room::class, 'floor_number', 'number');
     }
 
     public function floorCreator()
     {
-        return $this->belongsTo('App\User', 'creator_id');
+        return $this->belongsTo(User::class, 'creator_id', 'id');
     }
 }

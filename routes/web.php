@@ -1,7 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\reciptionController;
+
+
+use App\Http\Controllers\HomeController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,7 +19,29 @@ use App\Http\Controllers\reciptionController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/getreservation',[reciptionController::class, 'showapproved','shownonapproved']);
+//====================== Redirection Routes [HomeController]
+Route::get('/', [HomeController::class, 'index']);
+// Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
+Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
