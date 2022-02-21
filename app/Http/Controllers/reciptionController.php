@@ -12,15 +12,14 @@ class reciptionController extends Controller
         $approved= DB::table('reservations')
         ->where('status', 'approve')
         ->get();
-        return view('admin.manageReservation',compact('approved'));
+        return view('admin.receptionist',compact('approved'));
         
     }
     public function shownonapproved(){
         $nonapproved= DB::table('reservations')
         ->where('status', 'nonapproved')
         ->get();
-        return view('admin.manageReservation',compact('nonapprovedk'));
-        
+        return view('admin.receptionist',compact('nonapprovedk')); 
     }
     public function change($id){
         $mess='change saved';
@@ -29,6 +28,6 @@ class reciptionController extends Controller
         $reservation->status='nonapproved';
         else 
         $reservation->status='approved';
-        return(view('admin..manageReservation',['mess'=>$mess]));
+        return(view('admin..receptionist',['mess'=>$mess]));
     }
 }
