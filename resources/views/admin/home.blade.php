@@ -55,7 +55,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($doctors as $doctor)
+                                        {{-- @foreach ($doctors as $doctor)
                                             <tr>
                                                 <td>{{ $doctor->name }}</td>
                                                 <td>{{ $doctor->phone }}</td>
@@ -66,7 +66,7 @@
                                                         alt="Doctor Image">
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                     <tfoot>
                                         <tr>
@@ -137,7 +137,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($appointments as $appointment)
+                                        {{-- @foreach ($appointments as $appointment)
                                             <tr>
                                                 <td>{{ $appointment->name }}</td>
                                                 <td>{{ $appointment->email }}</td>
@@ -147,7 +147,7 @@
                                                 <td>{{ $appointment->message }}</td>
                                                 <td>{{ $appointment->status }}</td>
                                             </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                     <tfoot>
                                         <tr>
