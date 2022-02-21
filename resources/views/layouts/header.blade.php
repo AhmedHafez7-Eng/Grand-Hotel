@@ -25,8 +25,12 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
+<<<<<<< HEAD
 
             <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Grand</span>-Hotel</a>
+=======
+            <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Life</span>-Care</a>
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
 
             <form action="#">
                 <div class="input-group input-navbar">
@@ -54,15 +58,36 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('my_appointment') }}"
                                 style="background-color: rgb(12, 184, 12); color:#FFF;">My
-                                Reservations</a>
+                                Appointments</a>
                         </li>
-                        {{-- @else
+                    @elseif (Auth::user()->role == 'admin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_doctors') }}">Doctors</a>
+                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Managers</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Appointments</a>
-                        </li> --}}
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Receptionists</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Clients</a>
+                        </li>
+                    @elseif (Auth::user()->role == 'manager')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Receptionists</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Rooms</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Floors</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Clients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/show_appointments') }}">Approved Clients</a>
+                        </li>
                         @endif
                         <x-app-layout>
                         </x-app-layout>

@@ -14,11 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('password')->min(6);
             $table->string('national_ID')->unique()->min(14)->max(14);
             $table->string('avatar_Img')->default('default_avatar.jpg');
             $table->string('role')->default('client');
@@ -28,9 +26,11 @@ return new class extends Migration
             $table->bigInteger('creator_id')->unsigned()->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
             $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->timestamps();
         });
     }
 

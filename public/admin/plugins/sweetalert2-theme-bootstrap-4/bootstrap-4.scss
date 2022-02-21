@@ -7,7 +7,8 @@
   $index: str-index($string, $search);
 
   @if $index {
-    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
   }
 
   @return $string;
@@ -38,13 +39,25 @@ $bootstrap-theme-color-interval: 8% !default;
 $bootstrap-alert-border-level: -9 !default;
 $bootstrap-alert-bg-level: -10 !default;
 $bootstrap-alert-color-level: 6 !default;
-$bootstrap-alert-border-color: mix($swal2-white, $bootstrap-secondary, abs($bootstrap-alert-border-level) * $bootstrap-theme-color-interval) !default;
-$bootstrap-alert-background: mix($swal2-white, $bootstrap-secondary, abs($bootstrap-alert-bg-level) * $bootstrap-theme-color-interval) !default;
-$bootstrap-alert-color: mix($swal2-black, $bootstrap-secondary, abs($bootstrap-alert-color-level) * $bootstrap-theme-color-interval) !default;
-$bootstrap-alert-padding-y: .75rem !default;
+$bootstrap-alert-border-color: mix(
+  $swal2-white,
+  $bootstrap-secondary,
+  abs($bootstrap-alert-border-level) * $bootstrap-theme-color-interval
+) !default;
+$bootstrap-alert-background: mix(
+  $swal2-white,
+  $bootstrap-secondary,
+  abs($bootstrap-alert-bg-level) * $bootstrap-theme-color-interval
+) !default;
+$bootstrap-alert-color: mix(
+  $swal2-black,
+  $bootstrap-secondary,
+  abs($bootstrap-alert-color-level) * $bootstrap-theme-color-interval
+) !default;
+$bootstrap-alert-padding-y: 0.75rem !default;
 $bootstrap-alert-padding-x: 1.25rem !default;
 $bootstrap-alert-margin-bottom: 1rem !default;
-$bootstrap-alert-border-radius: .25rem !default;
+$bootstrap-alert-border-radius: 0.25rem !default;
 $bootstrap-alert-border-width: 1px !default;
 $bootstrap-alert-font-size: 1rem !default;
 
@@ -52,29 +65,33 @@ $bootstrap-alert-font-size: 1rem !default;
 $bootstrap-input-color: $bootstrap-gray-700 !default;
 $bootstrap-input-bg: $swal2-white !default;
 $bootstrap-input-border-color: $bootstrap-gray-300 !default;
-$bootstrap-input-border-radius: .25rem !default;
+$bootstrap-input-border-radius: 0.25rem !default;
 $bootstrap-input-border-width: 1px !default;
-$bootstrap-input-padding-y: .375rem !default;
-$bootstrap-input-padding-x: .75rem !default;
+$bootstrap-input-padding-y: 0.375rem !default;
+$bootstrap-input-padding-x: 0.75rem !default;
 $bootstrap-input-line-height: 1.5 !default;
 $bootstrap-input-height-border: $bootstrap-input-border-width * 2 !default;
-$bootstrap-input-height: calc(#{$bootstrap-input-line-height * 1em} + #{$bootstrap-input-padding-y * 2} + #{$bootstrap-input-height-border}) !default;
+$bootstrap-input-height: calc(
+  #{$bootstrap-input-line-height * 1em} + #{$bootstrap-input-padding-y * 2} + #{$bootstrap-input-height-border}
+) !default;
 
 $bootstrap-input-disabled-color: $swal2-white !default;
 $bootstrap-input-disabled-bg: $bootstrap-gray-200 !default;
 
-$bootstrap-input-focus-width: .2rem !default;
+$bootstrap-input-focus-width: 0.2rem !default;
 $bootstrap-input-focus-border: 1px solid lighten($bootstrap-primary, 25%) !default;
-$bootstrap-input-focus-box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-primary, .25) !default;
+$bootstrap-input-focus-box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-primary, 0.25) !default;
 
 // Button
-$bootstrap-btn-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
-$bootstrap-btn-secondary-focus-box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-secondary, .25) !default;
+$bootstrap-btn-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out !default;
+$bootstrap-btn-secondary-focus-box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-secondary, 0.25) !default;
 
 // Custom Shared Variables
-$bootstrap-custom-forms-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
+$bootstrap-custom-forms-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  box-shadow 0.15s ease-in-out !default;
 
-$bootstrap-custom-control-gutter: .5rem !default;
+$bootstrap-custom-control-gutter: 0.5rem !default;
 $bootstrap-custom-control-indicator-size: 1rem !default;
 $bootstrap-custom-control-indicator-bg: $swal2-white !default;
 $bootstrap-custom-control-indicator-bg-size: 50% 50% !default;
@@ -82,7 +99,7 @@ $bootstrap-custom-control-indicator-border-color: $bootstrap-gray-500 !default;
 $bootstrap-custom-control-indicator-border-width: $bootstrap-input-border-width !default;
 $bootstrap-custom-control-indicator-checked-color: $swal2-white !default;
 $bootstrap-custom-control-indicator-checked-bg: $bootstrap-primary !default;
-$bootstrap-custom-control-indicator-checked-disabled-bg: rgba($bootstrap-primary, .5) !default;
+$bootstrap-custom-control-indicator-checked-disabled-bg: rgba($bootstrap-primary, 0.5) !default;
 $bootstrap-custom-control-indicator-checked-border-color: $bootstrap-custom-control-indicator-checked-bg !default;
 
 $bootstrap-custom-control-indicator-active-color: $swal2-white !default;
@@ -96,51 +113,64 @@ $bootstrap-custom-control-indicator-focus-border-color: lighten($bootstrap-prima
 // Custom Select
 $bootstrap-custom-select-bg-size: 8px 10px !default;
 $bootstrap-custom-select-indicator-color: $bootstrap-gray-800 !default;
-$bootstrap-custom-select-indicator: str-replace(url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3e%3cpath fill="#{$bootstrap-custom-select-indicator-color}" d="M2 0L0 2h4zm0 5L0 3h4z"/%3e%3c/svg%3e'), '#', '%23') !default;
-$bootstrap-custom-select-background: $bootstrap-custom-select-indicator no-repeat right $bootstrap-input-padding-x center / $bootstrap-custom-select-bg-size !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
+$bootstrap-custom-select-indicator: str-replace(
+  url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3e%3cpath fill="#{$bootstrap-custom-select-indicator-color}" d="M2 0L0 2h4zm0 5L0 3h4z"/%3e%3c/svg%3e'),
+  '#',
+  '%23'
+) !default;
+$bootstrap-custom-select-background: $bootstrap-custom-select-indicator no-repeat right $bootstrap-input-padding-x
+  center / $bootstrap-custom-select-bg-size !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
 
 // Custom Radio
 $bootstrap-custom-radio-indicator-border-radius: 50% !default;
-$bootstrap-custom-radio-indicator-icon-checked: str-replace(url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3e%3ccircle r="3" fill="#{$bootstrap-custom-control-indicator-checked-color}"/%3e%3c/svg%3e'), '#', '%23') !default;
+$bootstrap-custom-radio-indicator-icon-checked: str-replace(
+  url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 8 8"%3e%3ccircle r="3" fill="#{$bootstrap-custom-control-indicator-checked-color}"/%3e%3c/svg%3e'),
+  '#',
+  '%23'
+) !default;
 
 // Custom Checkbox
-$bootstrap-custom-checkbox-indicator-icon-checked: str-replace(url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"%3e%3cpath fill="#{$bootstrap-custom-control-indicator-checked-color}" d="M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z"/%3e%3c/svg%3e'), '#', '%23') !default;
+$bootstrap-custom-checkbox-indicator-icon-checked: str-replace(
+  url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"%3e%3cpath fill="#{$bootstrap-custom-control-indicator-checked-color}" d="M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z"/%3e%3c/svg%3e'),
+  '#',
+  '%23'
+) !default;
 
 // Custom Range
 $bootstrap-custom-range-track-width: 100% !default;
-$bootstrap-custom-range-track-height: .5rem !default;
+$bootstrap-custom-range-track-height: 0.5rem !default;
 $bootstrap-custom-range-track-cursor: pointer !default;
 $bootstrap-custom-range-track-bg: $bootstrap-gray-300 !default;
 $bootstrap-custom-range-track-border-radius: 1rem !default;
-$bootstrap-custom-range-track-box-shadow: inset 0 .25rem .25rem rgba($swal2-black, .1) !default;
+$bootstrap-custom-range-track-box-shadow: inset 0 0.25rem 0.25rem rgba($swal2-black, 0.1) !default;
 
 $bootstrap-custom-range-thumb-width: 1rem !default;
 $bootstrap-custom-range-thumb-height: $bootstrap-custom-range-thumb-width !default;
 $bootstrap-custom-range-thumb-bg: $bootstrap-primary !default;
 $bootstrap-custom-range-thumb-border: 0 !default;
 $bootstrap-custom-range-thumb-border-radius: 1rem !default;
-$bootstrap-custom-range-thumb-box-shadow: 0 .1rem .25rem rgba($swal2-black, .1) !default;
+$bootstrap-custom-range-thumb-box-shadow: 0 0.1rem 0.25rem rgba($swal2-black, 0.1) !default;
 $bootstrap-custom-range-thumb-focus-box-shadow: 0 0 0 1px $swal2-white, $bootstrap-input-focus-box-shadow !default;
 $bootstrap-custom-range-thumb-focus-box-shadow-width: $bootstrap-input-focus-width !default; // For focus box shadow issue in IE/Edge
 $bootstrap-custom-range-thumb-active-bg: lighten($bootstrap-primary, 35%) !default;
 $bootstrap-custom-range-thumb-disabled-bg: $bootstrap-gray-500 !default;
 
 // Toast
-$bootstrap-toast-max-width:                   350px !default;
-$bootstrap-toast-padding-x:                   .75rem !default;
-$bootstrap-toast-padding-y:                   .25rem !default;
-$bootstrap-toast-font-size:                   .875rem !default;
-$bootstrap-toast-background-color:            rgba($swal2-white, .85) !default;
-$bootstrap-toast-border-width:                1px !default;
-$bootstrap-toast-border-color:                rgba(0, 0, 0, .1) !default;
-$bootstrap-toast-border-radius:               .25rem !default;
-$bootstrap-toast-box-shadow:                  0 .25rem .75rem rgba($swal2-black, .1) !default;
+$bootstrap-toast-max-width: 350px !default;
+$bootstrap-toast-padding-x: 0.75rem !default;
+$bootstrap-toast-padding-y: 0.25rem !default;
+$bootstrap-toast-font-size: 0.875rem !default;
+$bootstrap-toast-background-color: rgba($swal2-white, 0.85) !default;
+$bootstrap-toast-border-width: 1px !default;
+$bootstrap-toast-border-color: rgba(0, 0, 0, 0.1) !default;
+$bootstrap-toast-border-radius: 0.25rem !default;
+$bootstrap-toast-box-shadow: 0 0.25rem 0.75rem rgba($swal2-black, 0.1) !default;
 
 // override SASS variables here
 
 // BOX MODEL
 $swal2-padding: 1rem;
-$swal2-border-radius: .3rem;
+$swal2-border-radius: 0.3rem;
 
 // ANIMATIONS
 // animate.css/fading_entrances/fadeInDown.css
@@ -169,12 +199,12 @@ $swal2-border-radius: .3rem;
   }
 }
 
-$swal2-show-animation: fadeInDown .5s;
-$swal2-hide-animation: fadeOutUp .5s;
+$swal2-show-animation: fadeInDown 0.5s;
+$swal2-hide-animation: fadeOutUp 0.5s;
 
 // BACKDROP
-$swal2-backdrop: rgba($swal2-black, .5);
-$swal2-backdrop-transition: background-color .5s;
+$swal2-backdrop: rgba($swal2-black, 0.5);
+$swal2-backdrop-transition: background-color 0.5s;
 
 // ICONS
 $swal2-success: $bootstrap-success;
@@ -195,7 +225,7 @@ $swal2-input-padding: $bootstrap-input-padding-y $bootstrap-input-padding-x;
 $swal2-close-button-width: 2em;
 $swal2-close-button-height: 2em;
 $swal2-close-button-line-height: 1;
-$swal2-close-button-color: rgba($swal2-black, .5);
+$swal2-close-button-color: rgba($swal2-black, 0.5);
 $swal2-close-button-font-size: 1.5rem;
 
 // CLOSE BUTTON:HOVER
@@ -229,11 +259,11 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 }
 
 .swal2-popup {
-  border: $bootstrap-input-border-width solid rgba(0, 0, 0, .2);
+  border: $bootstrap-input-border-width solid rgba(0, 0, 0, 0.2);
 
   &.swal2-toast {
-    padding: .25rem .75rem;
-    font-size: .875rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
 
     .swal2-title {
       margin: 0;
@@ -291,7 +321,7 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 
     &:focus {
       border-color: $bootstrap-danger;
-      box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-danger, .25) !important;
+      box-shadow: 0 0 0 $bootstrap-input-focus-width rgba($bootstrap-danger, 0.25) !important;
     }
   }
 }
@@ -354,7 +384,7 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
 .swal2-select {
   display: inline-block;
   height: $bootstrap-input-height;
-  padding: .375rem 1.75rem .375rem .75rem;
+  padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   transition: $bootstrap-custom-forms-transition;
   border: $bootstrap-input-border-width solid $bootstrap-input-border-color;
   border-radius: $bootstrap-input-border-radius;
@@ -439,7 +469,10 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
       content: '';
       display: block;
       position: absolute;
-      top: math.div($swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size, 6); /* stylelint-disable-line */
+      top: math.div(
+        $swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size,
+        6
+      );
       left: -($bootstrap-custom-control-gutter + $bootstrap-custom-control-indicator-size);
       width: $bootstrap-custom-control-indicator-size;
       height: $bootstrap-custom-control-indicator-size;
@@ -454,7 +487,10 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
       content: '';
       display: block;
       position: absolute;
-      top: math.div($swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size, 6); /* stylelint-disable-line */
+      top: math.div(
+        $swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size,
+        6
+      );
       left: -($bootstrap-custom-control-gutter + $bootstrap-custom-control-indicator-size);
       width: $bootstrap-custom-control-indicator-size;
       height: $bootstrap-custom-control-indicator-size;
@@ -509,7 +545,10 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
       content: '';
       display: block;
       position: absolute;
-      top: math.div($swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size, 2); /* stylelint-disable-line */
+      top: math.div(
+        $swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size,
+        2
+      );
       left: -($bootstrap-custom-control-gutter + $bootstrap-custom-control-indicator-size);
       width: $bootstrap-custom-control-indicator-size;
       height: $bootstrap-custom-control-indicator-size;
@@ -523,7 +562,10 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
       content: '';
       display: block;
       position: absolute;
-      top: math.div($swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size, 2); /* stylelint-disable-line */
+      top: math.div(
+        $swal2-input-font-size * $bootstrap-input-line-height - $bootstrap-custom-control-indicator-size,
+        2
+      );
       left: -($bootstrap-custom-control-gutter + $bootstrap-custom-control-indicator-size);
       width: $bootstrap-custom-control-indicator-size;
       height: $bootstrap-custom-control-indicator-size;
@@ -567,7 +609,7 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
     &::-webkit-slider-thumb {
       width: $bootstrap-custom-range-thumb-width;
       height: $bootstrap-custom-range-thumb-height;
-      margin-top: math.div($bootstrap-custom-range-track-height - $bootstrap-custom-range-thumb-height, 2); /* stylelint-disable-line */
+      margin-top: math.div($bootstrap-custom-range-track-height - $bootstrap-custom-range-thumb-height, 2);
       transition: $bootstrap-custom-forms-transition;
       border: $bootstrap-custom-range-thumb-border;
       border-radius: $bootstrap-custom-range-thumb-border-radius;

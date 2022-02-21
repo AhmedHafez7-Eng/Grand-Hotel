@@ -52,12 +52,8 @@ class User extends Authenticatable
         'email',
         'password',
         'national_ID',
-        'avatar_Img',
-        'role',
         'country',
         'gender',
-        'status',
-        'creator_id',
     ];
 
     /**

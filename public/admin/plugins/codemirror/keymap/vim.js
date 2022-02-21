@@ -865,6 +865,7 @@
         }
         function handleEsc() {
           if (key == '<Esc>') {
+<<<<<<< HEAD
             // Clear input state and get back to normal mode.
             clearInputState(cm);
             if (vim.visualMode) {
@@ -872,6 +873,19 @@
             } else if (vim.insertMode) {
               exitInsertMode(cm);
             }
+=======
+            if (vim.visualMode) {
+              // Get back to normal mode.
+              exitVisualMode(cm);
+            } else if (vim.insertMode) {
+              // Get back to normal mode.
+              exitInsertMode(cm);
+            } else {
+              // We're already in normal mode. Let '<Esc>' be handled normally.
+              return;
+            }
+            clearInputState(cm);
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
             return true;
           }
         }

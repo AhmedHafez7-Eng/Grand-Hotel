@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 tr.even td {
   background-color: #ffffff;
 }
@@ -22,6 +23,21 @@ th.dtfc-fixed-left,
 th.dtfc-fixed-right,
 td.dtfc-fixed-left,
 td.dtfc-fixed-right {
+=======
+table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+  background-color: white;
+}
+table.dataTable tbody tr td {
+  background-color: #ffffff;
+}
+table.dataTable.table-striped tbody tr.odd td {
+  background-color: #f9f9f9;
+}
+table.dataTable th.dtfc-fixed-left,
+table.dataTable th.dtfc-fixed-right,
+table.dataTable td.dtfc-fixed-left,
+table.dataTable td.dtfc-fixed-right {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
   z-index: 1;
 }
 

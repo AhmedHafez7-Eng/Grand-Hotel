@@ -50,7 +50,11 @@
   }
 
   function getTagRegexp(tagName, anchored) {
+<<<<<<< HEAD
     return new RegExp((anchored ? "^" : "") + "<\/\s*" + tagName + "\s*>", "i");
+=======
+    return new RegExp((anchored ? "^" : "") + "<\/\\s*" + tagName + "\\s*>", "i");
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
   }
 
   function addTags(from, to) {
