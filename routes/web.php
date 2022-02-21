@@ -2,13 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< HEAD
-
-use App\Http\Controllers\HomeController;
-
-=======
 use App\Http\Controllers\reciptionController;
->>>>>>> 785a5f33de7458faa6acbb9f8b2f99eb043aa347
 /*
 |--------------------------------------------------------------------------
 | Web Routes
