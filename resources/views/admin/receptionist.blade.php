@@ -34,17 +34,16 @@
         background-color: #50855C;
         color: #FFF;
     }
-
 </style>
 <div class="wrapper">
 
     @include('admin.header')
 
     @if (session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
     @endif
 
     @include('admin.sidebar')
@@ -83,43 +82,38 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                           <th>#</th>
+                                            <th>#</th>
                                             <th>Client Name</th>
                                             <th>Accompany Number </th>
                                             <th>Room_Number</th>
                                             <th>Paid Price</th>
                                             <th>Client Id</th>
                                             <th>Status</th>
+                                            <th>Control</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($approved as $approveds)
-                                            <tr>
-                                                <td>{{ $approveds->id }}</td>
-                                                <td>{{ $approveds->client_name }}</td>
-                                                <td>{{ $approveds->accompany_number }}</td>
-                                                <td>{{ $approveds->room_number }}</td>
-                                                <td>{{ $approveds->paid_price }}</td>
-                                                <td>{{ $approveds->client_id }}</td>
-                                                <td>{{ $approveds->status }}</td>
- 
-                                                
-                                                
-                                              
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $approveds->id }}</td>
+                                            <td>{{ $approveds->client_name }}</td>
+                                            <td>{{ $approveds->accompany_number }}</td>
+                                            <td>{{ $approveds->room_number }}</td>
+                                            <td>{{ $approveds->paid_price }}</td>
+                                            <td>{{ $approveds->client_id }}</td>
+                                            <td>{{ $approveds->status }}</td>
+                                            <td>
+                                            <td>
+                                                <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-outline-info">Approve</button>
+                                                </form>
+                                            </td>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </tfoot>
+
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -140,39 +134,37 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                           <th>#</th>
+                                            <th>#</th>
                                             <th>Client Name</th>
                                             <th>Accompany Number </th>
                                             <th>Room_Number</th>
                                             <th>Paid Price</th>
                                             <th>Client Id</th>
                                             <th>Status</th>
+                                            <th>Control</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($nonapproved as $approveds)
-                                            <tr>
-                                                <td>{{ $approveds->id }}</td>
-                                                <td>{{ $approveds->client_name }}</td>
-                                                <td>{{ $approveds->accompany_number }}</td>
-                                                <td>{{ $approveds->room_number }}</td>
-                                                <td>{{ $approveds->paid_price }}</td>
-                                                <td>{{ $approveds->client_id }}</td>
-                                                <td>{{ $approveds->status }}</td>   
-                                            </tr>
+                                        <tr>
+                                            <td>{{ $approveds->id }}</td>
+                                            <td>{{ $approveds->client_name }}</td>
+                                            <td>{{ $approveds->accompany_number }}</td>
+                                            <td>{{ $approveds->room_number }}</td>
+                                            <td>{{ $approveds->paid_price }}</td>
+                                            <td>{{ $approveds->client_id }}</td>
+                                            <td>{{ $approveds->status }}</td>
+                                            <td>
+                                            <td>
+                                                <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-outline-info">Approve</button>
+                                                </form>
+                                            </td>
+                                            </td>
+                                        </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                             <!-- /.card-body -->

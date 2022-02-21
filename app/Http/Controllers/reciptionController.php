@@ -21,10 +21,11 @@ class reciptionController extends Controller
     public function change($id){
         $mess='change saved';
         $reservation=Reservation::find($id);
-        if($reservation->status=='approved')
+        if($reservation->status=='approve')
         $reservation->status='nonapproved';
         else 
-        $reservation->status='approved';
-        return(view('admin..receptionist',['mess'=>$mess]));
+        $reservation->status='approve';
+        $reservation->save();
+        return redirect()->route('receptionist');
     }
 }
