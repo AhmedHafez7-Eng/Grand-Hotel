@@ -18,15 +18,6 @@ class UsersSeeder extends Seeder
         //User::truncate();
         $users = [
             [
-                'name' => 'Ahmed Hafez',
-                'email' => 'admin@admin.com',
-                'password' => '123456',
-                'national_ID' => '29807241233356',
-                'role' => 'admin',
-                'country' => 'Egypt',
-                'gender' => 'male',
-            ],
-            [
                 'name' => 'Moaaz Hafez',
                 'email' => 'manager1@manager.com',
                 'password' => '123567',
@@ -43,15 +34,6 @@ class UsersSeeder extends Seeder
                 'role' => 'manager',
                 'country' => 'Egypt',
                 'gender' => 'female',
-            ],
-            [
-                'name' => 'Amr Ahmed',
-                'email' => 'recep1@recep.com',
-                'password' => 'amr12345',
-                'national_ID' => '12345678901234',
-                'role' => 'receptionist',
-                'country' => 'Egypt',
-                'gender' => 'male',
             ],
             [
                 'name' => 'Menna Abdo',
