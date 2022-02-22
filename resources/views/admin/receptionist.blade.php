@@ -107,7 +107,7 @@
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-info">{{ $approveds->status}}</button>
+                                                    <button type="submit" class="btn btn-outline-info" name=$value>{{ $approveds->status }}</button>
                                                 </form>
                                             </td>
                                             </td>
@@ -161,7 +161,7 @@
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-info">{{$approveds->status}}</button>
+                                                    <button type="submit" name=$value class="btn btn-outline-info">approved</button>
                                                 </form>
                                             </td>
                                             </td>
@@ -216,7 +216,7 @@
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-info">{{$approveds->status}}</button>
+                                                    <button type="submit"name=$value class="btn btn-outline-info">non{{$approveds->status }}</button>
                                                 </form>
                                             </td>
                                             </td>

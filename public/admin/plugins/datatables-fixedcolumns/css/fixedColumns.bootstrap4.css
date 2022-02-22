@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
   background-color: white;
 }
@@ -13,6 +14,8 @@ table.dataTable th.dtfc-fixed-right,
 table.dataTable td.dtfc-fixed-left,
 table.dataTable td.dtfc-fixed-right {
 =======
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
 tr.even td {
   background-color: #ffffff;
 }
@@ -37,7 +40,25 @@ th.dtfc-fixed-left,
 th.dtfc-fixed-right,
 td.dtfc-fixed-left,
 td.dtfc-fixed-right {
+<<<<<<< HEAD
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+=======
+table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
+  background-color: white;
+}
+table.dataTable tbody tr td {
+  background-color: #ffffff;
+}
+table.dataTable.table-striped tbody tr.odd td {
+  background-color: #f9f9f9;
+}
+table.dataTable th.dtfc-fixed-left,
+table.dataTable th.dtfc-fixed-right,
+table.dataTable td.dtfc-fixed-left,
+table.dataTable td.dtfc-fixed-right {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   z-index: 1;
 }
 

@@ -28,10 +28,14 @@ With SASS:
 `your-app.js`:
 ```js
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 =======
 import Swal from 'sweetalert2/src/sweetalert2.js'
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
 ```
 
 `your-app.scss`:

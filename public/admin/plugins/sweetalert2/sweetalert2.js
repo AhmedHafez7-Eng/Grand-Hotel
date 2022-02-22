@@ -1,9 +1,13 @@
 /*!
 <<<<<<< HEAD
+<<<<<<< HEAD
 * sweetalert2 v11.4.4
 =======
 * sweetalert2 v11.4.0
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+* sweetalert2 v11.4.4
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
 * Released under the MIT License.
 */
 (function (global, factory) {
@@ -317,10 +321,14 @@
   };
   const isModal = () => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     return hasClass(document.body, swalClasses.shown) && !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
 =======
     return !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+    return hasClass(document.body, swalClasses.shown) && !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   };
   const isToast = () => {
     return getPopup() && hasClass(getPopup(), swalClasses.toast);
@@ -2199,6 +2207,7 @@
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   const handleConfirmButtonClick = instance => {
     const innerParams = privateProps.innerParams.get(instance);
@@ -2760,6 +2769,8 @@
   });
 
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   /**
    * Hides loader and shows back the button which was hidden by .showLoading()
    */
@@ -2922,9 +2933,12 @@
     }
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   const handleAwaitingPromise = instance => {
     if (instance.isAwaitingPromise()) {
       privateProps.awaitingPromise.delete(instance); // The instance might have been previously partly destroyed, we must resume the destroy process in this case #2335
@@ -3172,9 +3186,13 @@
     isAwaitingPromise: isAwaitingPromise,
     rejectPromise: rejectPromise,
 <<<<<<< HEAD
+<<<<<<< HEAD
     handleAwaitingPromise: handleAwaitingPromise,
 =======
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+    handleAwaitingPromise: handleAwaitingPromise,
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
     closePopup: close,
     closeModal: close,
     closeToast: close,
@@ -3190,6 +3208,9 @@
   });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   const handleConfirmButtonClick = instance => {
     const innerParams = privateProps.innerParams.get(instance);
     instance.disableButtons();
@@ -3771,8 +3792,11 @@
     bindClickHandler: bindClickHandler
   });
 
+<<<<<<< HEAD
 =======
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
   let currentInstance;
 
   class SweetAlert {
@@ -3982,10 +4006,14 @@
   });
   SweetAlert.DismissReason = DismissReason;
 <<<<<<< HEAD
+<<<<<<< HEAD
   SweetAlert.version = '11.4.4';
 =======
   SweetAlert.version = '11.4.0';
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+  SweetAlert.version = '11.4.4';
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
 
   const Swal = SweetAlert; // @ts-ignore
 

@@ -26,11 +26,19 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Life</span>-Care</a>
 =======
 
             <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Grand</span>-Hotel</a>
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+
+            <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Grand</span>-Hotel</a>
+=======
+            <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Life</span>-Care</a>
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
 
             <form action="#">
                 <div class="input-group input-navbar">

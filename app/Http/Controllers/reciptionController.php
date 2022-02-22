@@ -24,22 +24,41 @@ class reciptionController extends Controller
         
     }
     public function change($id){
-       
+      
         $reservation=Reservation::find($id);
 
-        if($reservation->status=='In-Progress'){
+        if($reservation->status=='In-Progress')
+        {
+           // if($_GET[button_value]=='approved'){
         $reservation->status='approved';
-        $mess='reservation has approved';
+       $value='nonapproved';
         $reservation->save();
-        return redirect()->route('receptionist');
+        return redirect()->route('receptionist',compact('value'));
+        }
        // return redirect()->route('');
     
-    }
-        else 
-        $reservation->status='nonapproved';{
-        $mess='reservation has refused';
+    
+        else
+        { 
+        if($reservation->status=='nonapproved')
+        {
+        $reservation->status='approved';
+            $value='nonapproved';
         $reservation->save();
-        return redirect()->route('receptionist');}
-
-}
+        return redirect()->route('receptionist',compact('value'));
+        }
+        else
+        {
+        if($reservation->status=='approved')
+        {
+            $reservation->status='nonapproved';
+                $value='approved';
+            $reservation->save(); 
+            return redirect()->route('receptionist',compact('value'));
+        
+        }
+        
+        }}
+    
+    }
 }

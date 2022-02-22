@@ -866,6 +866,17 @@
         function handleEsc() {
           if (key == '<Esc>') {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            // Clear input state and get back to normal mode.
+            clearInputState(cm);
+            if (vim.visualMode) {
+              exitVisualMode(cm);
+            } else if (vim.insertMode) {
+              exitInsertMode(cm);
+            }
+=======
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
             if (vim.visualMode) {
               // Get back to normal mode.
               exitVisualMode(cm);
@@ -877,6 +888,7 @@
               return;
             }
             clearInputState(cm);
+<<<<<<< HEAD
 =======
             // Clear input state and get back to normal mode.
             clearInputState(cm);
@@ -886,6 +898,9 @@
               exitInsertMode(cm);
             }
 >>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> 35f29d8582c49eb42195fda8eba57b86b44f6b50
             return true;
           }
         }
