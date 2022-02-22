@@ -18,20 +18,15 @@ use App\Http\Controllers\HomeController;
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
-Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
+Route::get('/home', [HomeController::class, 'redirect'])
+    ->name('home')
+    ->middleware(['auth']);
+// Route::middleware(['auth:sanctum', 'verified'])
+//     ->get('/dashboard', function () {
+//         return view('dashboard');
+//     })
+//     ->name('dashboard');
 
-
-
-
-
-
-
-
-
-
-
-
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
