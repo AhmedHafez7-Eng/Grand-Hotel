@@ -37,14 +37,8 @@
 </style>
 <div class="wrapper">
 
-    @include('admin.header')
 
-    @if (session()->has('message'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('message') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
-    </div>
-    @endif
+    
 
     @include('admin.sidebar')
 
@@ -103,12 +97,10 @@
                                             <td>{{ $approveds->client_id }}</td>
                                             <td>{{ $approveds->status }}</td>
                                             <td>
-                                            <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-info">Approve</button>
+                                                    <button name="approve" type="submit" class="btn btn-outline-info">Non Approve</button>
                                                 </form>
-                                            </td>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -141,7 +133,6 @@
                                             <th>Paid Price</th>
                                             <th>Client Id</th>
                                             <th>Status</th>
-                                            <th>Control</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -154,17 +145,61 @@
                                             <td>{{ $approveds->paid_price }}</td>
                                             <td>{{ $approveds->client_id }}</td>
                                             <td>{{ $approveds->status }}</td>
-                                            <td>
+
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">All In Progress data</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Client Name</th>
+                                            <th>Accompany Number </th>
+                                            <th>Room_Number</th>
+                                            <th>Paid Price</th>
+                                            <th>Client Id</th>
+                                            <th>Status</th>
+                                            <th>Control</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($inprogress as $approveds)
+                                        <tr>
+                                            <td>{{ $approveds->id }}</td>
+                                            <td>{{ $approveds->client_name }}</td>
+                                            <td>{{ $approveds->accompany_number }}</td>
+                                            <td>{{ $approveds->room_number }}</td>
+                                            <td>{{ $approveds->paid_price }}</td>
+                                            <td>{{ $approveds->client_id }}</td>
+                                            <td>{{ $approveds->status }}</td>
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-outline-info">Approve</button>
+                                                    <button type="submit" name="non" class="btn btn-outline-info">Non Approve</button>
+                                                    <button type="submit" name="app" class="btn btn-outline-info">Approve</button>
                                                 </form>
-                                            </td>
                                             </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -181,7 +216,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('layouts.footer')
 
 </div>
 <!-- ./wrapper -->

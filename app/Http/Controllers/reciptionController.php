@@ -12,18 +12,22 @@ class reciptionController extends Controller
         $approved= DB::table('reservations')
         ->where('status', 'approve')
         ->get();
+        $inprogress= DB::table('reservations')
+        ->where('status', 'In-Progress')
+        ->get();
         $nonapproved= DB::table('reservations')
         ->where('status', 'nonapproved')
         ->get();
-        return view('admin.receptionist',compact('approved','nonapproved'));
+        return view('admin.receptionist',compact('approved','nonapproved','inprogress'));
         
     }
     public function change($id){
-        $mess='change saved';
         $reservation=Reservation::find($id);
         if($reservation->status=='approve')
         $reservation->status='nonapproved';
-        else 
+        else if($reservation->status=='In-Progress' && isset($_GET['non']))
+        $reservation->status='nonapproved';
+        else if($reservation->status=='In-Progress' && isset($_GET['app']))
         $reservation->status='approve';
         $reservation->save();
         return redirect()->route('receptionist');
