@@ -25,7 +25,12 @@
 
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
+<<<<<<< HEAD
             <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Life</span>-Care</a>
+=======
+
+            <a class="navbar-brand" href="{{ url('/') }}"><span class="text-primary">Grand</span>-Hotel</a>
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 
             <form action="#">
                 <div class="input-group input-navbar">

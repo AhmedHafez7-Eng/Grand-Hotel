@@ -19,7 +19,10 @@
 
   CodeMirror.defineMode("cypher", function(config) {
     var tokenBase = function(stream/*, state*/) {
+<<<<<<< HEAD
       curPunc = null
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
       var ch = stream.next();
       if (ch ==='"') {
         stream.match(/^[^"]*"/);

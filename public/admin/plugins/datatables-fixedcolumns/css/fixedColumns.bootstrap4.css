@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
   background-color: white;
 }
@@ -11,6 +12,32 @@ table.dataTable th.dtfc-fixed-left,
 table.dataTable th.dtfc-fixed-right,
 table.dataTable td.dtfc-fixed-left,
 table.dataTable td.dtfc-fixed-right {
+=======
+tr.even td {
+  background-color: #ffffff;
+}
+
+tr.odd td {
+  background-color: #f9f9f9;
+}
+
+tr.selected td {
+  background-color: #0088cc;
+}
+
+thead th {
+  background-color: white;
+}
+
+tfoot th {
+  background-color: white;
+}
+
+th.dtfc-fixed-left,
+th.dtfc-fixed-right,
+td.dtfc-fixed-left,
+td.dtfc-fixed-right {
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
   z-index: 1;
 }
 

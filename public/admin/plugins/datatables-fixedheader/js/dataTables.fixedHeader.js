@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /*! FixedHeader 3.2.2
+=======
+/*! FixedHeader 3.2.1
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
  * ©2009-2021 SpryMedia Ltd - datatables.net/license
  */
 
@@ -6,7 +10,11 @@
  * @summary     FixedHeader
  * @description Fix a table's header or footer, so it is always visible while
  *              scrolling
+<<<<<<< HEAD
  * @version     3.2.2
+=======
+ * @version     3.2.1
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
  * @file        dataTables.fixedHeader.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -141,6 +149,7 @@ $.extend( FixedHeader.prototype, {
 	 * Kill off FH and any events
 	 */
 	destroy: function () {
+<<<<<<< HEAD
 		var dom = this.dom;
 
 		this.s.dt.off( '.dtfc' );
@@ -160,11 +169,20 @@ $.extend( FixedHeader.prototype, {
 			dom.footer.leftBlocker.remove();
 		}
 
+=======
+		this.s.dt.off( '.dtfc' );
+		$(window).off( this.s.namespace );
+
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 		if ( this.c.header ) {
 			this._modeChange( 'in-place', 'header', true );
 		}
 
+<<<<<<< HEAD
 		if ( this.c.footer && dom.tfoot.length ) {
+=======
+		if ( this.c.footer && this.dom.tfoot.length ) {
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 			this._modeChange( 'in-place', 'footer', true );
 		}
 	},
@@ -316,7 +334,10 @@ $.extend( FixedHeader.prototype, {
 	 */
 	_clone: function ( item, force )
 	{
+<<<<<<< HEAD
 		var that = this;
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 		var dt = this.s.dt;
 		var itemDom = this.dom[ item ];
 		var itemElement = item === 'header' ?
@@ -346,8 +367,11 @@ $.extend( FixedHeader.prototype, {
 			var tableNode = $(dt.table().node()); 
 			var scrollBody = $(tableNode.parent());
 			var scrollEnabled = this._scrollEnabled();
+<<<<<<< HEAD
 			var docScrollLeft = $(document).scrollLeft();
 			var docScrollTop = $(document).scrollTop();
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 
 			itemDom.floating = $( dt.table().node().cloneNode( false ) )
 				.attr( 'aria-hidden', 'true' )
@@ -384,6 +408,7 @@ $.extend( FixedHeader.prototype, {
 
 			this._stickyPosition(itemDom.floating, '-');
 
+<<<<<<< HEAD
 			var scrollLeftUpdate = function () {
 				var scrollLeft = scrollBody.scrollLeft()
 				that.s.scrollLeft = {footer: scrollLeft, header: scrollLeft};
@@ -394,6 +419,16 @@ $.extend( FixedHeader.prototype, {
 			scrollBody
 				.off('scroll.dtfh')
 				.on('scroll.dtfh', scrollLeftUpdate);
+=======
+			var scrollLeftUpdate = () => {
+				var scrollLeft = scrollBody.scrollLeft()
+				this.s.scrollLeft = {footer: scrollLeft, header: scrollLeft};
+				itemDom.floatingParent.scrollLeft(this.s.scrollLeft.header);
+			}
+
+			scrollLeftUpdate();
+			scrollBody.scroll(scrollLeftUpdate)
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 
 			// Insert a fake thead/tfoot into the DataTable to stop it jumping around
 			itemDom.placeholder = itemElement.clone( false );
@@ -405,6 +440,7 @@ $.extend( FixedHeader.prototype, {
 
 			// Clone widths
 			this._matchWidths( itemDom.placeholder, itemDom.floating );
+<<<<<<< HEAD
 
 			// The above action will remove the table header, potentially causing the table to
 			// collapse to a smaller size, before it is then re-inserted (append). The result
@@ -412,6 +448,8 @@ $.extend( FixedHeader.prototype, {
 			$(document)
 				.scrollTop(docScrollTop)
 				.scrollLeft(docScrollLeft);
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 		}
 	},
 
@@ -747,10 +785,13 @@ $.extend( FixedHeader.prototype, {
 	 */
 	_scroll: function ( forceChange )
 	{
+<<<<<<< HEAD
 		if (this.s.dt.settings()[0].bDestroying) {
 			return;
 		}
 
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 		// ScrollBody details
 		var scrollEnabled = this._scrollEnabled();
 		var scrollBody = $(this.s.dt.table().node()).parent();
@@ -853,12 +894,21 @@ $.extend( FixedHeader.prototype, {
 
 			this._horizontal( 'footer', windowLeft );
 			
+<<<<<<< HEAD
 			var getOffsetHeight = function (el) {
 				return {
 					offset: el.offset(),
 					height: el.outerHeight()
 				};
 			};
+=======
+			var getOffsetHeight = (el) => {
+				return {
+					offset: el.offset(),
+					height: el.outerHeight()
+				}
+			}
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 		
 			header = this.dom.header.floating ? getOffsetHeight(this.dom.header.floating) : getOffsetHeight(this.dom.thead);
 			footer = this.dom.footer.floating ? getOffsetHeight(this.dom.footer.floating) : getOffsetHeight(this.dom.tfoot);
@@ -915,15 +965,24 @@ $.extend( FixedHeader.prototype, {
 		// Cloning these is cleaner than creating as our own as it will keep consistency with fixedColumns automatically
 		// ASSUMING that the class remains the same
 		if (this.s.dt.settings()[0]._fixedColumns !== undefined) {
+<<<<<<< HEAD
 			var adjustBlocker = function (side, end, el) {
 				if (el === undefined) {
 					var blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
 
+=======
+			var adjustBlocker = (side, end, el) => {
+				if (el === undefined) {
+					let blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 					el = blocker.length === 0 ?
 						null :
 						blocker.clone().appendTo('body').css('z-index', 1);
 				}
+<<<<<<< HEAD
 
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 				if(el !== null) {
 					el.css({
 						top: end === 'top' ? header.offset.top : footer.offset.top,
@@ -961,7 +1020,11 @@ $.extend( FixedHeader.prototype, {
  * @type {String}
  * @static
  */
+<<<<<<< HEAD
 FixedHeader.version = "3.2.2";
+=======
+FixedHeader.version = "3.2.1";
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
 
 /**
  * Defaults

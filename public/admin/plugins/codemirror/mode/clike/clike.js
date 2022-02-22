@@ -498,11 +498,14 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
 
         stream.eatWhile(/[\w\$_]/);
         return "meta";
+<<<<<<< HEAD
       },
       '"': function(stream, state) {
         if (!stream.match('""\n')) return false;
         state.tokenize = tokenTripleString;
         return state.tokenize(stream, state);
+=======
+>>>>>>> ccd27bba122804bd18b1d413011ab9f93dbdc3f6
       }
     },
     modeProps: {fold: ["brace", "import"]}
