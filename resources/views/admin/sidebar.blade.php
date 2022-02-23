@@ -15,7 +15,7 @@
                 {{-- <img src="../../admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                 @if (Route::has('login'))
                     @auth
-                        <img src="usersImages/{{ Auth::user()->avatar_Img }}" class="img-circle elevation-2"
+                        <img src="../../../usersImages/{{ Auth::user()->avatar_Img }}" class="img-circle elevation-2"
                             alt="User Image">
                     @endauth
                 @endif

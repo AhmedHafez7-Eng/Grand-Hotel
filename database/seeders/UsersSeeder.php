@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use Illuminate\Support\Facades\Hash;
+
 use App\Models\User;
 
 class UsersSeeder extends Seeder
@@ -18,13 +20,13 @@ class UsersSeeder extends Seeder
         //User::truncate();
         $users = [
             [
-                'name' => 'Ahmed Hafez',
-                'email' => 'admin@admin.com',
-                'password' => '12345678',
-                'national_ID' => '29807247777734',
+                'name' => 'Noha Ahmed',
+                'email' => 'admin2@admin.com',
+                'password' => Hash::make('1234567890'),
+                'national_ID' => '29807244444434',
                 'role' => 'admin',
                 'country' => 'Egypt',
-                'gender' => 'male',
+                'gender' => 'female',
             ]
             // ,
             // [

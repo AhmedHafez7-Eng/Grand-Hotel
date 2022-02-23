@@ -20,10 +20,15 @@ class HomeController extends Controller
             // Check if it's an Admin
             if (Auth::user()->role == 'admin') {
                 $managers = User::all()->where('role', '=', 'manager');
+                //==== Creator of Manager
+                foreach ($managers as $creator) {
+                    $creator = User::all()
+                        ->where('id', '=', $creator->creator_id);
+                }
                 $receps = User::all()->where('role', '=', 'receptionist');
                 $floors = Floor::all();
                 $rooms = Room::all();
-                return view('admin.home', compact('managers', 'receps', 'floors', 'rooms'));
+                return view('admin.home', compact('managers', 'creator', 'receps', 'floors', 'rooms'));
             }
             // Check if it's a Manager
             elseif (Auth::user()->role == 'manager') {

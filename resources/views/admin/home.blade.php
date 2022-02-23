@@ -54,6 +54,7 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -64,12 +65,15 @@
                                                 <td>{{ $manager->national_ID }}</td>
                                                 <td>
                                                     <img width="100" height="100"
-                                                        src="../../../storage/usersImages/{{ $manager->avatar_Img }}"
+                                                        src="usersImages/{{ $manager->avatar_Img }}"
                                                         alt="Manager Image">
                                                 </td>
                                                 <td>{{ $manager->country }}</td>
                                                 <td>{{ $manager->gender }}</td>
                                                 <td>{{ $manager->status }}</td>
+                                                <td>
+                                                    {{ $manager->ManagerCreator()->name }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -82,6 +86,7 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
                                         </tr>
                                     </tfoot>
                                 </table>

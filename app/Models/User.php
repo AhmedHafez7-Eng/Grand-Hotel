@@ -18,6 +18,11 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    public function ManagerCreator()
+    {
+        return self::where('id', $this->creator_id)->first();
+    }
+
     public function receptionistCreator()
     {
         return $this->belongsTo(User::class, 'creator_id', 'id');

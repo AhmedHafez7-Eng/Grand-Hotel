@@ -93,6 +93,7 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             <th>Ban/UnBan</th>
@@ -113,10 +114,16 @@
                                                 <td>{{ $manager->gender }}</td>
                                                 <td>{{ $manager->status }}</td>
                                                 <td>
+                                                    {{ $manager->ManagerCreator()->name }}
+                                                </td>
+                                                <td>
                                                     <form action="{{ url('updateManager', $manager->id) }}"
                                                         method="GET">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-outline-info">Edit</button>
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            <button type="submit"
+                                                                class="btn btn-outline-info">Edit</button>
+                                                        @endif
                                                     </form>
                                                 </td>
                                                 <td>
@@ -124,18 +131,22 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-outline-danger"
-                                                            onclick="return confirm('Are You Sure To Delete this Doctor?')">Delete</button>
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            <button type="submit" class="btn btn-outline-danger"
+                                                                onclick="return confirm('Are You Sure To Delete this Doctor?')">Delete</button>
+                                                        @endif
                                                     </form>
                                                 </td>
                                                 <td>
                                                     <form action="{{ url('banned', $manager->id) }}" method="GET">
-                                                        @if ($manager->status == 'unBanned')
-                                                            <button type="submit"
-                                                                class="btn btn-outline-success">Ban</button>
-                                                        @else
-                                                            <button type="submit"
-                                                                class="btn btn-outline-success">UnBan</button>
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            @if ($manager->status == 'unBanned')
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-success">Ban</button>
+                                                            @else
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-success">UnBan</button>
+                                                            @endif
                                                         @endif
                                                     </form>
                                                 </td>
@@ -151,6 +162,7 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                             <th>Ban/UnBan</th>
