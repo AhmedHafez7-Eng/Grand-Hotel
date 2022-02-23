@@ -81,7 +81,31 @@ class ManagerController extends Controller
     }
     public function deleteRoom($num)
     {
-        Room::where('number', $num)->delete();
+        $room = ReseRoomrvation::find($num);
+        if ($room->capacity == 0) {
+            Room::where('number', $num)->delete();
+        }
         return redirect()->route('show_rooms');
     }
 }
+
+// public function showapproved(){
+//     $approved= DB::table('reservations')
+//     ->where('status', 'approve')
+//     ->get();
+//     $nonapproved= DB::table('reservations')
+//     ->where('status', 'nonapproved')
+//     ->get();
+//     return view('admin.receptionist',compact('approved','nonapproved'));
+
+// }
+// public function change($id){
+//     $mess='change saved';
+//     $reservation=Reservation::find($id);
+//     if($reservation->status=='approve')
+//     $reservation->status='nonapproved';
+//     else
+//     $reservation->status='approve';
+//     $reservation->save();
+//     return redirect()->route('receptionist');
+// }
