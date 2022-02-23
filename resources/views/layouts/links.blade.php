@@ -12,15 +12,15 @@
     <title>Life-Care</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/bg-doctor.png') }}">
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/maicons.css') }}">
 
-    <link rel="stylesheet" href="../assets/css/maicons.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/owl-carousel/css/owl.carousel.css') }}">
 
-    <link rel="stylesheet" href="../assets/vendor/owl-carousel/css/owl.carousel.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/animate/animate.css') }}">
 
-    <link rel="stylesheet" href="../assets/vendor/animate/animate.css">
-
-    <link rel="stylesheet" href="../assets/css/theme.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/theme.css') }}">
 
 </head>

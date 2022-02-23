@@ -21,12 +21,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'redirect'])
     ->name('home')
     ->middleware(['auth']);
-// Route::middleware(['auth:sanctum', 'verified'])
-//     ->get('/dashboard', function () {
-//         return view('dashboard');
-//     })
-//     ->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/manager', function () {
+    return view('manager.home');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/dashboard', function () {
+        return view('dashboard');
+    })
+    ->name('dashboard');

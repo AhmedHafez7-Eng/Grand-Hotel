@@ -27,7 +27,11 @@ With SASS:
 
 `your-app.js`:
 ```js
+<<<<<<< HEAD
 import Swal from 'sweetalert2/dist/sweetalert2.js'
+=======
+import Swal from 'sweetalert2/src/sweetalert2.js'
+>>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 ```
 
 `your-app.scss`:

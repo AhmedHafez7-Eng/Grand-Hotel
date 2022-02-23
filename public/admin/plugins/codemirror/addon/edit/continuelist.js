@@ -24,7 +24,11 @@
       // If we're not in Markdown mode, fall back to normal newlineAndIndent
       var eolState = cm.getStateAfter(pos.line);
       var inner = CodeMirror.innerMode(cm.getMode(), eolState);
+<<<<<<< HEAD
       if (inner.mode.name !== "markdown" && inner.mode.helperType !== "markdown") {
+=======
+      if (inner.mode.name !== "markdown") {
+>>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
         cm.execCommand("newlineAndIndent");
         return;
       } else {
