@@ -15,6 +15,16 @@ class RoomsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $rooms = [
+            [
+                'capacity' => 4,
+                'price' => 300,
+                'status' => 'available',
+                'creator_id' => 2,
+                'floor_number' => 111,
+            ]
+        ];
+
+        Room::insert($rooms);
     }
 }
