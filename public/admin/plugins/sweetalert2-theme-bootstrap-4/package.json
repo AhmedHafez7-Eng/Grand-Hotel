@@ -1,10 +1,14 @@
 {
   "name": "@sweetalert2/theme-bootstrap-4",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "5.0.10",
 =======
   "version": "5.0.8",
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
+=======
+  "version": "5.0.8",
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
   "repository": "sweetalert2/sweetalert2-themes",
   "homepage": "https://sweetalert2.github.io/",
   "description": "Bootstrap 4 theme for SweetAlert2",

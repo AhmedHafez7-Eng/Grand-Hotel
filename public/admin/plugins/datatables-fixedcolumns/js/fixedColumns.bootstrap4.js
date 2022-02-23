@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*! Bootstrap 4 integration for DataTables' FixedColumns
  * ©2016 SpryMedia Ltd - datatables.net/license
  */
@@ -36,6 +37,8 @@
     return dataTable.fixedColumns;
 }));
 =======
+=======
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
 /*! FixedColumns 4.0.1
  * 2019-2021 SpryMedia Ltd - datatables.net/license
  */
@@ -79,4 +82,7 @@
     }));
 
 }());
+<<<<<<< HEAD
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
+=======
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0

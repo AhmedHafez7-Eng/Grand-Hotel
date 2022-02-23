@@ -25,10 +25,14 @@
       var eolState = cm.getStateAfter(pos.line);
       var inner = CodeMirror.innerMode(cm.getMode(), eolState);
 <<<<<<< HEAD
+<<<<<<< HEAD
       if (inner.mode.name !== "markdown" && inner.mode.helperType !== "markdown") {
 =======
       if (inner.mode.name !== "markdown") {
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
+=======
+      if (inner.mode.name !== "markdown") {
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
         cm.execCommand("newlineAndIndent");
         return;
       } else {

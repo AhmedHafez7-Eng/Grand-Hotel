@@ -34,6 +34,12 @@ class CreateNewUser implements CreatesNewUsers
             'national_ID' => $input['national_id'],
             'country' => $input['country'],
             'gender' => $input['gender'],
+<<<<<<< HEAD
+=======
+            'role' => $input['role'],
+            'status' => $input['status'],
+            'creator_id' => $input['creator_id'],
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
         ]);
     }
 }

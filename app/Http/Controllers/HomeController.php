@@ -39,10 +39,8 @@ class HomeController extends Controller
     //=================== Open Index view if routing to root /
     public function index()
     {
-        if (Auth::id()) {
-            return redirect()->route('home');
-        } else {
+       
             return view('client.home');
-        }
+        
     }
 }

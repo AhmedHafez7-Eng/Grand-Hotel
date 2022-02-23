@@ -17,7 +17,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+<<<<<<< HEAD
             $table->string('national_ID')->unique()->min(14)->max(14);
+=======
+            $table->string('password')->min(6);
+            $table->string('national_ID')->unique()->min(14)->max(14)->nullable();
+>>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
             $table->string('avatar_Img')->default('default_avatar.jpg');
             $table->string('role')->default('client');
             $table->string('country');
