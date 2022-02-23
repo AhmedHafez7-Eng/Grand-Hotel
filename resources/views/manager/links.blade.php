@@ -4,11 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<<<<<<< HEAD
-    <title>Life-Care</title>
-=======
     <title>Manager</title>
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -16,11 +12,8 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-<<<<<<< HEAD
-    <link rel="stylesheet" href="admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-=======
-    <link rel="stylesheet" href="../../../admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+    <link rel="stylesheet"
+        href="../../../admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="../../../admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- JQVMap -->
@@ -47,14 +40,13 @@
     <link rel="stylesheet" href="../../../admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     @include('layouts.links')
     <style>
-        @media(min-width: 992px) {
+    @media(min-width: 992px) {
 
-            .sidebar-mini.sidebar-collapse .main-sidebar,
-            .sidebar-mini.sidebar-collapse .main-sidebar::before {
-                margin-left: -100%;
-            }
+        .sidebar-mini.sidebar-collapse .main-sidebar,
+        .sidebar-mini.sidebar-collapse .main-sidebar::before {
+            margin-left: -100%;
         }
-
+    }
     </style>
 </head>
 

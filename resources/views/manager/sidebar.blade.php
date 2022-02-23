@@ -17,9 +17,9 @@
             <div class="info">
                 <a href="/user/profile" class="d-block">
                     @if (Route::has('login'))
-                        @auth
-                            {{ Auth::user()->name }}
-                        @endauth
+                    @auth
+                    {{ Auth::user()->name }}
+                    @endauth
                     @endif
                 </a>
             </div>
@@ -41,62 +41,37 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a href="{{ url('home') }}" class="nav-link">
-                        <i class="nav-icon fas fa-house-user"></i>
-                        <p>
-                            Dasboard
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
-=======
                     <a href="/manager" class="nav-link">
                         <i class="nav-icon fas fa-house-user"></i>
                         <p>
                             Dashboard
-                            
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-<<<<<<< HEAD
-                    <a href="{{ url('show_doctors') }}" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-minus"></i>
-                        <p>
-                            Doctors
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
-=======
                     <a href="/showReceptionists" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
                             Receptionists
-                            
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('add_doctor') }}" class="nav-link">
+                    <a href="/room" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
                         <p>
-<<<<<<< HEAD
-                            Add Doctors
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
-=======
                             Rooms
-                           
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_appointments') }}" class="nav-link">
+                    <a href="/floors" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-<<<<<<< HEAD
-                            Appointments
-=======
                             Floors
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
                         </p>
                     </a>
                 </li>

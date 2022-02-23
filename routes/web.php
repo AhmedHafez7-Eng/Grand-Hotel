@@ -50,6 +50,7 @@ Route::get('/updateReceptionistSave', [
 ])->name('receptionist.update');
 Route::get('/ban/{id}', [ManagerController::class, 'ban']);
 Route::get('/unban/{id}', [ManagerController::class, 'unBan']);
+Route::get('/floors', [ManagerController::class, 'showResceptionists']);
 
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,

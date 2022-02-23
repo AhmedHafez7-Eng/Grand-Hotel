@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Floor;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
@@ -69,5 +70,18 @@ class ManagerController extends Controller
         $receptionist->status = 'unBan';
         $receptionist->save();
         return redirect()->route('show_receptionists');
+    }
+
+    public function showRoom()
+    {
+        $rooms = Room::all();
+        return view('manager.show_rooms', [
+            'rooms' => $rooms,
+        ]);
+    }
+    public function deleteRoom($num)
+    {
+        Room::where('number', $num)->delete();
+        return redirect()->route('show_rooms');
     }
 }
