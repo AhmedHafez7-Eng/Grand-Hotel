@@ -1,4 +1,4 @@
-@include('admin.links')
+@include('manager.links')
 <style>
     /* button {
         background-color: rgb(123, 255, 0) !important;
@@ -34,20 +34,19 @@
         background-color: #50855C;
         color: #FFF;
     }
-
 </style>
 <div class="wrapper">
 
-    @include('admin.header')
+    @include('manager.header')
 
     @if (session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('message') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">&times;</button>
+    </div>
     @endif
 
-    @include('admin.sidebar')
+    @include('manager.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -76,38 +75,49 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Doctors</h3>
+                                <h3 class="card-title">All receptionists</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Name</th>
+                                            <th>E-mail</th>
+                                            <th>Created Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+                                        @foreach ($receptionist as $rece)
+                                        <tr>
+                                            <td>{{ $rece->name }}</td>
+                                            <td>{{ $rece-> email }}</td>
+                                            <td>{{ $rece-> created_at }}</td>
+                                            <td>
+                                                <a class="btn btn-danger" href="/deleteReceptionist/{{$rece -> id}}">Delete </a>
+                                                <a class="btn btn-warning" href="/updateReceptionist/{{$rece -> id}}">Update </a>
+                                                @if($rece->status == 'unBan')
+                                                <a class="btn btn-danger" href="/ban/{{$rece -> id}}">Ban</a>
+                                                @elseif($rece->status == 'ban')
+                                                <a class="btn btn-primary" href="/unban/{{$rece -> id}}">Unban </a>
+                                                @endif
+                                            </td>
+
+
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Name</th>
+                                            <th>E-mail</th>
+                                            <th>Created Date</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
-                               
+
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -128,4 +138,4 @@
 </div>
 <!-- ./wrapper -->
 
-@include('admin.scripts')
+@include('manager.scripts')

@@ -41,20 +41,20 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="{{ url('home') }}" class="nav-link">
+                    <a href="/manager" class="nav-link">
                         <i class="nav-icon fas fa-house-user"></i>
                         <p>
-                            Dasboard
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                            Dashboard
+                            
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_doctors') }}" class="nav-link">
+                    <a href="/showReceptionists" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Doctors
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                            Receptionists
+                            
                         </p>
                     </a>
                 </li>
@@ -62,8 +62,8 @@
                     <a href="{{ url('add_doctor') }}" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
                         <p>
-                            Add Doctors
-                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                            Rooms
+                           
                         </p>
                     </a>
                 </li>
@@ -71,7 +71,7 @@
                     <a href="{{ url('show_appointments') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Appointments
+                            Floors
                         </p>
                     </a>
                 </li>
