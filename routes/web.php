@@ -22,7 +22,7 @@ Route::get('/home', [HomeController::class, 'redirect'])
     ->name('home')
     ->middleware(['auth']);
 
-Route::get('/manager', function () {
+Route::middleware(['manager'])->get('/manager', function () {
     return view('manager.home');
 });
 
