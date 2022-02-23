@@ -16,7 +16,7 @@ class manager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'receptionist') {
+        if (Auth::check() && Auth::user()->role == 'manager') {
             return $next($request);
         }
         abort(403);
