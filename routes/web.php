@@ -35,5 +35,10 @@ Route::get('/updateReceptionist/{id}',[ManagerController::class,'updateReception
 Route::get('/updateReceptionistSave',[ManagerController::class,'updateReceptionistSave'])->name('receptionist.update');
 Route::get('/ban/{id}',[ManagerController::class,'ban']);
 Route::get('/unban/{id}',[ManagerController::class,'unBan']);
-
+Route::get('/showFloors',[ManagerController::class,'showFloors'])->name('show_floors');
+Route::get('/deleteFloor/{idf}',[ManagerController::class,'deleteFloor']);
+Route::get('/updateFloor/{idf}',[ManagerController::class,'updateFloor']);
+Route::get('/updateFloorSave',[ManagerController::class,'updateFloorSave'])->name('floor.update');
+Route::get('/createFloor',[ManagerController::class,'createFloor']);
+Route::get('/createFloorSave',[ManagerController::class,'createFloorSave'])->name('floor.create');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

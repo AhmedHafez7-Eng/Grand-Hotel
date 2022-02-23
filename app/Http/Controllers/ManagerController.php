@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Floor;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -40,9 +41,9 @@ class ManagerController extends Controller
             Password::min(8)->symbols(),
             'confirmed'],
             'email' => 'email:rfc,dns',
-            'national_id' => ['integer','size:14',
+            'national_id' => ['digits:14'],
             'confirmPassword'=>'same:password'
-            ]
+            
 
         ]);
         $receptionist->name = $request->name;
@@ -63,5 +64,54 @@ class ManagerController extends Controller
         $receptionist->status = 'unBan';
         $receptionist->save();
         return redirect()->route('show_receptionists');
+    }
+    public function showFloors()
+    {
+        $floors = Floor::all();
+        return view('manager.show_floors', ['floors' => $floors]);
+    }
+    public function deleteFloor($number){
+        Floor::where('number', $number)->delete();
+        return redirect()->route('show_floors');
+    }
+    public function updateFloor($idf)
+    {
+        $_SESSION['idf'] = $idf;
+        return view('manager.update_floor');
+    }
+    public function updateFloorSave(Request $request)
+    {
+        
+        $floor = Floor::find($_SESSION['idf']);
+        
+       
+        $validateForm=$request ->validate([
+            'name' =>['required','min:3','max:10'],
+            'number'=>['required','digits : 4']
+        ]);
+        
+        $floor->name = $request->name;
+        $floor->id = $request->number;
+        $floor->save();
+        return redirect()->route('show_floors');
+    }
+    public function createFloor()
+    {
+        
+        return view('manager.createFloor');
+    }
+    public function createFloorSave(Request $request)
+    { 
+        
+        $validateForm=$request ->validate([
+            'name' =>['required','min:3','max:10'],
+            'number'=>['required','digits : 4']
+        ]);
+        $floor = new Floor();
+        $floor->name = $request->name;
+        $floor->id = $request->number;
+        $floor->creator_id = 1;
+        $floor->save();
+        return redirect()->route('show_floors');
     }
 }

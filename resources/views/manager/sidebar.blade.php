@@ -68,7 +68,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_appointments') }}" class="nav-link">
+                    <a href="/showFloors" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
                             Floors
