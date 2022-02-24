@@ -56,13 +56,16 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Managers</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Doctors</li>
+                            <li class="breadcrumb-item active">All Managers</li>
                         </ol>
+                    </div>
+                    <div class="col-sm-12 mt-4">
+                        <a href="{{ url('add_manager') }}" class="btn btn-primary">Add Manager</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -76,47 +79,75 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Doctors</h3>
+                                <h3 class="card-title">All Managers</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
+                                            <th>Manager Name</th>
+                                            <th>Email</th>
+                                            <th>National ID</th>
                                             <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
+                                            <th>Status</th>
+                                            <th>Creator Name</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
+                                            <th>Ban/UnBan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($doctors as $doctor)
+                                        @foreach ($managers as $manager)
                                             <tr>
-                                                <td>{{ $doctor->name }}</td>
-                                                <td>{{ $doctor->phone }}</td>
-                                                <td>{{ $doctor->specialization }}</td>
-                                                <td>{{ $doctor->roomNo }}</td>
+                                                <td>{{ $manager->name }}</td>
+                                                <td>{{ $manager->email }}</td>
+                                                <td>{{ $manager->national_ID }}</td>
                                                 <td>
-                                                    <img width="100" height="100" src="doctorImg/{{ $doctor->image }}"
-                                                        alt="Doctor Image">
+                                                    <img width="100" height="100"
+                                                        src="usersImages/{{ $manager->avatar_Img }}"
+                                                        alt="Manager Image">
+                                                </td>
+                                                <td>{{ $manager->country }}</td>
+                                                <td>{{ $manager->gender }}</td>
+                                                <td>{{ $manager->status }}</td>
+                                                <td>
+                                                    {{ $manager->ManagerCreator()->name }}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('updateDoctor', $doctor->id) }}"
+                                                    <form action="{{ url('updateManager', $manager->id) }}"
                                                         method="GET">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-outline-info">Edit</button>
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            <button type="submit"
+                                                                class="btn btn-outline-info">Edit</button>
+                                                        @endif
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('deleteDoctor', $doctor->id) }}"
+                                                    <form action="{{ url('deleteManager', $manager->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-outline-danger"
-                                                            onclick="return confirm('Are You Sure To Delete this Doctor?')">Delete</button>
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            <button type="submit" class="btn btn-outline-danger"
+                                                                onclick="return confirm('Are You Sure To Delete this Doctor?')">Delete</button>
+                                                        @endif
+                                                    </form>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ url('banned', $manager->id) }}" method="GET">
+                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                            @if ($manager->status == 'unBanned')
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-success">Ban</button>
+                                                            @else
+                                                                <button type="submit"
+                                                                    class="btn btn-outline-success">UnBan</button>
+                                                            @endif
+                                                        @endif
                                                     </form>
                                                 </td>
                                             </tr>
@@ -124,13 +155,17 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
+                                            <th>Manager Name</th>
+                                            <th>Email</th>
+                                            <th>National ID</th>
                                             <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
+                                            <th>Status</th>
+                                            <th>Creator Name</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
+                                            <th>Ban/UnBan</th>
                                         </tr>
                                     </tfoot>
                                 </table>

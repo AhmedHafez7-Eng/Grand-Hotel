@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('role')->default('client');
             $table->string('country');
             $table->string('gender');
-            $table->string('status')->default('unBan');
+            $table->string('status')->default('unBanned');
             $table->bigInteger('creator_id')->unsigned()->nullable();
             $table->foreign('creator_id')->references('id')->on('users');
             $table->timestamp('email_verified_at')->nullable();

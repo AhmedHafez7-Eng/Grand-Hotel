@@ -17,7 +17,6 @@ class CreateReservationsTable extends Migration
             $table->id();
             $table->string('client_name');
             $table->integer('accompany_number');
-            $table->integer('room_number');
             $table->integer('paid_price');
             $table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('users');
