@@ -24,6 +24,7 @@ Route::get('/updateProfile/{id}', [HomeController::class, 'updateProfile'])->mid
 Route::put('/edit_profile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
 
 //====================== Admin Routes [AdminController]
+// ---------- For Managers
 Route::get('/show_managers', [AdminController::class, 'show_managers'])->middleware(['auth'])->middleware('admin');
 Route::get('/add_manager', [AdminController::class, 'addManager'])->middleware(['auth'])->middleware('admin');
 Route::post('/add_manager', [AdminController::class, 'createManager'])->middleware(['auth'])->middleware('admin');
@@ -32,11 +33,21 @@ Route::put('/edit_manager/{id}', [AdminController::class, 'edit_manager'])->midd
 Route::delete('/deleteManager/{id}', [AdminController::class, 'deleteManager'])->middleware(['auth'])->middleware('admin');
 Route::get('/banned/{id}', [AdminController::class, 'banned'])->middleware(['auth'])->middleware('admin');
 
+// ---------- For Receptionists
+Route::get('/show_receptionists', [AdminController::class, 'show_receptionists'])->middleware(['auth'])->middleware('admin');
+Route::get('/add_receptionist', [AdminController::class, 'add_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::post('/add_receptionist', [AdminController::class, 'create_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_receptionist/{id}', [AdminController::class, 'update_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_receptionist/{id}', [AdminController::class, 'edit_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_receptionist/{id}', [AdminController::class, 'delete_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::get('/banned/{id}', [AdminController::class, 'banned'])->middleware(['auth'])->middleware('admin');
 
-
-// Route::get('/emailNotify/{id}', [AdminController::class, 'emailNotify'])->middleware(['auth'])->middleware('admin');
-// Route::post('/sendEmail/{id}', [AdminController::class, 'sendEmail'])->middleware(['auth'])->middleware('admin');
-
+// ---------- For Floors
+Route::get('/show_floors', [AdminController::class, 'show_floors'])->middleware(['auth'])->middleware('admin');
+Route::post('/show_floors', [AdminController::class, 'create_floor'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_floor/{number}', [AdminController::class, 'update_floor'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_floor/{number}', [AdminController::class, 'edit_floor'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_floor/{number}', [AdminController::class, 'delete_floor'])->middleware(['auth'])->middleware('admin');
 
 
 

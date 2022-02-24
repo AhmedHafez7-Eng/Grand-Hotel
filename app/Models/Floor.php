@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Room;
+use App\Models\User;
+
 class Floor extends Model
 {
     use HasFactory;

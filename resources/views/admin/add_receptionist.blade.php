@@ -97,12 +97,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Manager</h1>
+                        <h1>Add Receptionist</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">Add Manager</li>
+                            <li class="breadcrumb-item active">Add Receptionist</li>
                         </ol>
                     </div>
                 </div>
@@ -121,11 +121,11 @@
                         </div>
                     @endif
                     <div class="col-12">
-                        <form action="add_manager" method="POST" enctype="multipart/form-data" autocomplete="off"
+                        <form action="add_receptionist" method="POST" enctype="multipart/form-data" autocomplete="off"
                             class="addUser">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Manager Name</label>
+                                <label for="name" class="form-label">Receptionist Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     aria-describedby="nameHelp" value="{{ old('name') }}">
                                 @error('name')
@@ -237,7 +237,7 @@
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Add</button>
-                                <a href="{{ url('show_managers') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ url('show_receptionists') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </form>
                     </div>

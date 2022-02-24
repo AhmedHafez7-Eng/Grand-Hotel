@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_managers') }}" class="nav-link">
+                    <a href="{{ url('show_receptionists') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
                             Manage Receptionists
@@ -75,19 +75,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_managers') }}" class="nav-link">
+                    <a href="{{ url('show_floors') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Manage Rooms
+                            Manage Floors
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_managers') }}" class="nav-link">
+                    <a href="{{ url('show_rooms') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Manage Floors
+                            Manage Rooms
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>

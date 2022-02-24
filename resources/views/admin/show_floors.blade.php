@@ -35,6 +35,10 @@
         color: #FFF;
     }
 
+    #NameHelpInline {
+        color: rgb(255, 53, 53);
+    }
+
 </style>
 <div class="wrapper">
 
@@ -56,16 +60,34 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Managers</h1>
+                        <h1>Floors</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Managers</li>
+                            <li class="breadcrumb-item active">All Floors</li>
                         </ol>
                     </div>
                     <div class="col-sm-12 mt-4">
-                        <a href="{{ url('add_manager') }}" class="btn btn-primary">Add Manager</a>
+                        <form action="show_floors" method="POST" autocomplete="off" class="addFloor">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Add New Floor</label>
+                                <input type="text" class="form-control col-3" id="name" name="name"
+                                    aria-describedby="nameHelp" value="{{ old('name') }}"
+                                    placeholder="Enter Floor Name">
+                                @error('name')
+                                    <div class="col-auto">
+                                        <span id="NameHelpInline" class="form-text">
+                                            {{ $message }}
+                                        </span>
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Add Floor</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -79,78 +101,50 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Managers</h3>
+                                <h3 class="card-title">All Floors</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Manager Name</th>
-                                            <th>Email</th>
-                                            <th>National ID</th>
-                                            <th>Profile Image</th>
-                                            <th>Country</th>
-                                            <th>Gender</th>
-                                            <th>Status</th>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
                                             <th>Creator Name</th>
                                             <th>Creator Role</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
-                                            <th>Ban/UnBan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($managers as $manager)
+                                        @foreach ($floors as $floor)
                                             <tr>
-                                                <td>{{ $manager->name }}</td>
-                                                <td>{{ $manager->email }}</td>
-                                                <td>{{ $manager->national_ID }}</td>
+                                                <td>{{ $floor->number }}</td>
+                                                <td>{{ $floor->name }}</td>
                                                 <td>
-                                                    <img width="100" height="100"
-                                                        src="usersImages/{{ $manager->avatar_Img }}"
-                                                        alt="Manager Image">
-                                                </td>
-                                                <td>{{ $manager->country }}</td>
-                                                <td>{{ $manager->gender }}</td>
-                                                <td>{{ $manager->status }}</td>
-                                                <td>
-                                                    {{ $manager->Creator()->name }}
+                                                    {{ $floor->floorCreator->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $manager->Creator()->role }}
+                                                    {{ $floor->floorCreator->role }}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('updateManager', $manager->id) }}"
+                                                    <form action="{{ url('update_floor', $floor->number) }}"
                                                         method="GET">
                                                         @csrf
-                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                        @if ($floor->creator_id == Auth::user()->id)
                                                             <button type="submit"
                                                                 class="btn btn-outline-info">Edit</button>
                                                         @endif
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('deleteManager', $manager->id) }}"
+                                                    <form action="{{ url('delete_floor', $floor->number) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                        @if ($floor->creator_id == Auth::user()->id)
                                                             <button type="submit" class="btn btn-outline-danger"
-                                                                onclick="return confirm('Are You Sure To Delete this User?')">Delete</button>
-                                                        @endif
-                                                    </form>
-                                                </td>
-                                                <td>
-                                                    <form action="{{ url('banned', $manager->id) }}" method="GET">
-                                                        @if ($manager->creator_id == Auth::user()->id)
-                                                            @if ($manager->status == 'unBanned')
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-success">Ban</button>
-                                                            @else
-                                                                <button type="submit"
-                                                                    class="btn btn-outline-success">UnBan</button>
-                                                            @endif
+                                                                onclick="return confirm('Are You Sure To Delete this Floor?')">Delete</button>
                                                         @endif
                                                     </form>
                                                 </td>
@@ -159,18 +153,12 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Manager Name</th>
-                                            <th>Email</th>
-                                            <th>National ID</th>
-                                            <th>Profile Image</th>
-                                            <th>Country</th>
-                                            <th>Gender</th>
-                                            <th>Status</th>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
                                             <th>Creator Name</th>
                                             <th>Creator Role</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
-                                            <th>Ban/UnBan</th>
                                         </tr>
                                     </tfoot>
                                 </table>
