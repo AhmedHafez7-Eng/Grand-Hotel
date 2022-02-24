@@ -56,16 +56,16 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Managers</h1>
+                        <h1>Receptionists</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Managers</li>
+                            <li class="breadcrumb-item active">All Receptionists</li>
                         </ol>
                     </div>
                     <div class="col-sm-12 mt-4">
-                        <a href="{{ url('add_manager') }}" class="btn btn-primary">Add Manager</a>
+                        <a href="{{ url('add_receptionist') }}" class="btn btn-primary">Add Receptionist</a>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -79,14 +79,14 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Managers</h3>
+                                <h3 class="card-title">All Receptionists</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Manager Name</th>
+                                            <th>Receptionist Name</th>
                                             <th>Email</th>
                                             <th>National ID</th>
                                             <th>Profile Image</th>
@@ -101,50 +101,50 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($managers as $manager)
+                                        @foreach ($receps as $recep)
                                             <tr>
-                                                <td>{{ $manager->name }}</td>
-                                                <td>{{ $manager->email }}</td>
-                                                <td>{{ $manager->national_ID }}</td>
+                                                <td>{{ $recep->name }}</td>
+                                                <td>{{ $recep->email }}</td>
+                                                <td>{{ $recep->national_ID }}</td>
                                                 <td>
                                                     <img width="100" height="100"
-                                                        src="usersImages/{{ $manager->avatar_Img }}"
-                                                        alt="Manager Image">
+                                                        src="usersImages/{{ $recep->avatar_Img }}"
+                                                        alt="Receptionist Image">
                                                 </td>
-                                                <td>{{ $manager->country }}</td>
-                                                <td>{{ $manager->gender }}</td>
-                                                <td>{{ $manager->status }}</td>
+                                                <td>{{ $recep->country }}</td>
+                                                <td>{{ $recep->gender }}</td>
+                                                <td>{{ $recep->status }}</td>
                                                 <td>
-                                                    {{ $manager->Creator()->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $manager->Creator()->role }}
+                                                    {{ $recep->Creator()->name }}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('updateManager', $manager->id) }}"
+                                                    {{ $recep->Creator()->role }}
+                                                </td>
+                                                <td>
+                                                    <form action="{{ url('update_receptionist', $recep->id) }}"
                                                         method="GET">
                                                         @csrf
-                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                        @if ($recep->creator_id == Auth::user()->id)
                                                             <button type="submit"
                                                                 class="btn btn-outline-info">Edit</button>
                                                         @endif
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('deleteManager', $manager->id) }}"
+                                                    <form action="{{ url('delete_receptionist', $recep->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        @if ($manager->creator_id == Auth::user()->id)
+                                                        @if ($recep->creator_id == Auth::user()->id)
                                                             <button type="submit" class="btn btn-outline-danger"
                                                                 onclick="return confirm('Are You Sure To Delete this User?')">Delete</button>
                                                         @endif
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('banned', $manager->id) }}" method="GET">
-                                                        @if ($manager->creator_id == Auth::user()->id)
-                                                            @if ($manager->status == 'unBanned')
+                                                    <form action="{{ url('banned', $recep->id) }}" method="GET">
+                                                        @if ($recep->creator_id == Auth::user()->id)
+                                                            @if ($recep->status == 'unBanned')
                                                                 <button type="submit"
                                                                     class="btn btn-outline-success">Ban</button>
                                                             @else
@@ -159,7 +159,7 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Manager Name</th>
+                                            <th>Receptionist Name</th>
                                             <th>Email</th>
                                             <th>National ID</th>
                                             <th>Profile Image</th>

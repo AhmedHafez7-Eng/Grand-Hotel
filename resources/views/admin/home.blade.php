@@ -15,7 +15,8 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
+        {{-- =============================== Managers --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -55,6 +56,7 @@
                                             <th>Gender</th>
                                             <th>Status</th>
                                             <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -72,7 +74,10 @@
                                                 <td>{{ $manager->gender }}</td>
                                                 <td>{{ $manager->status }}</td>
                                                 <td>
-                                                    {{ $manager->ManagerCreator()->name }}
+                                                    {{ $manager->Creator()->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $manager->Creator()->role }}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -87,6 +92,7 @@
                                             <th>Gender</th>
                                             <th>Status</th>
                                             <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -102,12 +108,8 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
-    </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {{-- =============================== Receptionists --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -136,7 +138,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
+                                <table id="example1" class="table table-bordered table-striped table-responsive">
                                     <thead>
                                         <tr>
                                             <th>Receptionists Name</th>
@@ -146,7 +148,8 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
-                                            <th>Manager_ID</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -157,13 +160,18 @@
                                                 <td>{{ $recep->national_ID }}</td>
                                                 <td>
                                                     <img width="100" height="100"
-                                                        src="../../../storage/usersImages/{{ $recep->avatar_Img }}"
-                                                        alt="Manager Image">
+                                                        src="usersImages/{{ $recep->avatar_Img }}"
+                                                        alt="Receptionist Image">
                                                 </td>
                                                 <td>{{ $recep->country }}</td>
                                                 <td>{{ $recep->gender }}</td>
                                                 <td>{{ $recep->status }}</td>
-                                                <td>{{ $recep->creator_id }}</td>
+                                                <td>
+                                                    {{ $recep->Creator()->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $recep->Creator()->role }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -176,7 +184,8 @@
                                             <th>Country</th>
                                             <th>Gender</th>
                                             <th>Status</th>
-                                            <th>Manager_ID</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -192,12 +201,8 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
-    </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {{-- =============================== Floors --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -229,25 +234,32 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Floor Name</th>
                                             <th>Floor Number</th>
-                                            <th>Manager ID</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($floors as $floor)
                                             <tr>
-                                                <td>{{ $floor->name }}</td>
                                                 <td>{{ $floor->number }}</td>
-                                                <td>{{ $floor->creator_id }}</td>
+                                                <td>{{ $floor->name }}</td>
+                                                <td>
+                                                    {{ $floor->floorCreator->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $floor->floorCreator->role }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Floor Name</th>
                                             <th>Floor Number</th>
-                                            <th>Manager ID</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -263,12 +275,8 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
-    </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {{-- =============================== Rooms --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -343,7 +351,6 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
     </div>
 
     @include('layouts.footer')

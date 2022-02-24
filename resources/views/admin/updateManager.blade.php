@@ -223,7 +223,7 @@
                                 </label>
                                 <input id="file-upload" type="file" name="usrImg" onchange="readURL(this);" />
                                 <img id="usrImgPreview" src="../../../usersImages/{{ $manager->avatar_Img }}"
-                                    alt="your image" />
+                                    alt="your image" width="150" height="150" />
                                 @error('usrImg')
                                     <div class="col-auto">
                                         <span id="ImgHelpInline" class="form-text">
