@@ -23,6 +23,9 @@ Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middlewa
 
 
 //====================== Admin Routes [AdminController]
+Route::get('/updateProfile/{id}', [HomeController::class, 'updateProfile'])->middleware(['auth']);
+Route::put('/edit_profile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
+
 Route::get('/show_managers', [AdminController::class, 'show_managers'])->middleware(['auth'])->middleware('admin');
 Route::get('/add_manager', [AdminController::class, 'addManager'])->middleware(['auth'])->middleware('admin');
 Route::post('/add_manager', [AdminController::class, 'createManager'])->middleware(['auth'])->middleware('admin');

@@ -133,7 +133,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email Number</label>
+                                <label for="email" class="form-label">Email Address</label>
                                 <input type="email" class="form-control" id="email" name="email"
                                     aria-describedby="emailHelp" value="{{ $manager->email }}">
                                 @error('email')
@@ -266,7 +266,7 @@
 
             reader.onload = function(e) {
 
-                $('#docImagePreview')
+                $('#usrImgPreview')
                     .attr('src', e.target.result)
                     .height(120);
             };
