@@ -17,14 +17,11 @@ class CreateRoomsTable extends Migration
             $table
                 ->increments('number')
                 ->startingValue(100)
-                ->min(3)
-                ->max(3);
+                ->min(4)
+                ->max(4);
             $table->integer('capacity');
             $table->integer('price');
-            $table
-                ->string('status')
-                ->default('free')
-                ->change();
+            $table->string('status')->default('free');
             $table->bigInteger('creator_id')->unsigned();
             $table
                 ->foreign('creator_id')
