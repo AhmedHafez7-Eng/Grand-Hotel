@@ -403,4 +403,75 @@ class AdminController extends Controller
                 ->withInput();
         }
     }
+
+    // ========================================== Reservations
+    //=========== Get All Reservations
+    public function show_reservations()
+    {
+        $reservations = Reservation::all();
+        $available_rooms = Room::all()->where('status', '=', 'Available');
+        return view('admin.show_reservations', compact('reservations', 'available_rooms'));
+    }
+    //=========== make Reservations
+    public function create_reservation(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|max:70',
+            'accompany_number' => 'required|numeric|min:1|max:4',
+            'room_number' => 'required|not_in:-1',
+        ]);
+        if ($validated) {
+            $reservation = new Reservation;
+            $reservation->client_name = $request->name;
+            $reservation->client_id = Auth::user()->id;
+            $reservation->room_number = $request->room_number;
+            $reservation->status = 'In-Progress';
+            $selected_room = Room::where('number', '=', $request->room_number)
+                ->get()->first();
+
+            $reservation->paid_price = $selected_room->price;
+
+            if ($request->accompany_number <= $selected_room->capacity) {
+                $reservation->accompany_number = $request->accompany_number;
+            } else {
+                return redirect()->back()
+                    ->with('accompanyError', 'Accompany Number must be less than or equal to ' . $selected_room->capacity);
+            }
+
+            Room::where('number', $request->room_number)
+                ->update([
+                    'status' => 'Reserved'
+                ]);
+
+            $reservation->save();
+            return redirect()->back()->with('message', 'Reservation is In-Progress');
+        } else {
+            return redirect()->back()
+                ->withErrors($validated)
+                ->withInput();
+        }
+    }
+    //=========== Approve Room
+    public function approve_reservation($id)
+    {
+        Reservation::where('id', $id)->update([
+            'status' => 'Approved'
+        ]);
+
+        return redirect()->back();
+    }
+    //=========== Cancel Reservations
+    public function cancel_reservation($id)
+    {
+        $reservation = Reservation::find($id);
+
+        Room::where('number', $reservation->room_number)
+            ->update([
+                'status' => 'Available'
+            ]);
+
+        $reservation->delete();
+
+        return redirect()->back();
+    }
 }

@@ -56,6 +56,11 @@ Route::get('/update_room/{number}', [AdminController::class, 'update_room'])->mi
 Route::put('/edit_room/{number}', [AdminController::class, 'edit_room'])->middleware(['auth'])->middleware('admin');
 Route::delete('/delete_room/{number}', [AdminController::class, 'delete_room'])->middleware(['auth'])->middleware('admin');
 
+// ---------- For Reservations
+Route::get('/show_reservations', [AdminController::class, 'show_reservations'])->middleware(['auth'])->middleware('admin');
+Route::post('/show_reservations', [AdminController::class, 'create_reservation'])->middleware(['auth'])->middleware('admin');
+Route::get('/approve_reservation/{id}', [AdminController::class, 'approve_reservation'])->middleware(['auth'])->middleware('admin');
+Route::delete('/cancel_reservation/{id}', [AdminController::class, 'cancel_reservation']);
 
 
 //====================== Auth Routes

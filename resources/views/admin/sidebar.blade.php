@@ -92,6 +92,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ url('show_reservations') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
+                        <p>
+                            Manage Reservations
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
