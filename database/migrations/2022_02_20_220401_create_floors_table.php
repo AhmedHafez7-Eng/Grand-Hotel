@@ -18,16 +18,16 @@ class CreateFloorsTable extends Migration
                 ->increments('number')
                 ->startingValue(100)
                 ->min(3)
-                ->max(3)
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
+                ->max(3);
+                
 
             $table->string('name');
             $table->bigInteger('creator_id')->unsigned();
             $table
                 ->foreign('creator_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -24,17 +24,20 @@ class CreateRoomsTable extends Migration
             $table
                 ->string('status')
                 ->default('free')
-                ->change();
+                ;
             $table->bigInteger('creator_id')->unsigned();
             $table
                 ->foreign('creator_id')
                 ->references('id')
-                ->on('users');
+                ->on('users')
+                ->onUpdate('cascade');
             $table->integer('floor_number')->unsigned();
             $table
                 ->foreign('floor_number')
                 ->references('number')
-                ->on('floors');
+                ->on('floors')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
