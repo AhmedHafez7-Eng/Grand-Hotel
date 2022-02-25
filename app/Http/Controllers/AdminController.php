@@ -329,20 +329,77 @@ class AdminController extends Controller
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // ========================================== Rooms
 
+    //=========== Get All Rooms
+    public function show_rooms()
+    {
+        $rooms = Room::all();
+        $floors = Floor::all()->where('creator_id', '=', Auth::user()->id);
+        return view('admin.show_rooms', compact('rooms', 'floors'));
+    }
+    //=========== Create Room
+    public function create_room(Request $request)
+    {
+        $validated = $request->validate([
+            'capacity' => 'required|numeric|min:1|max:4',
+            'price' => 'required|numeric',
+            'floor_num' => 'required|digits:3|not_in:-1',
+        ]);
+        if ($validated) {
+            $room = new Room;
+            $room->capacity = $request->capacity;
+            $room->price = $request->price;
+            $room->floor_number = $request->floor_num;
+            $room->status = 'available';
+            $room->creator_id = Auth::user()->id;
+            $room->save();
+            return redirect()->back()->with('message', 'Room Added Successfully');
+        } else {
+            return redirect()->back()
+                ->withErrors($validated)
+                ->withInput();
+        }
+    }
+    //=========== Delete Room
+    public function delete_room($number)
+    {
+        Room::where('number', $number)->delete();
+
+        return redirect()->back();
+    }
+
+    //=========== Redirect to Update Room page
+    public function update_room($number)
+    {
+        $room = Room::where('number', $number)->get()->first();
+        return view('admin.update_room', compact('room'));
+    }
+    //=========== Update Room
+    public function edit_room(Request $request, $number)
+    {
+        $validated = $request->validate([
+            'capacity' => 'numeric|min:1|max:4',
+            'price' => 'numeric',
+        ]);
+        if ($validated) {
+            if ($request->capacity) {
+                Room::where('number', $number)
+                    ->update([
+                        'capacity' => $request->capacity
+                    ]);
+            }
+            if ($request->price) {
+                Room::where('number', $number)
+                    ->update([
+                        'price' => $request->price
+                    ]);
+            }
+            return redirect('show_rooms')->with('message', 'Room Updated Successfully');
+        } else {
+            return redirect()->back()
+                ->withErrors($validated)
+                ->withInput();
+        }
+    }
 }
