@@ -39,7 +39,7 @@ class HomeController extends Controller
             // Check if it's a Client
             else {
                 $rooms = Room::all()->where('status', '=', 'Available');
-                return view('client.home', 'rooms');
+                return view('client.home', compact('rooms'));
             }
         } else {
             return redirect()->back();
