@@ -169,7 +169,18 @@
                                                     <td>${{ $reservation->paid_price }}</td>
                                                     <td>{{ $reservation->status }}</td>
                                                     <td>{{ $reservation->clientReservation->name }}</td>
-                                                    <td>
+                                                   @if($reservation->status == 'Approved')
+                                                     <td>
+                                                        <form
+                                                            action="{{ url('approve_reservation', $reservation->id) }}"
+                                                            method="get">
+
+                                                            <button disabled type="submit"
+                                                                class="btn btn-outline-primary">Approve</button>
+                                                        </form>
+                                                    </td>
+                                                    @else
+                                                     <td>
                                                         <form
                                                             action="{{ url('approve_reservation', $reservation->id) }}"
                                                             method="get">
@@ -178,6 +189,7 @@
                                                                 class="btn btn-outline-primary">Approve</button>
                                                         </form>
                                                     </td>
+                                                   @endif
                                                     <td>
                                                         <form
                                                             action="{{ url('cancel_reservation', $reservation->id) }}"
