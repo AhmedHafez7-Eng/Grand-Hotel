@@ -22,7 +22,10 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
 Route::get('/updateProfile/{id}', [HomeController::class, 'updateProfile'])->middleware(['auth']);
 Route::put('/edit_profile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
-
+// ---------- Client Reservations
+Route::post('/home/make_reservation', [HomeController::class, 'create_reservation'])->middleware(['auth']);
+Route::get('/my_reservations/{id}', [HomeController::class, 'my_reservations'])->middleware(['auth']);
+Route::delete('/cancel_reservation/{id}', [HomeController::class, 'cancel_reservation']);
 //====================== Admin Routes [AdminController]
 // ---------- For Managers
 Route::get('/show_managers', [AdminController::class, 'show_managers'])->middleware(['auth'])->middleware('admin');
