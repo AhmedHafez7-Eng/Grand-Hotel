@@ -73,16 +73,7 @@ class ManagerController extends Controller
     public function showRoom()
     {
         $rooms = Room::all();
-        // $floorName = new Floor();
-        // $floorName = Floor::select($floorName->name)->where(
-        //     $room->floor_number = $floorName->id
-        // );
         $rooms = Room::with('RelatedFloor')->get();
-        // foreach ($rooms as $r) {
-        // $floorName = $rooms->RelatedFloor->name;
-        // }
-        // $product->category->name; // get category name
-        // $product->category->user->name;
         return view('manager.show_rooms', [
             'rooms' => $rooms,
         ]);

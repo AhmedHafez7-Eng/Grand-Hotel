@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\reciptionController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
@@ -15,6 +18,22 @@ use App\Http\Controllers\ManagerController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/receptionist', [reciptionController::class, 'showapproved'])
+    ->name('receptionist')
+    ->middleware(['auth'])
+    ->middleware('receptionist')
+    ->middleware('admin')
+    ->middleware('manager');
+Route::get('/updatereceptionist/{id}', [reciptionController::class, 'change'])
+    ->name('change')
+    ->middleware(['auth'])
+    ->middleware('receptionist')
+    ->middleware('admin')
+    ->middleware('manager');
 
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
@@ -103,3 +122,13 @@ Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',
 ])->name('home');
+// Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
+Route::get('/home', [HomeController::class, 'redirect'])
+    ->name('home')
+    ->middleware(['auth']);
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/dashboard', function () {
+        return view('dashboard');
+    })
+    ->name('dashboard');

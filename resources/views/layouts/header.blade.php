@@ -63,9 +63,6 @@
                         <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Receptionists</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Clients</a>
-                    </li>
                     @elseif (Auth::user()->role == 'manager')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/showReceptionists') }}">Manage Receptionists</a>
@@ -75,6 +72,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url('/showFloors') }}">Manage Floors</a>
+                    </li>
+
+                    @elseif (Auth::user()->role == 'receptionist')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/showReceptionists') }}">Manage Reservation</a>
                     </li>
                     @else
                     <li class="nav-item">

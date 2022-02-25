@@ -8,22 +8,26 @@
     </a>
 
     <!-- Sidebar -->
+    
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        @if (\Auth::user()->role == "admin")
             <div class="image">
                 <img src="../../admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
+            @endif
             <div class="info">
                 <a href="/user/profile" class="d-block">
                     @if (Route::has('login'))
                         @auth
-                            {{ Auth::user()->name }}
+                            {{ Auth::user()->name}}
                         @endauth
                     @endif
                 </a>
             </div>
         </div>
+        @if (\Auth::user()->role == "admin")
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -36,6 +40,8 @@
                 </div>
             </div>
         </div>
+        @endif
+
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -49,6 +55,7 @@
                         </p>
                     </a>
                 </li>
+                @if (\Auth::user()->role == "admin")
                 <li class="nav-item">
                     <a href="{{ url('show_doctors') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
@@ -58,7 +65,8 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                
+                     <li class="nav-item">
                     <a href="{{ url('add_doctor') }}" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
                         <p>
@@ -74,7 +82,9 @@
                             Appointments
                         </p>
                     </a>
-                </li>
+                </li>   
+             @endif
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

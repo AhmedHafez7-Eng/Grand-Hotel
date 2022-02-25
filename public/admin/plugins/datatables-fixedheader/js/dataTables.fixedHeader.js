@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*! FixedHeader 3.2.2
 =======
 /*! FixedHeader 3.2.1
@@ -7,6 +8,12 @@
 =======
 /*! FixedHeader 3.2.1
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+/*! FixedHeader 3.2.1
+=======
+/*! FixedHeader 3.2.2
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
  * ©2009-2021 SpryMedia Ltd - datatables.net/license
  */
 
@@ -16,6 +23,7 @@
  *              scrolling
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  * @version     3.2.2
 =======
  * @version     3.2.1
@@ -23,6 +31,12 @@
 =======
  * @version     3.2.1
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+ * @version     3.2.1
+=======
+ * @version     3.2.2
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
  * @file        dataTables.fixedHeader.js
  * @author      SpryMedia Ltd (www.sprymedia.co.uk)
  * @contact     www.sprymedia.co.uk/contact
@@ -159,6 +173,13 @@ $.extend( FixedHeader.prototype, {
 	destroy: function () {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		this.s.dt.off( '.dtfc' );
+		$(window).off( this.s.namespace );
+
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		var dom = this.dom;
 
 		this.s.dt.off( '.dtfc' );
@@ -178,6 +199,7 @@ $.extend( FixedHeader.prototype, {
 			dom.footer.leftBlocker.remove();
 		}
 
+<<<<<<< HEAD
 =======
 		this.s.dt.off( '.dtfc' );
 		$(window).off( this.s.namespace );
@@ -188,10 +210,14 @@ $.extend( FixedHeader.prototype, {
 		$(window).off( this.s.namespace );
 
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		if ( this.c.header ) {
 			this._modeChange( 'in-place', 'header', true );
 		}
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 		if ( this.c.footer && dom.tfoot.length ) {
@@ -201,6 +227,12 @@ $.extend( FixedHeader.prototype, {
 =======
 		if ( this.c.footer && this.dom.tfoot.length ) {
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+		if ( this.c.footer && this.dom.tfoot.length ) {
+=======
+		if ( this.c.footer && dom.tfoot.length ) {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 			this._modeChange( 'in-place', 'footer', true );
 		}
 	},
@@ -354,11 +386,17 @@ $.extend( FixedHeader.prototype, {
 	{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var that = this;
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+=======
+		var that = this;
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		var dt = this.s.dt;
 		var itemDom = this.dom[ item ];
 		var itemElement = item === 'header' ?
@@ -390,12 +428,19 @@ $.extend( FixedHeader.prototype, {
 			var scrollEnabled = this._scrollEnabled();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 			var docScrollLeft = $(document).scrollLeft();
 			var docScrollTop = $(document).scrollTop();
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+=======
+			var docScrollLeft = $(document).scrollLeft();
+			var docScrollTop = $(document).scrollTop();
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 
 			itemDom.floating = $( dt.table().node().cloneNode( false ) )
 				.attr( 'aria-hidden', 'true' )
@@ -434,6 +479,18 @@ $.extend( FixedHeader.prototype, {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			var scrollLeftUpdate = () => {
+				var scrollLeft = scrollBody.scrollLeft()
+				this.s.scrollLeft = {footer: scrollLeft, header: scrollLeft};
+				itemDom.floatingParent.scrollLeft(this.s.scrollLeft.header);
+			}
+
+			scrollLeftUpdate();
+			scrollBody.scroll(scrollLeftUpdate)
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 			var scrollLeftUpdate = function () {
 				var scrollLeft = scrollBody.scrollLeft()
 				that.s.scrollLeft = {footer: scrollLeft, header: scrollLeft};
@@ -444,6 +501,7 @@ $.extend( FixedHeader.prototype, {
 			scrollBody
 				.off('scroll.dtfh')
 				.on('scroll.dtfh', scrollLeftUpdate);
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
@@ -459,6 +517,9 @@ $.extend( FixedHeader.prototype, {
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 
 			// Insert a fake thead/tfoot into the DataTable to stop it jumping around
 			itemDom.placeholder = itemElement.clone( false );
@@ -472,6 +533,10 @@ $.extend( FixedHeader.prototype, {
 			this._matchWidths( itemDom.placeholder, itemDom.floating );
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 
 			// The above action will remove the table header, potentially causing the table to
 			// collapse to a smaller size, before it is then re-inserted (append). The result
@@ -479,10 +544,14 @@ $.extend( FixedHeader.prototype, {
 			$(document)
 				.scrollTop(docScrollTop)
 				.scrollLeft(docScrollLeft);
+<<<<<<< HEAD
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		}
 	},
 
@@ -820,14 +889,22 @@ $.extend( FixedHeader.prototype, {
 	{
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		if (this.s.dt.settings()[0].bDestroying) {
 			return;
 		}
 
+<<<<<<< HEAD
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		// ScrollBody details
 		var scrollEnabled = this._scrollEnabled();
 		var scrollBody = $(this.s.dt.table().node()).parent();
@@ -932,12 +1009,23 @@ $.extend( FixedHeader.prototype, {
 			
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			var getOffsetHeight = (el) => {
+				return {
+					offset: el.offset(),
+					height: el.outerHeight()
+				}
+			}
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 			var getOffsetHeight = function (el) {
 				return {
 					offset: el.offset(),
 					height: el.outerHeight()
 				};
 			};
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
@@ -951,6 +1039,9 @@ $.extend( FixedHeader.prototype, {
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 		
 			header = this.dom.header.floating ? getOffsetHeight(this.dom.header.floating) : getOffsetHeight(this.dom.thead);
 			footer = this.dom.footer.floating ? getOffsetHeight(this.dom.footer.floating) : getOffsetHeight(this.dom.tfoot);
@@ -1009,10 +1100,18 @@ $.extend( FixedHeader.prototype, {
 		if (this.s.dt.settings()[0]._fixedColumns !== undefined) {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			var adjustBlocker = (side, end, el) => {
+				if (el === undefined) {
+					let blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 			var adjustBlocker = function (side, end, el) {
 				if (el === undefined) {
 					var blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
 
+<<<<<<< HEAD
 =======
 			var adjustBlocker = (side, end, el) => {
 				if (el === undefined) {
@@ -1023,17 +1122,26 @@ $.extend( FixedHeader.prototype, {
 				if (el === undefined) {
 					let blocker = $('div.dtfc-'+side+'-'+end+'-blocker');
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 					el = blocker.length === 0 ?
 						null :
 						blocker.clone().appendTo('body').css('z-index', 1);
 				}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+=======
+
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 				if(el !== null) {
 					el.css({
 						top: end === 'top' ? header.offset.top : footer.offset.top,
@@ -1073,6 +1181,7 @@ $.extend( FixedHeader.prototype, {
  */
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 FixedHeader.version = "3.2.2";
 =======
 FixedHeader.version = "3.2.1";
@@ -1080,6 +1189,12 @@ FixedHeader.version = "3.2.1";
 =======
 FixedHeader.version = "3.2.1";
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+FixedHeader.version = "3.2.1";
+=======
+FixedHeader.version = "3.2.2";
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
 
 /**
  * Defaults
