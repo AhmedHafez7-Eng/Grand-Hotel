@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateManagerRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-
+use App\Models\Reservation;
 use App\Models\Floor;
 use App\Models\Room;
 
@@ -39,7 +39,7 @@ class HomeController extends Controller
             // Check if it's a Client
             else {
                 $rooms = Room::all()->where('status', '=', 'Available');
-                return view('client.home', 'rooms');
+                return view('client.home', compact('rooms'));
             }
         } else {
             return redirect()->back();
