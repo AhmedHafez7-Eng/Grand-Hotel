@@ -13,6 +13,7 @@ use App\Notifications\BanNotification;
 use App\Models\User;
 use App\Models\Floor;
 use App\Models\Room;
+use App\Models\Reservation;
 
 class AdminController extends Controller
 {
@@ -351,7 +352,7 @@ class AdminController extends Controller
             $room->capacity = $request->capacity;
             $room->price = $request->price;
             $room->floor_number = $request->floor_num;
-            $room->status = 'available';
+            $room->status = 'Available';
             $room->creator_id = Auth::user()->id;
             $room->save();
             return redirect()->back()->with('message', 'Room Added Successfully');
