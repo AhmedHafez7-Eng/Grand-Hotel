@@ -23,13 +23,15 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/receptionist',[reciptionController::class, 'showapproved'])->name('receptionist')->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
-Route::get('/updatereceptionist/{id}',[reciptionController::class, 'change'])->name('change')->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
+Route::get('/receptionist',[reciptionController::class, 'showapproved'])->name('receptionist');
+//->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
+Route::get('/updatereceptionist/{id}',[reciptionController::class, 'change'])->name('change');
+//->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
 
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
-Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
+//Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
 
 
 

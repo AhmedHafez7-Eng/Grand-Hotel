@@ -99,7 +99,7 @@
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button name="approve" type="submit" class="btn btn-outline-info">Non Approve</button>
+                                                    <button type="submit" class="btn btn-outline-info" name=$value>{{ $approveds->status }}</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -145,6 +145,12 @@
                                             <td>{{ $approveds->paid_price }}</td>
                                             <td>{{ $approveds->client_id }}</td>
                                             <td>{{ $approveds->status }}</td>
+                                            <td>
+                                            <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
+@csrf
+<button type="submit"name=$value class="btn btn-outline-info">non{{$approveds->status }}</button>
+</form>
+                                            </td>
 
                                         </tr>
                                         @endforeach
@@ -192,9 +198,7 @@
                                             <td>
                                                 <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
                                                     @csrf
-                                                    <button type="submit" name="non" class="btn btn-outline-info">Non Approve</button>
-                                                    <button type="submit" name="app" class="btn btn-outline-info">Approve</button>
-                                                </form>
+                                                    <button type="submit"name=$value class="btn btn-outline-info">non{{$approveds->status }}</button>                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

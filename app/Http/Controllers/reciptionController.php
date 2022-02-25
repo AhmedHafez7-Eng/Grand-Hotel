@@ -10,7 +10,7 @@ class reciptionController extends Controller
     //
     public function showapproved(){
         $approved= DB::table('reservations')
-        ->where('status', 'approve')
+        ->where('status', 'approved')
         ->get();
         $inprogress= DB::table('reservations')
         ->where('status', 'In-Progress')
@@ -21,8 +21,25 @@ class reciptionController extends Controller
         return view('admin.receptionist',compact('approved','nonapproved','inprogress'));
         
     }
+    // public function change($id){
+    //     $reservation=Reservation::find($id);
+    //     if($reservation->status=='approve')
+    //     $reservation->status='nonapproved';
+    //     else if($reservation->status=='In-Progress' && isset($_GET['non']))
+    //     $reservation->status='nonapproved';
+    //     else if($reservation->status=='In-Progress' && isset($_GET['app']))
+    //     $reservation->status='approve';
+    //     $reservation->save();
+    //     return redirect()->route('receptionist');
+    // }
     public function change($id){
         $reservation=Reservation::find($id);
+        if($reservation->status=='In-Progress')
+        {
+        // if($_GET[button_value]=='approved'){
+        $reservation->status='approved';
+        $value='nonapproved';
+       // $reservation=Reservation::find($id);
         if($reservation->status=='approve')
         $reservation->status='nonapproved';
         else if($reservation->status=='In-Progress' && isset($_GET['non']))
@@ -30,6 +47,27 @@ class reciptionController extends Controller
         else if($reservation->status=='In-Progress' && isset($_GET['app']))
         $reservation->status='approve';
         $reservation->save();
-        return redirect()->route('receptionist');
-    }
+        return redirect()->route('receptionist',compact('value'));
+        }
+        // return redirect()->route('');
+        else
+{
+if($reservation->status=='nonapproved')
+{
+$reservation->status='approved';
+$value='nonapproved';
+$reservation->save();
+return redirect()->route('receptionist',compact('value'));
+}
+else
+{
+if($reservation->status=='approved')
+{
+$reservation->status='nonapproved';
+$value='approved';
+$reservation->save();
+return redirect()->route('receptionist',compact('value'));
+}
+}}
+}
 }
