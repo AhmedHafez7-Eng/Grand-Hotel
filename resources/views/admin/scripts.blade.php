@@ -24,15 +24,14 @@ integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ
 <!-- AdminLTE App -->
 <script src="../../../admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<<<<<<< HEAD
+
 {{-- <script src="../../../admin/dist/js/demo.js"></script> --}}
-=======
-<<<<<<< HEAD
+
+
 <script src="../../dist/js/demo.js"></script>
-=======
+
 <script src="../../../admin/dist/js/demo.js"></script>
->>>>>>> 1b735b1894de9a2c0ee2365ef94556691da1c152
->>>>>>> edee0321cdeb5bcdbd59d67aaa5e974751193d28
+
 <!-- Page specific script -->
 <script>
     $(function() {

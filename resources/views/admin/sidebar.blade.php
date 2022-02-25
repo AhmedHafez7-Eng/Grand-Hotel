@@ -72,16 +72,10 @@
                         </p>
                     </a>
                 </li>
-<<<<<<< HEAD
-                <li class="nav-item">
-                    <a href="{{ url('show_receptionists') }}" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-minus"></i>
-=======
                 
                      <li class="nav-item">
                     <a href="{{ url('add_doctor') }}" class="nav-link">
                         <i class="nav-icon fas fa-plus"></i>
->>>>>>> edee0321cdeb5bcdbd59d67aaa5e974751193d28
                         <p>
                             Manage Receptionists
                             {{-- <span class="right badge badge-success">Doctors</span> --}}

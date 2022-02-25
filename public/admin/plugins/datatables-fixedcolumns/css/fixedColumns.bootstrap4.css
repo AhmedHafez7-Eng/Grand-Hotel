@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 tr.even td {
   background-color: #ffffff;
 }
@@ -26,56 +22,6 @@ th.dtfc-fixed-left,
 th.dtfc-fixed-right,
 td.dtfc-fixed-left,
 td.dtfc-fixed-right {
-=======
->>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
-table.dataTable thead th, table.dataTable thead td, table.dataTable tfoot th, table.dataTable tfoot td {
-  background-color: white;
-}
-table.dataTable tbody tr td {
-  background-color: #ffffff;
-}
-table.dataTable.table-striped tbody tr.odd td {
-  background-color: #f9f9f9;
-}
-table.dataTable th.dtfc-fixed-left,
-table.dataTable th.dtfc-fixed-right,
-table.dataTable td.dtfc-fixed-left,
-table.dataTable td.dtfc-fixed-right {
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
-tr.even td {
-  background-color: #ffffff;
-}
-
-tr.odd td {
-  background-color: #f9f9f9;
-}
-
-tr.selected td {
-  background-color: #0088cc;
-}
-
-thead th {
-  background-color: white;
-}
-
-tfoot th {
-  background-color: white;
-}
-
-th.dtfc-fixed-left,
-th.dtfc-fixed-right,
-td.dtfc-fixed-left,
-td.dtfc-fixed-right {
-<<<<<<< HEAD
->>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
-=======
->>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
-=======
->>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
->>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
   z-index: 1;
 }
 

@@ -23,8 +23,10 @@ class reciptionController extends Controller
     }
     public function change($id){
         $reservation=Reservation::find($id);
+       
         if($reservation->status=='approve')
         $reservation->status='nonapproved';
+        
         else if($reservation->status=='In-Progress' && isset($_GET['non']))
         $reservation->status='nonapproved';
         else if($reservation->status=='In-Progress' && isset($_GET['app']))

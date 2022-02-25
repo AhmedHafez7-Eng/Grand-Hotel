@@ -26,15 +26,12 @@ Route::get('/', function () {
 Route::get('/receptionist', [reciptionController::class, 'showapproved'])
     ->name('receptionist')
     ->middleware(['auth'])
-    ->middleware('receptionist')
-    ->middleware('admin')
-    ->middleware('manager');
+    ->middleware('receptionist');
 Route::get('/updatereceptionist/{id}', [reciptionController::class, 'change'])
     ->name('change')
     ->middleware(['auth'])
-    ->middleware('receptionist')
-    ->middleware('admin')
-    ->middleware('manager');
+    ->middleware('receptionist');
+    
 
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);

@@ -76,15 +76,13 @@
 
                     @elseif (Auth::user()->role == 'receptionist')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/showReceptionists') }}">Manage Reservation</a>
+                        <a class="nav-link" href="{{ url('/receptionist') }}">Manage Reservation</a>
                     </li>
                     @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Clients</a>
+                        <a class="nav-link" href="{{ url('/receptionists') }}">Manage Clients</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/show_appointments') }}">Approved Clients</a>
-                    </li>
+                    
                     @endif
                     <x-app-layout>
                     </x-app-layout>
