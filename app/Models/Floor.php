@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Floor extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'number';
 
     public function FloorOfRoom()
     {
@@ -18,4 +19,5 @@ class Floor extends Model
     {
         return $this->belongsTo(User::class, 'creator_id', 'id');
     }
+    // INSERT INTO `rooms`(`id`, `capacity`, `price`, `creator_id`, `floor_number`) VALUES (500,2,100,2,1)
 }

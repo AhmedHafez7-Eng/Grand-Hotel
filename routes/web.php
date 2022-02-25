@@ -26,6 +26,19 @@ Route::get('/home', [HomeController::class, 'redirect'])
 Route::get('/manager', function () {
     return view('manager.home');
 });
+Route::get('/room', [ManagerController::class, 'showRoom'])->name('show_rooms');
+Route::get('/deleteRoom/{number}', [ManagerController::class, 'deleteRoom']);
+Route::get('/updateRoom/{RoomId}', [ManagerController::class, 'updateRoom']);
+Route::get('/updateRoomSave', [
+    ManagerController::class,
+    'updateRoomSave',
+])->name('room.update');
+Route::get('/createRoom', [ManagerController::class, 'createRoom']);
+Route::post('/createRoomSave', [
+    ManagerController::class,
+    'createRoomSave',
+])->name('room.create');
+
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/dashboard', function () {
         return view('dashboard');
@@ -50,8 +63,20 @@ Route::get('/updateReceptionistSave', [
 ])->name('receptionist.update');
 Route::get('/ban/{id}', [ManagerController::class, 'ban']);
 Route::get('/unban/{id}', [ManagerController::class, 'unBan']);
-Route::get('/floors', [ManagerController::class, 'showResceptionists']);
-
+Route::get('/showFloors', [ManagerController::class, 'showFloors'])->name(
+    'show_floors'
+);
+Route::get('/deleteFloor/{idf}', [ManagerController::class, 'deleteFloor']);
+Route::get('/updateFloor/{idf}', [ManagerController::class, 'updateFloor']);
+Route::get('/updateFloorSave', [
+    ManagerController::class,
+    'updateFloorSave',
+])->name('floor.update');
+Route::get('/createFloor', [ManagerController::class, 'createFloor']);
+Route::get('/createFloorSave', [
+    ManagerController::class,
+    'createFloorSave',
+])->name('floor.create');
 Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',

@@ -14,14 +14,27 @@ class CreateRoomsTable extends Migration
     public function up()
     {
         Schema::create('rooms', function (Blueprint $table) {
-            $table->increments('number')->startingValue(100)->min(3)->max(3);
+            $table
+                ->increments('number')
+                ->startingValue(100)
+                ->min(3)
+                ->max(3);
             $table->integer('capacity');
             $table->integer('price');
-            $table->string('status');
+            $table
+                ->string('status')
+                ->default('free')
+                ->change();
             $table->bigInteger('creator_id')->unsigned();
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table
+                ->foreign('creator_id')
+                ->references('id')
+                ->on('users');
             $table->integer('floor_number')->unsigned();
-            $table->foreign('floor_number')->references('number')->on('floors');
+            $table
+                ->foreign('floor_number')
+                ->references('number')
+                ->on('floors');
             $table->timestamps();
         });
     }

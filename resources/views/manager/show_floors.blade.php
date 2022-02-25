@@ -55,12 +55,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Floors</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Doctors</li>
+                            <li class="breadcrumb-item active">All Floors</li>
                         </ol>
                     </div>
                 </div>
@@ -75,48 +75,45 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All receptionists</h3>
+                                <h3 class="card-title">All floors</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>Name</th>
                                             <th>Number</th>
-                                            <th>capacity</th>
-                                            <th>price</th>
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($rooms as $room)
+                                        @foreach ($floors as $floor)
                                         <tr>
-                                            <td>{{ $room->number }}</td>
-                                            <td>{{ $room-> capacity }}</td>
-                                            <td>{{ $room-> price }}</td>
+                                            <td>{{ $floor->name }}</td>
+                                            <td>{{ $floor-> number }}</td>
+
                                             <td>
-                                                <a class="btn btn-danger" href="/deleteRoom/{{$room -> number}}">Delete
+                                                <a class="btn btn-danger"
+                                                    href="/deleteFloor/{{$floor -> number}}">Delete
                                                 </a>
-                                                <a class="btn btn-warning" href="/updateRoom/{{$room ->number}}">Update
+                                                <a class="btn btn-warning"
+                                                    href="/updateFloor/{{$floor -> number}}">Update
                                                 </a>
-
                                             </td>
-
-
                                         </tr>
                                         @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Created Date</th>
+                                            <th>Number</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <a class="btn btn-primary" href="/createRoom">Add new Room</a>
-
+                                <a class="btn btn-primary" href="/createFloor">Add new floor</a>
                             </div>
                             <!-- /.card-body -->
                         </div>

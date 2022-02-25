@@ -14,10 +14,20 @@ class CreateFloorsTable extends Migration
     public function up()
     {
         Schema::create('floors', function (Blueprint $table) {
-            $table->increments('number')->startingValue(100)->min(3)->max(3);
+            $table
+                ->increments('number')
+                ->startingValue(100)
+                ->min(3)
+                ->max(3)
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
             $table->string('name');
             $table->bigInteger('creator_id')->unsigned();
-            $table->foreign('creator_id')->references('id')->on('users');
+            $table
+                ->foreign('creator_id')
+                ->references('id')
+                ->on('users');
             $table->timestamps();
         });
     }
