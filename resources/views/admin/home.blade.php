@@ -312,8 +312,9 @@
                                             <th>Capacity</th>
                                             <th>Price</th>
                                             <th>Status</th>
-                                            <th>Manager ID</th>
                                             <th>Floor Number</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -323,8 +324,15 @@
                                                 <td>{{ $room->capacity }}</td>
                                                 <td>{{ $room->price }}</td>
                                                 <td>{{ $room->status }}</td>
-                                                <td>{{ $room->creator_id }}</td>
-                                                <td>{{ $room->floor_number }}</td>
+                                                <td>
+                                                    {{ $room->floor_number }}
+                                                </td>
+                                                <td>
+                                                    {{ $room->RoomCreator->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $room->RoomCreator->role }}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -334,8 +342,9 @@
                                             <th>Capacity</th>
                                             <th>Price</th>
                                             <th>Status</th>
-                                            <th>Manager ID</th>
                                             <th>Floor Number</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
