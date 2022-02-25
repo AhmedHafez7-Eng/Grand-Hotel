@@ -12,10 +12,17 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="../../admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                {{-- <img src="../../admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
+                @if (Route::has('login'))
+                    @auth
+                        <img src="../../../usersImages/{{ Auth::user()->avatar_Img }}" class="img-circle elevation-2"
+                            alt="User Image">
+                    @endauth
+                @endif
             </div>
             <div class="info">
-                <a href="/user/profile" class="d-block">
+                {{-- <a href="/user/profile" class="d-block"> --}}
+                <a href="{{ url('updateProfile', Auth::user()->id) }}" class="d-block">
                     @if (Route::has('login'))
                         @auth
                             {{ Auth::user()->name }}
@@ -50,28 +57,38 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_doctors') }}" class="nav-link">
+                    <a href="{{ url('show_managers') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Doctors
+                            Manage Managers
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('add_doctor') }}" class="nav-link">
-                        <i class="nav-icon fas fa-plus"></i>
+                    <a href="{{ url('show_receptionists') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Add Doctors
+                            Manage Receptionists
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url('show_appointments') }}" class="nav-link">
+                    <a href="{{ url('show_floors') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Appointments
+                            Manage Floors
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('show_rooms') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
+                        <p>
+                            Manage Rooms
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
                 </li>

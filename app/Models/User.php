@@ -10,6 +10,10 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
+use App\Models\Floor;
+use App\Models\Room;
+use App\Models\Reservation;
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -17,6 +21,11 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    public function Creator()
+    {
+        return self::where('id', $this->creator_id)->first();
+    }
 
     public function receptionistCreator()
     {

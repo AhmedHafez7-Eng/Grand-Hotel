@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-class manager
+use Illuminate\Http\Request;
+
+class isBannedMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,9 +17,9 @@ class manager
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'manager') {
+        if (Auth::user()->status == 'unBanned') {
             return $next($request);
         }
-        abort(403);
+        return redirect()->back()->with('midError', 'You are Banned and have not Manager access');
     }
 }

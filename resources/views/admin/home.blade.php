@@ -15,12 +15,13 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+
+        {{-- =============================== Managers --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Managers</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -40,41 +41,58 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Latest Doctors</h3>
+                                <h3 class="card-title">Managers</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
+                                            <th>Manager Name</th>
+                                            <th>Email</th>
+                                            <th>National ID</th>
                                             <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
+                                            <th>Status</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($doctors as $doctor)
+                                        @foreach ($managers as $manager)
                                             <tr>
-                                                <td>{{ $doctor->name }}</td>
-                                                <td>{{ $doctor->phone }}</td>
-                                                <td>{{ $doctor->spec }}</td>
-                                                <td>{{ $doctor->roomNo }}</td>
+                                                <td>{{ $manager->name }}</td>
+                                                <td>{{ $manager->email }}</td>
+                                                <td>{{ $manager->national_ID }}</td>
                                                 <td>
-                                                    <img width="100" height="100" src="doctorImg/{{ $doctor->image }}"
-                                                        alt="Doctor Image">
+                                                    <img width="100" height="100"
+                                                        src="usersImages/{{ $manager->avatar_Img }}"
+                                                        alt="Manager Image">
+                                                </td>
+                                                <td>{{ $manager->country }}</td>
+                                                <td>{{ $manager->gender }}</td>
+                                                <td>{{ $manager->status }}</td>
+                                                <td>
+                                                    {{ $manager->Creator()->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $manager->Creator()->role }}
                                                 </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
+                                            <th>Manager Name</th>
+                                            <th>Email</th>
+                                            <th>National ID</th>
                                             <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
+                                            <th>Status</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -90,17 +108,13 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
-    </div>
 
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        {{-- =============================== Receptionists --}}
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Appointments</h1>
+                        <h1>Receptionists</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -120,44 +134,58 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Latest Appointments</h3>
+                                <h3 class="card-title">Receptionists</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example2" class="table table-bordered table-striped table-responsive">
+                                <table id="example1" class="table table-bordered table-striped table-responsive">
                                     <thead>
                                         <tr>
-                                            <th>Customer Name</th>
+                                            <th>Receptionists Name</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Doctor Name</th>
-                                            <th>Date</th>
-                                            <th>Message</th>
+                                            <th>National ID</th>
+                                            <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($appointments as $appointment)
+                                        @foreach ($receps as $recep)
                                             <tr>
-                                                <td>{{ $appointment->name }}</td>
-                                                <td>{{ $appointment->email }}</td>
-                                                <td>{{ $appointment->phone }}</td>
-                                                <td>{{ $appointment->doctor }}</td>
-                                                <td>{{ $appointment->date }}</td>
-                                                <td>{{ $appointment->message }}</td>
-                                                <td>{{ $appointment->status }}</td>
+                                                <td>{{ $recep->name }}</td>
+                                                <td>{{ $recep->email }}</td>
+                                                <td>{{ $recep->national_ID }}</td>
+                                                <td>
+                                                    <img width="100" height="100"
+                                                        src="usersImages/{{ $recep->avatar_Img }}"
+                                                        alt="Receptionist Image">
+                                                </td>
+                                                <td>{{ $recep->country }}</td>
+                                                <td>{{ $recep->gender }}</td>
+                                                <td>{{ $recep->status }}</td>
+                                                <td>
+                                                    {{ $recep->Creator()->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $recep->Creator()->role }}
+                                                </td>
                                             </tr>
-                                        @endforeach --}}
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Customer Name</th>
+                                            <th>Receptionists Name</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Doctor Name</th>
-                                            <th>Date</th>
-                                            <th>Message</th>
+                                            <th>National ID</th>
+                                            <th>Profile Image</th>
+                                            <th>Country</th>
+                                            <th>Gender</th>
                                             <th>Status</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -173,9 +201,166 @@
             </div>
             <!-- /.container-fluid -->
         </section>
-        <!-- /.content -->
+
+        {{-- =============================== Floors --}}
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Floors</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item active">Home</li>
+                            <li class="breadcrumb-item "></li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Floors</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($floors as $floor)
+                                            <tr>
+                                                <td>{{ $floor->number }}</td>
+                                                <td>{{ $floor->name }}</td>
+                                                <td>
+                                                    {{ $floor->floorCreator->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $floor->floorCreator->role }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                {{-- {!! $doctors->links() !!} --}}
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+
+        {{-- =============================== Rooms --}}
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Rooms</h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item active">Home</li>
+                            <li class="breadcrumb-item "></li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Rooms</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Room Number</th>
+                                            <th>Capacity</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>Floor Number</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($rooms as $room)
+                                            <tr>
+                                                <td>{{ $room->number }}</td>
+                                                <td>{{ $room->capacity }}</td>
+                                                <td>{{ $room->price }}</td>
+                                                <td>{{ $room->status }}</td>
+                                                <td>
+                                                    {{ $room->floor_number }}
+                                                </td>
+                                                <td>
+                                                    {{ $room->RoomCreator->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $room->RoomCreator->role }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Room Number</th>
+                                            <th>Capacity</th>
+                                            <th>Price</th>
+                                            <th>Status</th>
+                                            <th>Floor Number</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                {{-- {!! $doctors->links() !!} --}}
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
     </div>
-    <!-- /.content-wrapper -->
 
     @include('layouts.footer')
 

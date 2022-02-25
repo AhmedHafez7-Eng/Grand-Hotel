@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,42 @@ use App\Http\Controllers\ManagerController;
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
-Route::get('/home', [HomeController::class, 'redirect'])
-    ->name('home')
-    ->middleware(['auth']);
+Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
+Route::get('/updateProfile/{id}', [HomeController::class, 'updateProfile'])->middleware(['auth']);
+Route::put('/edit_profile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
+
+//====================== Admin Routes [AdminController]
+// ---------- For Managers
+Route::get('/show_managers', [AdminController::class, 'show_managers'])->middleware(['auth'])->middleware('admin');
+Route::get('/add_manager', [AdminController::class, 'addManager'])->middleware(['auth'])->middleware('admin');
+Route::post('/add_manager', [AdminController::class, 'createManager'])->middleware(['auth'])->middleware('admin');
+Route::get('/updateManager/{id}', [AdminController::class, 'updateManager'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_manager/{id}', [AdminController::class, 'edit_manager'])->middleware(['auth'])->middleware('admin');
+Route::delete('/deleteManager/{id}', [AdminController::class, 'deleteManager'])->middleware(['auth'])->middleware('admin');
+Route::get('/banned/{id}', [AdminController::class, 'banned'])->middleware(['auth'])->middleware('admin');
+
+// ---------- For Receptionists
+Route::get('/show_receptionists', [AdminController::class, 'show_receptionists'])->middleware(['auth'])->middleware('admin');
+Route::get('/add_receptionist', [AdminController::class, 'add_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::post('/add_receptionist', [AdminController::class, 'create_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_receptionist/{id}', [AdminController::class, 'update_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_receptionist/{id}', [AdminController::class, 'edit_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_receptionist/{id}', [AdminController::class, 'delete_receptionist'])->middleware(['auth'])->middleware('admin');
+Route::get('/banned/{id}', [AdminController::class, 'banned'])->middleware(['auth'])->middleware('admin');
+
+// ---------- For Floors
+Route::get('/show_floors', [AdminController::class, 'show_floors'])->middleware(['auth'])->middleware('admin');
+Route::post('/show_floors', [AdminController::class, 'create_floor'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_floor/{number}', [AdminController::class, 'update_floor'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_floor/{number}', [AdminController::class, 'edit_floor'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_floor/{number}', [AdminController::class, 'delete_floor'])->middleware(['auth'])->middleware('admin');
+
+// ---------- For Rooms
+Route::get('/show_rooms', [AdminController::class, 'show_rooms'])->middleware(['auth'])->middleware('admin');
+Route::post('/show_rooms', [AdminController::class, 'create_room'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_room/{number}', [AdminController::class, 'update_room'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_room/{number}', [AdminController::class, 'edit_room'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_room/{number}', [AdminController::class, 'delete_room'])->middleware(['auth'])->middleware('admin');
 
 Route::get('/manager', function () {
     return view('manager.home');
@@ -81,3 +115,7 @@ Route::get('/home', [
     App\Http\Controllers\HomeController::class,
     'index',
 ])->name('home');
+//====================== Auth Routes
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

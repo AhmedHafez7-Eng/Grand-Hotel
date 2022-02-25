@@ -35,6 +35,10 @@
         color: #FFF;
     }
 
+    #NameHelpInline {
+        color: rgb(255, 53, 53);
+    }
+
 </style>
 <div class="wrapper">
 
@@ -56,13 +60,34 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Floors</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Doctors</li>
+                            <li class="breadcrumb-item active">All Floors</li>
                         </ol>
+                    </div>
+                    <div class="col-sm-12 mt-4">
+                        <form action="show_floors" method="POST" autocomplete="off" class="addFloor">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Add New Floor</label>
+                                <input type="text" class="form-control col-3" id="name" name="name"
+                                    aria-describedby="nameHelp" value="{{ old('name') }}"
+                                    placeholder="Enter Floor Name">
+                                @error('name')
+                                    <div class="col-auto">
+                                        <span id="NameHelpInline" class="form-text">
+                                            {{ $message }}
+                                        </span>
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-primary">Add Floor</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -76,47 +101,51 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">All Doctors</h3>
+                                <h3 class="card-title">All Floors</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($doctors as $doctor)
+                                        @foreach ($floors as $floor)
                                             <tr>
-                                                <td>{{ $doctor->name }}</td>
-                                                <td>{{ $doctor->phone }}</td>
-                                                <td>{{ $doctor->specialization }}</td>
-                                                <td>{{ $doctor->roomNo }}</td>
+                                                <td>{{ $floor->number }}</td>
+                                                <td>{{ $floor->name }}</td>
                                                 <td>
-                                                    <img width="100" height="100" src="doctorImg/{{ $doctor->image }}"
-                                                        alt="Doctor Image">
+                                                    {{ $floor->floorCreator->name }}
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('updateDoctor', $doctor->id) }}"
+                                                    {{ $floor->floorCreator->role }}
+                                                </td>
+                                                <td>
+                                                    <form action="{{ url('update_floor', $floor->number) }}"
                                                         method="GET">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-outline-info">Edit</button>
+                                                        @if ($floor->creator_id == Auth::user()->id)
+                                                            <button type="submit"
+                                                                class="btn btn-outline-info">Edit</button>
+                                                        @endif
                                                     </form>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('deleteDoctor', $doctor->id) }}"
+                                                    <form action="{{ url('delete_floor', $floor->number) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('delete')
-                                                        <button type="submit" class="btn btn-outline-danger"
-                                                            onclick="return confirm('Are You Sure To Delete this Doctor?')">Delete</button>
+                                                        @if ($floor->creator_id == Auth::user()->id)
+                                                            <button type="submit" class="btn btn-outline-danger"
+                                                                onclick="return confirm('Are You Sure To Delete this Floor?')">Delete</button>
+                                                        @endif
                                                     </form>
                                                 </td>
                                             </tr>
@@ -124,11 +153,10 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th>Doctor Name</th>
-                                            <th>Phone</th>
-                                            <th>Specialization</th>
-                                            <th>Room No.</th>
-                                            <th>Profile Image</th>
+                                            <th>Floor Number</th>
+                                            <th>Floor Name</th>
+                                            <th>Creator Name</th>
+                                            <th>Creator Role</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
