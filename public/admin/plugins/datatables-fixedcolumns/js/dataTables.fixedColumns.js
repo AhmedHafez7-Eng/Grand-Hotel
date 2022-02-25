@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*! FixedColumns 4.0.2
  * 2019-2022 SpryMedia Ltd - datatables.net/license
 =======
@@ -10,6 +11,14 @@
 /*! FixedColumns 4.0.1
  * 2019-2021 SpryMedia Ltd - datatables.net/license
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+/*! FixedColumns 4.0.1
+ * 2019-2021 SpryMedia Ltd - datatables.net/license
+=======
+/*! FixedColumns 4.0.2
+ * 2019-2022 SpryMedia Ltd - datatables.net/license
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
  */
 (function () {
     'use strict';
@@ -34,11 +43,21 @@
             // Backwards compatibility for deprecated leftColumns
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            if (opts.left === undefined && this.c.leftColumns !== undefined) {
+                this.c.left = this.c.leftColumns;
+            }
+            // Backwards compatibility for deprecated rightColumns
+            if (opts.right === undefined && this.c.rightColumns !== undefined) {
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
             if ((!opts || opts.left === undefined) && this.c.leftColumns !== undefined) {
                 this.c.left = this.c.leftColumns;
             }
             // Backwards compatibility for deprecated rightColumns
             if ((!opts || opts.right === undefined) && this.c.rightColumns !== undefined) {
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
@@ -51,6 +70,9 @@
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
                 this.c.right = this.c.rightColumns;
             }
             this.s = {
@@ -98,6 +120,7 @@
             else {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 table.one('init.dt', function () {
 =======
                 table.one('preInit.dt', function () {
@@ -105,6 +128,12 @@
 =======
                 table.one('preInit.dt', function () {
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+                table.one('preInit.dt', function () {
+=======
+                table.one('init.dt', function () {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
                     // Fixed Columns Initialisation
                     _this._addStyles();
                     _this._setKeyTableListener();
@@ -112,11 +141,17 @@
             }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             table.on('column-sizing.dt', function () { return _this._addStyles(); });
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+=======
+            table.on('column-sizing.dt', function () { return _this._addStyles(); });
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
             // Make class available through dt object
             table.settings()[0]._fixedColumns = this;
             return this;
@@ -514,6 +549,17 @@
             });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            this.s.dt.on('column-visibility', function () {
+                setTimeout(function () {
+                    _this._addStyles();
+                }, 50);
+            });
+        };
+        FixedColumns.version = '4.0.1';
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
             this.s.dt.on('column-visibility', function (e, s) {
                 if (!s.bDestroying) {
                     setTimeout(function () {
@@ -523,6 +569,7 @@
             });
         };
         FixedColumns.version = '4.0.2';
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
@@ -537,6 +584,9 @@
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
         FixedColumns.classes = {
             fixedLeft: 'dtfc-fixed-left',
             fixedRight: 'dtfc-fixed-right',
@@ -559,6 +609,7 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     /*! FixedColumns 4.0.2
      * 2019-2022 SpryMedia Ltd - datatables.net/license
 =======
@@ -569,6 +620,14 @@
     /*! FixedColumns 4.0.1
      * 2019-2021 SpryMedia Ltd - datatables.net/license
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+    /*! FixedColumns 4.0.1
+     * 2019-2021 SpryMedia Ltd - datatables.net/license
+=======
+    /*! FixedColumns 4.0.2
+     * 2019-2022 SpryMedia Ltd - datatables.net/license
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
      */
     // DataTables extensions common UMD. Note that this allows for AMD, CommonJS
     // (with window and jQuery being allowed as parameters to the returned
@@ -665,6 +724,7 @@
         // events so we can automatically initialise
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         $(document).on('plugin-init.dt', function (e, settings) {
 =======
         $(document).on('init.dt.dtfc', function (e, settings) {
@@ -672,6 +732,12 @@
 =======
         $(document).on('init.dt.dtfc', function (e, settings) {
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+        $(document).on('init.dt.dtfc', function (e, settings) {
+=======
+        $(document).on('plugin-init.dt', function (e, settings) {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
             if (e.namespace !== 'dt') {
                 return;
             }

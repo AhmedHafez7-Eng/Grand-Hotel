@@ -73,6 +73,7 @@ class ManagerController extends Controller
     public function showRoom()
     {
         $rooms = Room::all();
+        $rooms = Room::with('RelatedFloor')->get();
         return view('manager.show_rooms', [
             'rooms' => $rooms,
         ]);
@@ -80,9 +81,9 @@ class ManagerController extends Controller
     public function deleteRoom($number)
     {
         $room = Room::find($number);
-        // if ($room->status == 'free') {
-        Room::where('number', $number)->delete();
-        // }
+        if ($room->status == 'free') {
+            Room::where('number', $number)->delete();
+        }
         return redirect()->route('show_rooms');
     }
     public function updateRoom($RoomId)

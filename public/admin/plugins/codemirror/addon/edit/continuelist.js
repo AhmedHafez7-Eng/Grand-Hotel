@@ -26,6 +26,7 @@
       var inner = CodeMirror.innerMode(cm.getMode(), eolState);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       if (inner.mode.name !== "markdown" && inner.mode.helperType !== "markdown") {
 =======
       if (inner.mode.name !== "markdown") {
@@ -33,6 +34,12 @@
 =======
       if (inner.mode.name !== "markdown") {
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+      if (inner.mode.name !== "markdown") {
+=======
+      if (inner.mode.name !== "markdown" && inner.mode.helperType !== "markdown") {
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
         cm.execCommand("newlineAndIndent");
         return;
       } else {

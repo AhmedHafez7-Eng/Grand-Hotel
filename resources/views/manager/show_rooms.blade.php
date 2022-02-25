@@ -85,7 +85,7 @@
                                             <th>Number</th>
                                             <th>capacity</th>
                                             <th>price</th>
-                                            <th>Action</th>
+                                            <th>Floor Name</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,27 +93,18 @@
                                         <tr>
                                             <td>{{ $room->number }}</td>
                                             <td>{{ $room-> capacity }}</td>
-                                            <td>{{ $room-> price }}</td>
+                                            <td>{{ $room-> price/100 }}$</td>
+                                            <td>{{$room->RelatedFloor->name}}</td>
                                             <td>
                                                 <a class="btn btn-danger" href="/deleteRoom/{{$room -> number}}">Delete
                                                 </a>
                                                 <a class="btn btn-warning" href="/updateRoom/{{$room ->number}}">Update
                                                 </a>
-
                                             </td>
-
-
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>E-mail</th>
-                                            <th>Created Date</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
+
                                 </table>
                                 <a class="btn btn-primary" href="/createRoom">Add new Room</a>
 

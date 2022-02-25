@@ -500,15 +500,23 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
         return "meta";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
       },
       '"': function(stream, state) {
         if (!stream.match('""\n')) return false;
         state.tokenize = tokenTripleString;
         return state.tokenize(stream, state);
+<<<<<<< HEAD
 =======
 >>>>>>> 5870c1164dd2128d46c76312b15b6ffe83ebefa6
 =======
 >>>>>>> a41f54054c9a731484a5dbe953e9751aaf1aa1c0
+=======
+>>>>>>> d6093f211b0e1c67bbe58ac856aca75b9b26bb26
+>>>>>>> d02408ee5e9325f38231c36ee8cca8b99fbc3d75
       }
     },
     modeProps: {fold: ["brace", "import"]}

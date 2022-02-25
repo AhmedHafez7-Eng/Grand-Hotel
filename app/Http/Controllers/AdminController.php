@@ -3,403 +3,173 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\AddManagerRequest;
-use App\Http\Requests\UpdateManagerRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\BanNotification;
+
+use App\Http\Requests\AddDoctorRequest;
+
+use App\Http\Requests\UpdateDoctorRequest;
+
+use App\Models\Doctor;
+
+use App\Models\Appointment;
 use App\Models\User;
-use App\Models\Floor;
-use App\Models\Room;
+use App\Notifications\EmailNotification;
+use Illuminate\Support\Facades\Notification;
+
 
 class AdminController extends Controller
 {
-    // ========================================== Managers
-    //=========== Get All Managers
-    public function show_managers()
+    // ========================================== Doctors
+    //=========== Get All Doctors
+    public function show_users()
     {
-        $managers = User::all()->where('role', '=', 'manager');
+        
+        $users = User::all();
         // For API
-        // return response()->json($managers);
-        return view('admin.show_managers', compact('managers'));
+        // return response()->json($doctors);
+        return view('admin.show_users', compact('users'));
     }
-    //=========== Redirect to Add manager
-    public function addManager()
-    {
-        return view('admin.add_manager');
-    }
-    //=========== Create Manager
-    public function createManager(AddManagerRequest $request)
-    {
-        $validated = $request->validated();
-        $validated = $request
-            ->safe()
-            ->only(['name', 'email', 'password', 'national_id', 'country', 'gender', 'usrImg']);
-        if ($validated) {
-            $manager = new User;
+    //=========== Redirect to Add Doctor
+    // public function addDoctor()
+    // {
+    //     return view('admin.add_doctor');
+    // }
+    // //=========== Create Doctor
+    // public function createDoctor(AddDoctorRequest $request)
+    // {
+    //     $validated = $request->validated();
+    //     $validated = $request
+    //         ->safe()
+    //         ->only(['name', 'phone', 'spec', 'roomNo', 'docImg']);
+    //     if ($validated) {
+    //         $doctor = new Doctor;
 
-            $image = $request->usrImg;
-            $imageName = time() . '.' . $image->getClientoriginalExtension();
-            $request->usrImg->move('usersImages', $imageName);
+    //         $image = $request->docImg;
+    //         $imageName = time() . '.' . $image->getClientoriginalExtension();
+    //         $request->docImg->move('doctorImg', $imageName);
 
-            $manager->avatar_Img = $imageName;
-            $manager->name = $request->name;
-            $manager->email = $request->email;
-            $manager->password = Hash::make($request->password);
-            $manager->national_ID = $request->national_id;
-            $manager->country = $request->country;
-            $manager->gender = $request->gender;
+    //         $doctor->image = $imageName;
+    //         $doctor->name = $request->name;
+    //         $doctor->phone = $request->phone;
+    //         $doctor->roomNo = $request->roomNo;
+    //         $doctor->specialization = $request->spec;
 
-            $manager->role = 'manager';
-            $manager->creator_id = Auth::user()->id;
+    //         $doctor->save();
+    //         return redirect()->back()->with('message', 'Doctor Added Successfully');
+    //     } else {
+    //         return redirect()->back()
+    //             ->withErrors($validated)
+    //             ->withInput();
+    //     }
+    // }
+    // //=========== Delete Doctor
+    // public function deleteDoctor($id)
+    // {
+    //     $doctor = Doctor::find($id);
+    //     $doctor->delete();
 
+    //     return redirect()->back();
+    // }
 
-            $manager->save();
-            return redirect()->back()->with('message', 'Manager Added Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-    //=========== Delete manager
-    public function deleteManager($id)
-    {
-        $manager = User::find($id);
-        $manager->delete();
+    // //=========== Redirect to Update Doctor page
+    // public function updateDoctor($id)
+    // {
+    //     $doctor = Doctor::find($id);
+    //     return view('admin.updateDoctor', compact('doctor'));
+    // }
+    // //=========== Update Doctor
+    // public function edit_doctor(UpdateDoctorRequest $request, $id)
+    // {
+    //     $doctor = Doctor::find($id);
+    //     $validated = $request->validated();
+    //     $validated = $request
+    //         ->safe()
+    //         ->only(['name', 'phone', 'spec', 'roomNo', 'docImg']);
+    //     if ($validated) {
 
-        return redirect()->back();
-    }
+    //         $image = $request->docImg;
+    //         if ($image) {
+    //             $imageName = time() . '.' . $image->getClientoriginalExtension();
+    //             $request->docImg->move('doctorImg', $imageName);
+    //             $doctor->image = $imageName;
+    //         }
+    //         if ($request->name) {
+    //             $doctor->name = $request->name;
+    //         }
+    //         if ($request->phone) {
+    //             $doctor->phone = $request->phone;
+    //         }
+    //         if ($request->roomNo) {
+    //             $doctor->roomNo = $request->roomNo;
+    //         }
+    //         if ($request->spec) {
+    //             $doctor->specialization = $request->spec;
+    //         }
 
-    //=========== Redirect to Update manager page
-    public function updateManager($id)
-    {
-        $manager = User::find($id);
-        return view('admin.updateManager', compact('manager'));
-    }
-    //=========== Update manager
-    public function edit_manager(UpdateManagerRequest $request, $id)
-    {
-        $manager = User::find($id);
-        $validated = $request->validated();
-        $validated = $request
-            ->safe()
-            ->only(['name', 'email', 'password', 'national_id', 'country', 'gender', 'usrImg']);
-        if ($validated) {
+    //         $doctor->save();
+    //         return redirect('show_doctors')->with('message', 'Doctor Updated Successfully');
+    //     } else {
+    //         return redirect()->back()
+    //             ->withErrors($validated)
+    //             ->withInput();
+    //     }
+    // }
+    // // ========================================== Appointments
+    // //=========== Show All Appointments
+    // public function show_appointments()
+    // {
+    //     $appointments = Appointment::all();
+    //     return view('admin.show_appointments', compact('appointments', $appointments));
+    // }
 
-            $image = $request->usrImg;
-            if ($image) {
-                $imageName = time() . '.' . $image->getClientoriginalExtension();
-                $request->usrImg->move('usersImages', $imageName);
-                $manager->avatar_Img = $imageName;
-            }
-            if ($request->name) {
-                $manager->name = $request->name;
-            }
-            if ($request->email) {
-                $manager->email = $request->email;
-            }
-            if ($request->password) {
-                $manager->password = Hash::make($request->password);
-            }
-            if ($request->national_id) {
-                $manager->national_ID = $request->national_id;
-            }
-            if ($request->country) {
-                $manager->country = $request->country;
-            }
-            if ($request->gender) {
-                $manager->gender = $request->gender;
-            }
+    // //=========== Approve Appointment
+    // public function approved($id)
+    // {
+    //     $appointments = Appointment::find($id);
 
-            $manager->save();
-            return redirect('show_managers')->with('message', 'Manager Updated Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
+    //     if ($appointments->status == 'In-Progress') {
+    //         $appointments->status = 'Approved';
+    //     } elseif ($appointments->status == 'Approved') {
+    //         $appointments->status = 'In-Progress';
+    //     } else {
+    //         $appointments->status = 'Approved';
+    //     }
 
-    // ========================================== Receptionists
-    //=========== Get All Receptionists
-    public function show_receptionists()
-    {
-        $receps = User::all()->where('role', '=', 'receptionist');
-        // For API
-        // return response()->json($managers);
-        return view('admin.show_receptionists', compact('receps'));
-    }
-    //=========== Redirect to Add Receptionist
-    public function add_receptionist()
-    {
-        return view('admin.add_receptionist');
-    }
-    //=========== Create Receptionist
-    public function create_receptionist(AddManagerRequest $request)
-    {
-        $validated = $request->validated();
-        $validated = $request
-            ->safe()
-            ->only(['name', 'email', 'password', 'national_id', 'country', 'gender', 'usrImg']);
-        if ($validated) {
-            $recep = new User;
+    //     $appointments->save();
+    //     return redirect()->back();
+    // }
 
-            $image = $request->usrImg;
-            $imageName = time() . '.' . $image->getClientoriginalExtension();
-            $request->usrImg->move('usersImages', $imageName);
+    // //=========== Cancel Appointment
+    // public function canceled($id)
+    // {
+    //     $appointments = Appointment::find($id);
 
-            $recep->avatar_Img = $imageName;
-            $recep->name = $request->name;
-            $recep->email = $request->email;
-            $recep->password = Hash::make($request->password);
-            $recep->national_ID = $request->national_id;
-            $recep->country = $request->country;
-            $recep->gender = $request->gender;
+    //     $appointments->status = 'Canceled';
+    //     $appointments->save();
+    //     return redirect()->back();
+    // }
 
-            $recep->role = 'receptionist';
-            $recep->creator_id = Auth::user()->id;
+    // //=========== Redirect to Send Email Page
+    // public function emailNotify($id)
+    // {
+    //     $appointment = Appointment::find($id);
+    //     return view('admin.emailNotify', compact('appointment'));
+    // }
 
+    // //=========== Send Email Notification
+    // public function sendEmail(Request $request, $id)
+    // {
+    //     $appointment = Appointment::find($id);
 
-            $recep->save();
-            return redirect()->back()->with('message', 'Receptionist Added Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-    //=========== Delete Receptionist
-    public function delete_receptionist($id)
-    {
-        $recep = User::find($id);
-        $recep->delete();
+    //     $details = [
+    //         'greeting' => $request->greeting,
+    //         'body' => $request->body,
+    //         'actionText' => $request->actionText,
+    //         'actionURL' => $request->actionURL,
+    //         'endPart' => $request->endPart
+    //     ];
 
-        return redirect()->back();
-    }
+    //     Notification::send($appointment, new EmailNotification($details));
 
-    //=========== Redirect to Update Receptionist page
-    public function update_receptionist($id)
-    {
-        $recep = User::find($id);
-        return view('admin.update_receptionist', compact('recep'));
-    }
-    //=========== Update Receptionist
-    public function edit_receptionist(UpdateManagerRequest $request, $id)
-    {
-        $recep = User::find($id);
-        $validated = $request->validated();
-        $validated = $request
-            ->safe()
-            ->only(['name', 'email', 'password', 'national_id', 'country', 'gender', 'usrImg']);
-        if ($validated) {
-
-            $image = $request->usrImg;
-            if ($image) {
-                $imageName = time() . '.' . $image->getClientoriginalExtension();
-                $request->usrImg->move('usersImages', $imageName);
-                $recep->avatar_Img = $imageName;
-            }
-            if ($request->name) {
-                $recep->name = $request->name;
-            }
-            if ($request->email) {
-                $recep->email = $request->email;
-            }
-            if ($request->password) {
-                $recep->password = Hash::make($request->password);
-            }
-            if ($request->national_id) {
-                $recep->national_ID = $request->national_id;
-            }
-            if ($request->country) {
-                $recep->country = $request->country;
-            }
-            if ($request->gender) {
-                $recep->gender = $request->gender;
-            }
-
-            $recep->save();
-            return redirect('show_receptionists')->with('message', 'Receptionist Updated Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-
-    //=========== Ban User
-    public function banned($id)
-    {
-        $user = User::find($id);
-
-        if ($user->status == 'unBanned') {
-            $user->status = 'Banned';
-            $details = [
-                'greeting' => 'Hello Mr ' . $user->name,
-                'body' => "We'd like to inform you that you've been banned for 30 days by the Admin. You've to go to the company in the nearest time.",
-                'actionText' => 'Here You can find your ban details',
-                'actionURL' => 'https://ahmedhafezoffic.netlify.app/',
-                'endPart' => 'Thank You.'
-            ];
-
-            Notification::send($user, new BanNotification($details));
-
-            $user->save();
-            return redirect()->back()->with('message', 'User has been Banned and Email Notification Sent Successfully');
-        } else {
-            $user->status = 'unBanned';
-
-            $details = [
-                'greeting' => 'Hello Mr ' . $user->name,
-                'body' => "We'd like to inform you that your ban has been removed. You can now do your work Normally.",
-                'actionText' => '',
-                'actionURL' => '',
-                'endPart' => 'Thank You.'
-            ];
-
-            Notification::send($user, new BanNotification($details));
-
-            $user->save();
-            return redirect()->back()->with('message', 'User has been UnBanned and Email Notification Sent Successfully');
-        }
-    }
-
-
-    // ========================================== Floors
-
-    //=========== Get All Floors
-    public function show_floors()
-    {
-        $floors = Floor::all();
-        return view('admin.show_floors', compact('floors'));
-    }
-    //=========== Create Floor
-    public function create_floor(Request $request)
-    {
-        $validated = $request->validate([
-            'name' => 'required|size:3',
-        ]);
-        if ($validated) {
-            $floor = new Floor;
-            $floor->name = $request->name;
-            $floor->creator_id = Auth::user()->id;
-            $floor->save();
-            return redirect()->back()->with('message', 'Floor Added Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-    //=========== Delete Floor
-    public function delete_floor($number)
-    {
-        Floor::where('number', $number)->delete();
-
-        return redirect()->back();
-    }
-
-    //=========== Redirect to Update Floor page
-    public function update_floor($number)
-    {
-        $floor = Floor::where('number', $number)->get()->first();
-        return view('admin.update_floor', compact('floor'));
-    }
-    //=========== Update Floor
-    public function edit_floor(Request $request, $number)
-    {
-        $validated = $request->validate([
-            'name' => 'size:3',
-        ]);
-        if ($validated) {
-            if ($request->name) {
-                Floor::where('number', $number)
-                    ->update([
-                        'name' => $request->name
-                    ]);
-            }
-            return redirect('show_floors')->with('message', 'Floor Updated Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-
-    // ========================================== Rooms
-
-    //=========== Get All Rooms
-    public function show_rooms()
-    {
-        $rooms = Room::all();
-        $floors = Floor::all()->where('creator_id', '=', Auth::user()->id);
-        return view('admin.show_rooms', compact('rooms', 'floors'));
-    }
-    //=========== Create Room
-    public function create_room(Request $request)
-    {
-        $validated = $request->validate([
-            'capacity' => 'required|numeric|min:1|max:4',
-            'price' => 'required|numeric',
-            'floor_num' => 'required|digits:3|not_in:-1',
-        ]);
-        if ($validated) {
-            $room = new Room;
-            $room->capacity = $request->capacity;
-            $room->price = $request->price;
-            $room->floor_number = $request->floor_num;
-            $room->status = 'available';
-            $room->creator_id = Auth::user()->id;
-            $room->save();
-            return redirect()->back()->with('message', 'Room Added Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
-    //=========== Delete Room
-    public function delete_room($number)
-    {
-        Room::where('number', $number)->delete();
-
-        return redirect()->back();
-    }
-
-    //=========== Redirect to Update Room page
-    public function update_room($number)
-    {
-        $room = Room::where('number', $number)->get()->first();
-        return view('admin.update_room', compact('room'));
-    }
-    //=========== Update Room
-    public function edit_room(Request $request, $number)
-    {
-        $validated = $request->validate([
-            'capacity' => 'numeric|min:1|max:4',
-            'price' => 'numeric',
-        ]);
-        if ($validated) {
-            if ($request->capacity) {
-                Room::where('number', $number)
-                    ->update([
-                        'capacity' => $request->capacity
-                    ]);
-            }
-            if ($request->price) {
-                Room::where('number', $number)
-                    ->update([
-                        'price' => $request->price
-                    ]);
-            }
-            return redirect('show_rooms')->with('message', 'Room Updated Successfully');
-        } else {
-            return redirect()->back()
-                ->withErrors($validated)
-                ->withInput();
-        }
-    }
+    //     return redirect('show_appointments')->with('message', 'Email Notification Sent Successfully');
+    // }
 }

@@ -33,7 +33,7 @@ class HomeController extends Controller
             }
             // Check if it's a Receptionist
             elseif (Auth::user()->role == 'receptionist') {
-                return view('receptionist.home');
+                return view('client.home');
             }
             // Check if it's a Client
             else {
