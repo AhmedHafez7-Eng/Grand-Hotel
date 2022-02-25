@@ -48,52 +48,52 @@
                         <a class="nav-link" href="/home">Home</a>
 
                         @if (Route::has('login'))
-                            @auth
-                                @if (Auth::user()->role == 'client')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('my_appointment') }}"
-                                style="background-color: rgb(12, 184, 12); color:#FFF;">My
-                                Appointments</a>
-                        </li>
+                        @auth
+                        @if (Auth::user()->role == 'client')
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('my_appointment') }}"
+                            style="background-color: rgb(12, 184, 12); color:#FFF;">My
+                            Appointments</a>
+                    </li>
                     @elseif (Auth::user()->role == 'admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Managers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Receptionists</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Managers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Receptionists</a>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Clients</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Clients</a>
+                    </li>
                     @elseif (Auth::user()->role == 'manager')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Receptionists</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Rooms</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Floors</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/showReceptionists') }}">Manage Receptionists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/room') }}">Manage Rooms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/showFloors') }}">Manage Floors</a>
+                    </li>
                     @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Clients</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/show_appointments') }}">Approved Clients</a>
-                        </li>
-                        @endif
-                        <x-app-layout>
-                        </x-app-layout>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Clients</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url('/show_appointments') }}">Approved Clients</a>
+                    </li>
+                    @endif
+                    <x-app-layout>
+                    </x-app-layout>
 
                     @else
-                        <li class="nav-item">
-                            <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
+                    </li>
 
                     @endauth
                     @endif

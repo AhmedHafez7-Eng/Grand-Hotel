@@ -23,6 +23,7 @@ Route::get('/home', [HomeController::class, 'redirect'])
     ->middleware(['auth']);
 Route::group(
     [
+        'middleware' => ['auth:sanctum', 'verified'],
         'middleware' => ['manager'],
     ],
     function () {
