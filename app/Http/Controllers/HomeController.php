@@ -25,7 +25,8 @@ class HomeController extends Controller
                 $receps = User::all()->where('role', '=', 'receptionist');
                 $floors = Floor::all();
                 $rooms = Room::all();
-                return view('admin.home', compact('managers', 'receps', 'floors', 'rooms'));
+                $available_rooms = Room::all()->where('status', '=', 'Available');
+                return view('admin.home', compact('managers', 'receps', 'floors', 'rooms', 'available_rooms'));
             }
             // Check if it's a Manager
             elseif (Auth::user()->role == 'manager') {
@@ -37,7 +38,8 @@ class HomeController extends Controller
             }
             // Check if it's a Client
             else {
-                return view('client.home');
+                $rooms = Room::all()->where('status', '=', 'Available');
+                return view('client.home', 'rooms');
             }
         } else {
             return redirect()->back();
