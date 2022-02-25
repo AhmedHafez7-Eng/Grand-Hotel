@@ -144,4 +144,26 @@ class HomeController extends Controller
                 ->withInput();
         }
     }
+    //=========== get my Reservations
+    public function my_reservations($id)
+    {
+        $reservations = Reservation::all()
+            ->where('client_id', '=', $id);
+        return view('client.my_reservations', compact('reservations'));
+    }
+
+    //=========== Cancel Reservations
+    public function cancel_reservation($id)
+    {
+        $reservation = Reservation::find($id);
+
+        Room::where('number', $reservation->room_number)
+            ->update([
+                'status' => 'Available'
+            ]);
+
+        $reservation->delete();
+
+        return redirect()->back();
+    }
 }
