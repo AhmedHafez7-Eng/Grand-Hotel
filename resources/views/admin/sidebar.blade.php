@@ -8,11 +8,9 @@
     </a>
 
     <!-- Sidebar -->
-    
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        @if (\Auth::user()->role == "admin")
             <div class="image">
                 {{-- <img src="../../admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> --}}
                 @if (Route::has('login'))
@@ -22,19 +20,17 @@
                     @endauth
                 @endif
             </div>
-            @endif
             <div class="info">
                 {{-- <a href="/user/profile" class="d-block"> --}}
                 <a href="{{ url('updateProfile', Auth::user()->id) }}" class="d-block">
                     @if (Route::has('login'))
                         @auth
-                            {{ Auth::user()->name}}
+                            {{ Auth::user()->name }}
                         @endauth
                     @endif
                 </a>
             </div>
         </div>
-        @if (\Auth::user()->role == "admin")
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
@@ -47,8 +43,6 @@
                 </div>
             </div>
         </div>
-        @endif
-
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -62,7 +56,6 @@
                         </p>
                     </a>
                 </li>
-                @if (\Auth::user()->role == "admin")
                 <li class="nav-item">
                     <a href="{{ url('show_managers') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
@@ -72,10 +65,9 @@
                         </p>
                     </a>
                 </li>
-                
-                     <li class="nav-item">
-                    <a href="{{ url('add_doctor') }}" class="nav-link">
-                        <i class="nav-icon fas fa-plus"></i>
+                <li class="nav-item">
+                    <a href="{{ url('show_receptionists') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
                             Manage Receptionists
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
@@ -99,9 +91,16 @@
                             {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
-                </li>   
-             @endif
-
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('show_reservations') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
+                        <p>
+                            Manage Reservations
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

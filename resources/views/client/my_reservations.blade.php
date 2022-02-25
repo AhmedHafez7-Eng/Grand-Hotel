@@ -23,36 +23,36 @@
         <table class="table table-info table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Doctor Name</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Message</th>
+                    <th scope="col">Client Name</th>
+                    <th scope="col">Room Number</th>
+                    <th scope="col">Paid Price</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Cancel Appointment</th>
+                    <th scope="col">Name of Reserver</th>
+                    <th scope="col">Cancel Reservation</th>
                 </tr>
             </thead>
             <tbody>
-                @if ($appointments->count() > 0)
-                    @foreach ($appointments as $appointment)
+                @if ($reservations->count() > 0)
+                    @foreach ($reservations as $reservation)
                         <tr>
-                            <th scope="row">{{ $appointment->doctor }}</th>
-                            <td>{{ $appointment->date }}</td>
-                            <td>{{ $appointment->message }}</td>
-                            <td>{{ $appointment->status }}</td>
+                            <td scope="row">{{ $reservation->client_name }}</td>
+                            <td>{{ $reservation->room_number }}</td>
+                            <td>${{ $reservation->paid_price }}</td>
+                            <td>{{ $reservation->status }}</td>
+                            <td>{{ $reservation->clientReservation->name }}</td>
                             <td>
-                                <form action="{{ url('cancel_appoint', $appointment->id) }}" method="POST">
+                                <form action="{{ url('cancel_reservation', $reservation->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-outline-danger"
-                                        onclick="return confirm('Are You Sure To Cancel this Appointment?')">Cancel</button>
+                                        onclick="return confirm('Are You Sure To Cancel this Reservation?')">Checkout</button>
                                 </form>
-                                {{-- <a class="btn btn-danger"
-                                    href="{{ url('cancel_appoint', $appointment->id) }}">Cancel</a> --}}
                             </td>
                         </tr>
                     @endforeach
                 @else
                     <tr>
-                        <td class="emptyData" colspan="5">No Appointments Reserved</td>
+                        <td class="emptyData" colspan="6">No Reservations Found</td>
                     </tr>
                 @endif
             </tbody>

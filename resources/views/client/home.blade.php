@@ -38,11 +38,8 @@
     }
 
     #NameHelpInline,
-    #phoneHelpInline,
-    #dateHelpInline,
-    #doctorHelpInline,
-    #emailHelpInline,
-    #messageHelpInline {
+    #accompany_numberHelpInline,
+    #room_numberHelpInline {
         color: rgb(247, 60, 60);
     }
 
@@ -126,7 +123,9 @@
     </div> <!-- .bg-light -->
 
     @include('client.news')
-    @include('client.reservation')
+    @if (Auth::id())
+        @include('client.reservation')
+    @endif
 
     <div class="page-section banner-home bg-image" style="background-image: url(../assets/img/banner-pattern.svg);">
         <div class="container py-5 py-lg-0">
