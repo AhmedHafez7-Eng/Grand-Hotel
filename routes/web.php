@@ -49,7 +49,12 @@ Route::get('/update_floor/{number}', [AdminController::class, 'update_floor'])->
 Route::put('/edit_floor/{number}', [AdminController::class, 'edit_floor'])->middleware(['auth'])->middleware('admin');
 Route::delete('/delete_floor/{number}', [AdminController::class, 'delete_floor'])->middleware(['auth'])->middleware('admin');
 
-
+// ---------- For Rooms
+Route::get('/show_rooms', [AdminController::class, 'show_rooms'])->middleware(['auth'])->middleware('admin');
+Route::post('/show_rooms', [AdminController::class, 'create_room'])->middleware(['auth'])->middleware('admin');
+Route::get('/update_room/{number}', [AdminController::class, 'update_room'])->middleware(['auth'])->middleware('admin');
+Route::put('/edit_room/{number}', [AdminController::class, 'edit_room'])->middleware(['auth'])->middleware('admin');
+Route::delete('/delete_room/{number}', [AdminController::class, 'delete_room'])->middleware(['auth'])->middleware('admin');
 
 
 
