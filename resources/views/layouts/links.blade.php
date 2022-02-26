@@ -9,7 +9,7 @@
 
     <meta name="copyright" content="MACode ID, https://macodeid.com/">
 
-    <title>Life-Care</title>
+    <title>Grand-Hotel</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/bg-doctor.png') }}">
     
