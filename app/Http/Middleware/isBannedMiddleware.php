@@ -20,6 +20,6 @@ class isBannedMiddleware
         if (Auth::user()->status == 'unBanned') {
             return $next($request);
         }
-        return redirect()->back()->with('midError', 'You are Banned and have not Manager access');
+        return redirect()->back()->with('midError', 'You are Banned and have not access');
     }
 }

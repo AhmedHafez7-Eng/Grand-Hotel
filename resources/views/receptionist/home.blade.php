@@ -31,14 +31,15 @@
     }
 
     .alert button:hover {
-        background-color: #50855C;
+        background-color: #e7d63d;
         color: #FFF;
     }
+
 </style>
 <div class="wrapper">
 
 
-    
+
     @include('receptionist.header')
     @include('receptionist.sidebar')
 
@@ -64,6 +65,13 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                @if (session()->has('midError'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('midError') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                            aria-label="Close">&times;</button>
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-12">
 
@@ -88,21 +96,23 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($approved as $approveds)
-                                        <tr>
-                                            <td>{{ $approveds->id }}</td>
-                                            <td>{{ $approveds->client_name }}</td>
-                                            <td>{{ $approveds->accompany_number }}</td>
-                                            <td>{{ $approveds->room_number }}</td>
-                                            <td>{{ $approveds->paid_price }}</td>
-                                            <td>{{ $approveds->client_id }}</td>
-                                            <td>{{ $approveds->status }}</td>
-                                            <td>
-                                                <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
-                                                    @csrf
-                                                    <button name="approve" type="submit" class="btn btn-outline-info">Non Approve</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $approveds->id }}</td>
+                                                <td>{{ $approveds->client_name }}</td>
+                                                <td>{{ $approveds->accompany_number }}</td>
+                                                <td>{{ $approveds->room_number }}</td>
+                                                <td>{{ $approveds->paid_price }}</td>
+                                                <td>{{ $approveds->client_id }}</td>
+                                                <td>{{ $approveds->status }}</td>
+                                                <td>
+                                                    <form action="{{ route('change', ['id' => $approveds->id]) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        <button name="approve" type="submit"
+                                                            class="btn btn-outline-info">Non Approve</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
 
@@ -137,16 +147,16 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($nonapproved as $approveds)
-                                        <tr>
-                                            <td>{{ $approveds->id }}</td>
-                                            <td>{{ $approveds->client_name }}</td>
-                                            <td>{{ $approveds->accompany_number }}</td>
-                                            <td>{{ $approveds->room_number }}</td>
-                                            <td>{{ $approveds->paid_price }}</td>
-                                            <td>{{ $approveds->client_id }}</td>
-                                            <td>{{ $approveds->status }}</td>
+                                            <tr>
+                                                <td>{{ $approveds->id }}</td>
+                                                <td>{{ $approveds->client_name }}</td>
+                                                <td>{{ $approveds->accompany_number }}</td>
+                                                <td>{{ $approveds->room_number }}</td>
+                                                <td>{{ $approveds->paid_price }}</td>
+                                                <td>{{ $approveds->client_id }}</td>
+                                                <td>{{ $approveds->status }}</td>
 
-                                        </tr>
+                                            </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
@@ -181,22 +191,25 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($inprogress as $approveds)
-                                        <tr>
-                                            <td>{{ $approveds->id }}</td>
-                                            <td>{{ $approveds->client_name }}</td>
-                                            <td>{{ $approveds->accompany_number }}</td>
-                                            <td>{{ $approveds->room_number }}</td>
-                                            <td>{{ $approveds->paid_price }}</td>
-                                            <td>{{ $approveds->client_id }}</td>
-                                            <td>{{ $approveds->status }}</td>
-                                            <td>
-                                                <form action="{{ route('change', ['id'=>$approveds->id]) }}" method="GET">
-                                                    @csrf
-                                                    <button type="submit" name="non" class="btn btn-outline-info">Non Approve</button>
-                                                    <button type="submit" name="app" class="btn btn-outline-info">Approve</button>
-                                                </form>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $approveds->id }}</td>
+                                                <td>{{ $approveds->client_name }}</td>
+                                                <td>{{ $approveds->accompany_number }}</td>
+                                                <td>{{ $approveds->room_number }}</td>
+                                                <td>{{ $approveds->paid_price }}</td>
+                                                <td>{{ $approveds->client_id }}</td>
+                                                <td>{{ $approveds->status }}</td>
+                                                <td>
+                                                    <form action="{{ route('change', ['id' => $approveds->id]) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        <button type="submit" name="non"
+                                                            class="btn btn-outline-info">Non Approve</button>
+                                                        <button type="submit" name="app"
+                                                            class="btn btn-outline-info">Approve</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
                                         @endforeach
                                     </tbody>
 

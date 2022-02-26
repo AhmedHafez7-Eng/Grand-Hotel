@@ -20,33 +20,32 @@ use App\Http\Controllers\ManagerController;
 |
 */
 
-
+//====================== Receptionist Routes [ReceptionistController]
 Route::get('/receptionist', [reciptionController::class, 'showapproved'])
     ->name('receptionist')
     ->middleware(['auth'])
-    ->middleware('receptionist');
+    ->middleware('receptionist')->middleware('banned');
 Route::get('/updatereceptionist/{id}', [reciptionController::class, 'change'])
     ->name('change')
     ->middleware(['auth'])
-    ->middleware('receptionist');
+    ->middleware('receptionist')->middleware('banned');
 
-    //////////////////////////////////////////////////////////
+//====================== Manager Routes [ManagerController]
 
-    Route::get('/receptionistMan', [ManagerController::class, 'showapproved'])
+Route::get('/receptionistMan', [ManagerController::class, 'showapproved'])
     ->name('receptionistMan')
     ->middleware(['auth'])
-    ->middleware('manager');
+    ->middleware('manager')->middleware('banned');
 Route::get('/changeReceptionistMan/{id}', [ManagerController::class, 'change'])
     ->name('changeReceptionistMan')
     ->middleware(['auth'])
-    ->middleware('manager');
-        
+    ->middleware('manager')->middleware('banned');
 
-//====================== Redirection Routes [HomeController]
 Route::group(
     [
         'middleware' => ['auth:sanctum', 'verified'],
         'middleware' => ['manager'],
+        'middleware' => ['banned'],
     ],
     function () {
         // Route::get('/manager', function () {
@@ -114,17 +113,9 @@ Route::group(
         ])->name('floor.create');
     }
 );
-Route::get('/manager_add_receptionist', [ManagerController::class, 'add_receptionist'])->middleware(['auth'])->middleware('manager');
-Route::post('/manager_add_receptionist', [ManagerController::class, 'create_receptionist'])->middleware(['auth'])->middleware('manager');
-Route::middleware(['auth:sanctum', 'verified'])
-    ->get('/dashboard', function () {
-        return view('dashboard');
-    })
-    ->name('dashboard');
 
-
-
-
+Route::get('/manager_add_receptionist', [ManagerController::class, 'add_receptionist'])->middleware(['auth'])->middleware('manager')->middleware('banned');
+Route::post('/manager_add_receptionist', [ManagerController::class, 'create_receptionist'])->middleware(['auth'])->middleware('manager')->middleware('banned');
 
 
 //====================== Redirection Routes [HomeController]
