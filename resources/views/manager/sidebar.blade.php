@@ -4,7 +4,7 @@
     <a href="{{url('/')}}" class="brand-link">
         <img src="{{ asset('assets/img/bg-doctor.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Life-Care</span>
+        <span class="brand-text font-weight-light">Grand-Hotel</span>
     </a>
 
     <!-- Sidebar -->
