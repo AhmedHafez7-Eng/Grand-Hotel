@@ -88,7 +88,7 @@
                                     </div>
                                     <input class="form-control mb-3" type="text" name="capacity">
                                     @if($errors->get('capacity'))
-                                    <span class="bg-danger py-2 px-5 ">@error('capacity'){{$message}}@enderror</span>
+                                    <span class="bg-danger my-3 py-2 px-5 ">@error('capacity'){{$message}}@enderror</span>
                                     @endif
 
                                     <div class="input-group">
@@ -96,14 +96,9 @@
                                     </div>
                                     <input class="form-control mb-3" type="number" name="price">
                                     @if($errors->get('price'))
-                                    <span class="bg-danger py-2 px-5 ">@error('price'){{$message}}@enderror</span>
+                                    <span class="bg-danger my-3 py-2 px-5 ">@error('price'){{$message}}@enderror</span>
                                     @endif
-                                    <div class="input-group">
-                                        <span class="input-group-text ">creator_id </span>
-                                    </div>
-                                    <!--<select class="form-control" name="creator_id" id="creator_id"
-                                        data-parsley-required="true"> -->
-                                    <input class="form-control mb-3" type="number" name="creator_id">
+                    
 
                                     <!-- @foreach ($room as $r)
                                         {
@@ -111,10 +106,26 @@
                                         }
                                         @endforeach -->
                                     </select>
-                                    <div class="input-group">
-                                        <span class="input-group-text ">floor_number </span>
+                                    <div class="mb-3 col-4">
+                                <label for="floor_number" class="form-label">Floor Number</label>
+                                <select name="floor_number" id="floor_number" class="custom-select">
+                                    <option value="-1">--Select--</option>
+                                    @foreach ($floors as $floor)
+                                        <option value="{{ $floor->number }}"
+                                            {{ old('floor_number') == $floor->number ? 'selected' : '' }}>
+                                            {{ $floor->number }} -
+                                            {{ $floor->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('floor_number')
+                                    <div class="col-auto">
+                                        <span id="floor_numHelpInline" class="form-text">
+                                            {{ $message }}
+                                        </span>
                                     </div>
-                                    <input class="form-control mb-3" type="number" value=100 name="floor_number">
+                                @enderror
+                            </div>
 
                                     <div>
                                         <input class="btn btn-primary mt-3" type="submit" value="Add Room">

@@ -55,12 +55,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Receptionists</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Doctors</li>
+                            <li class="breadcrumb-item active">All Receptionists</li>
                         </ol>
                     </div>
                 </div>
@@ -95,15 +95,18 @@
                                             <td>{{ $rece-> email }}</td>
                                             <td>{{ $rece-> created_at }}</td>
                                             <td>
-                                                <a class="btn btn-danger" href="/deleteReceptionist/{{$rece -> id}}">Delete </a>
-                                                <a class="btn btn-warning" href="/updateReceptionist/{{$rece -> id}}">Update </a>
-                                                @if($rece->status == 'unBan')
-                                                <a class="btn btn-danger" href="/ban/{{$rece -> id}}">Ban</a>
-                                                @elseif($rece->status == 'ban')
-                                                <a class="btn btn-primary" href="/unban/{{$rece -> id}}">Unban </a>
+                                                @if($rece->creator_id==Auth::user()->id)
+                                                    <a class="btn btn-danger" href="/deleteReceptionist/{{$rece -> id}}">Delete </a>
+                                                    <a class="btn btn-warning" href="/updateReceptionist/{{$rece -> id}}">Update </a>
+                                                    @if($rece->status == 'unBanned')
+                                                    <a class="btn btn-danger" href="/ban/{{$rece -> id}}">Ban</a>
+                                                    @elseif($rece->status == 'Banned')
+                                                    <a class="btn btn-primary" href="/unban/{{$rece -> id}}">Unban </a>
+                                                    @endif
+                                                    
                                                 @endif
                                             </td>
-
+                                            
 
                                         </tr>
                                         @endforeach
@@ -117,7 +120,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-
+                                <a class="btn btn-primary" href="/manager_add_receptionist">Add new Room</a>
                             </div>
                             <!-- /.card-body -->
                         </div>

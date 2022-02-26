@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Floor;
 use App\Models\Room;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AddManagerRequest;
 session_start();
 class ManagerController extends Controller
 {
@@ -58,14 +62,14 @@ class ManagerController extends Controller
     public function ban($id)
     {
         $receptionist = User::find($id);
-        $receptionist->status = 'ban';
+        $receptionist->status = 'Banned';
         $receptionist->save();
         return redirect()->route('show_receptionists');
     }
     public function unBan($id)
     {
         $receptionist = User::find($id);
-        $receptionist->status = 'unBan';
+        $receptionist->status = 'unBanned';
         $receptionist->save();
         return redirect()->route('show_receptionists');
     }
@@ -81,7 +85,7 @@ class ManagerController extends Controller
     public function deleteRoom($number)
     {
         $room = Room::find($number);
-        if ($room->status == 'free') {
+        if ($room->status == 'Available') {
             Room::where('number', $number)->delete();
         }
         return redirect()->route('show_rooms');
@@ -113,7 +117,8 @@ class ManagerController extends Controller
         $room = Room::select('creator_id')
             ->groupBy('creator_id')
             ->get();
-        return view('manager.createRoom', ['room' => $room]);
+        $floors = Floor::all()->where('creator_id', '=', Auth::user()->id);
+        return view('manager.createRoom', ['room' => $room, 'floors' => $floors]);
     }
     public function createRoomSave(Request $request)
     {
@@ -122,13 +127,13 @@ class ManagerController extends Controller
         $validateForm = $request->validate([
             'capacity' => ['required'],
             'price' => ['required'],
-            'creator_id' => ['required'],
+            'floor_number' => 'required|not-in:-1',
         ]);
         $room['capacity'] = $request->capacity;
         $room['price'] = $request->price * 100;
-        $room['creator_id'] = $request->creator_id;
+        $room['creator_id'] = Auth::user()->id;
         $room['floor_number'] = $request->floor_number;
-
+        $room['status']='Available';
         $room->save();
         return redirect()->route('show_rooms');
     }
@@ -159,7 +164,7 @@ class ManagerController extends Controller
         ]);
 
         $floor->name = $request->name;
-        $floor->number = $request->number;
+
         $floor->save();
         return redirect()->route('show_floors');
     }
@@ -170,14 +175,98 @@ class ManagerController extends Controller
     public function createFloorSave(Request $request)
     {
         $validateForm = $request->validate([
-            'name' => ['required', 'min:3', 'max:10'],
-            'number' => ['required', 'digits : 4'],
+            'name' => ['required', 'size:3']
         ]);
         $floor = new Floor();
         $floor->name = $request->name;
-        $floor->number = $request->number;
-        $floor->creator_id = 1;
+        $floor->creator_id = Auth::user()->id;
         $floor->save();
         return redirect()->route('show_floors');
+    }
+    public function showapproved()
+    {
+        $approved = DB::table('reservations')
+            ->where('status', 'approve')
+            ->get();
+        $inprogress = DB::table('reservations')
+            ->where('status', 'In-Progress')
+            ->get();
+        $nonapproved = DB::table('reservations')
+            ->where('status', 'nonapproved')
+            ->get();
+        return view('manager.receptionist', compact('approved', 'nonapproved', 'inprogress'));
+    }
+    public function change($id)
+    {
+         $reservation=Reservation::find($id);
+            
+
+        if ($reservation->status == 'Approved'){
+            $reservation->status = 'nonapproved';
+        }
+            
+
+        else if ($reservation->status == 'In-Progress' && isset($_GET['non']))
+        {
+            $reservation->status = 'nonapproved';
+        }
+
+        else if ($reservation->status == 'In-Progress' && isset($_GET['app']))
+        {
+            $reservation->status = 'Approved';
+        }
+
+        $reservation->save();
+
+        $approved = DB::table('reservations')
+            ->where('status', 'Approved')
+            ->get();
+        $inprogress = DB::table('reservations')
+            ->where('status', 'In-Progress')
+            ->get();
+        $nonapproved = DB::table('reservations')
+            ->where('status', 'nonapproved')
+            ->get();
+       
+        return view('manager.receptionist', compact('approved', 'nonapproved', 'inprogress'));
+    }
+    public function add_receptionist()
+    {
+        return view('manager.add_receptionist');
+    }
+    //=========== Create Receptionist
+    
+    public function create_receptionist(AddManagerRequest $request)
+    {
+        $validated = $request->validated();
+        $validated = $request
+            ->safe()
+            ->only(['name', 'email', 'password', 'national_id', 'country', 'gender', 'usrImg']);
+        if ($validated) {
+            $recep = new User;
+
+            $image = $request->usrImg;
+            $imageName = time() . '.' . $image->getClientoriginalExtension();
+            $request->usrImg->move('usersImages', $imageName);
+
+            $recep->avatar_Img = $imageName;
+            $recep->name = $request->name;
+            $recep->email = $request->email;
+            $recep->password = Hash::make($request->password);
+            $recep->national_ID = $request->national_id;
+            $recep->country = $request->country;
+            $recep->gender = $request->gender;
+
+            $recep->role = 'receptionist';
+            $recep->creator_id = Auth::user()->id;
+
+
+            $recep->save();
+            return redirect()->back()->with('message', 'Receptionist Added Successfully');
+        } else {
+            return redirect()->back()
+                ->withErrors($validated)
+                ->withInput();
+        }
     }
 }

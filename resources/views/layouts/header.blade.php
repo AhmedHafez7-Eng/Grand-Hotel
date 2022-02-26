@@ -46,55 +46,28 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="/home">Home</a>
-
-                        @if (Route::has('login'))
+                    </li>
+                    @if (Route::has('login'))
                         @auth
-                        @if (Auth::user()->role == 'client')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('my_appointment') }}"
-                            style="background-color: rgb(12, 184, 12); color:#FFF;">My
-                            Appointments</a>
-                    </li>
-                    @elseif (Auth::user()->role == 'admin')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/show_doctors') }}">Manage Managers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/show_appointments') }}">Manage Receptionists</a>
-                    </li>
-
-                    @elseif (Auth::user()->role == 'manager')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/showReceptionists') }}">Manage Receptionists</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/room') }}">Manage Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/showFloors') }}">Manage Floors</a>
-                    </li>
-
-                    @elseif (Auth::user()->role == 'receptionist')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/receptionist') }}">Manage Reservation</a>
-                    </li>
-                    @else
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/receptionists') }}">Manage Clients</a>
-                    </li>
-                    
-                    @endif
-                    <x-app-layout>
-                    </x-app-layout>
-
-                    @else
-                    <li class="nav-item">
-                        <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
-                    </li>
-
+                            @if (Auth::user()->role == 'client')
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ url('my_reservations', Auth::user()->id) }}"
+                                        style="background-color: rgb(12, 184, 12); color:#FFF;">My
+                                        Reservations</a>
+                                </li>
+                                <x-app-layout>
+                                </x-app-layout>
+                            @else
+                                <x-app-layout>
+                                </x-app-layout>
+                            @endif
+                        @else
+                            <li class="nav-item">
+                                <a class="btn btn-primary ml-lg-3" href="{{ route('login') }}">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-primary ml-lg-3" href="{{ route('register') }}">Register</a>
+                            </li>
                         @endauth
                     @endif
                 </ul>

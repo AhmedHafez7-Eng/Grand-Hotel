@@ -1,10 +1,10 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{url('/')}}" class="brand-link">
+    <a href="{{ url('/') }}" class="brand-link">
         <img src="{{ asset('assets/img/bg-doctor.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Life-Care</span>
+        <span class="brand-text font-weight-light">Grand-Hotel</span>
     </a>
 
     <!-- Sidebar -->
@@ -12,14 +12,21 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="../../../usersImages/{{ Auth::user()->avatar_Img}} " class="img-circle elevation-2" alt="User Image">
+                {{-- <img src="../../../usersImages/{{ Auth::user()->avatar_Img}} " class="img-circle elevation-2" alt="User Image"> --}}
+                @if (Route::has('login'))
+                    @auth
+                        <img src="../../../usersImages/{{ Auth::user()->avatar_Img }}" class="img-circle elevation-2"
+                            alt="User Image">
+                    @endauth
+                @endif
             </div>
             <div class="info">
-                <a href="/user/profile" class="d-block">
+                {{-- <a href="/user/profile" class="d-block"> --}}
+                <a href="{{ url('updateProfile', Auth::user()->id) }}" class="d-block">
                     @if (Route::has('login'))
-                    @auth
-                    {{ Auth::user()->name }}
-                    @endauth
+                        @auth
+                            {{ Auth::user()->name }}
+                        @endauth
                     @endif
                 </a>
             </div>
@@ -40,38 +47,17 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                
+                
+                
+                
+                
                 <li class="nav-item">
-                    <a href="/home" class="nav-link">
-                        <i class="nav-icon fas fa-house-user"></i>
-                        <p>
-                            Dashboard
-
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/showReceptionists" class="nav-link">
+                    <a href="{{ url('receptionist') }}" class="nav-link">
                         <i class="nav-icon fas fa-calendar-minus"></i>
                         <p>
-                            Receptionists
-
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/room" class="nav-link">
-                        <i class="nav-icon fas fa-plus"></i>
-                        <p>
-                            Rooms
-
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="/showFloors" class="nav-link">
-                        <i class="nav-icon fas fa-calendar-minus"></i>
-                        <p>
-                            Floors
+                            Manage Reservations
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
                         </p>
                     </a>
                 </li>

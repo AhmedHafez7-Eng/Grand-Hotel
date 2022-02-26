@@ -1,28 +1,28 @@
-@include('admin.links')
+@include('manager.links')
 <style>
-    form.addDoctor {
+    form.addUser {
         padding: 50px;
     }
 
-    form.addDoctor button,
+    form.addUser button,
     [type='button'],
     [type='reset'],
     [type='submit'] {
         box-shadow: 2px 4px 10px rgb(0 0 0 / 20%);
     }
 
-    form.addDoctor [type='file'] {
+    form.addUser [type='file'] {
         width: 50%;
         border: none;
     }
 
-    form.addDoctor select {
+    form.addUser select {
         width: 100%;
         cursor: pointer;
     }
 
-    form.addDoctor select,
-    form.addDoctor select option {
+    form.addUser select,
+    form.addUser select option {
         text-transform: capitalize !important;
     }
 
@@ -41,7 +41,7 @@
         width: 100%;
     }
 
-    #docImagePreview {
+    #usrImgPreview {
         display: none;
     }
 
@@ -70,9 +70,11 @@
     }
 
     #NameHelpInline,
-    #phoneHelpInline,
-    #specHelpInline,
-    #roomNoHelpInline,
+    #emailHelpInline,
+    #passwordHelpInline,
+    #national_idHelpInline,
+    #countryHelpInline,
+    #genderHelpInline,
     #ImgHelpInline {
         color: rgb(247, 60, 60);
     }
@@ -84,9 +86,9 @@
 </style>
 <div class="wrapper">
 
-    @include('admin.header')
+    @include('manager.header')
 
-    @include('admin.sidebar')
+    @include('manager.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -95,12 +97,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Add Doctors</h1>
+                        <h1>Add Receptionist</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">Add Doctors</li>
+                            <li class="breadcrumb-item active">Add Receptionist</li>
                         </ol>
                     </div>
                 </div>
@@ -119,71 +121,113 @@
                         </div>
                     @endif
                     <div class="col-12">
-                        <form action="add_doctor" method="POST" enctype="multipart/form-data" autocomplete="off"
-                            class="addDoctor">
+                        <form action="manager_add_receptionist" method="POST" enctype="multipart/form-data" autocomplete="off"
+                            class="addUser">
                             @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label">Doctor Name</label>
+                                <label for="name" class="form-label">Receptionist Name</label>
                                 <input type="text" class="form-control" id="name" name="name"
                                     aria-describedby="nameHelp" value="{{ old('name') }}">
                                 @error('name')
                                     <div class="col-auto">
                                         <span id="NameHelpInline" class="form-text">
-                                            {{ $message = 'Name Is Required!' }}
+                                            {{ $message }}
                                         </span>
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="number" class="form-control" id="phone" name="phone"
-                                    aria-describedby="phoneHelp" value="{{ old('phone') }}">
-                                @error('phone')
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    aria-describedby="emailHelp" value="{{ old('email') }}">
+                                @error('email')
                                     <div class="col-auto">
-                                        <span id="phoneHelpInline" class="form-text">
-                                            {{ $message = 'Phone Is Required!' }}
+                                        <span id="emailHelpInline" class="form-text">
+                                            {{ $message }}
                                         </span>
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="spec" class="form-label">Specialization</label>
-                                <select class="form-select form-select-lg mb-3" id="spec" name="spec" aria-label="spec">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    aria-describedby="passwordHelp">
+                                @error('password')
+                                    <div class="col-auto">
+                                        <span id="passwordHelpInline" class="form-text">
+                                            {{ $message }}
+                                        </span>
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="national_id" class="form-label">National ID</label>
+                                <input type="number" class="form-control" id="national_id" name="national_id"
+                                    aria-describedby="national_idHelp" value="{{ old('national_id') }}">
+                                @error('national_id')
+                                    <div class="col-auto">
+                                        <span id="national_idHelpInline" class="form-text">
+                                            {{ $message }}
+                                        </span>
+                                    </div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="country" class="form-label">Country</label>
+                                <select class="form-select form-select-lg mb-3" id="country" name="country"
+                                    aria-label="country">
                                     <option value="-1" selected>--Select--</option>
-                                    <option value="skin" {{ old('spec') == 'skin' ? 'selected' : '' }}>skin</option>
-                                    <option value="heart" {{ old('spec') == 'heart' ? 'selected' : '' }}>heart
+                                    <option value="egypt" {{ old('country') == 'egypt' ? 'selected' : '' }}>egypt
                                     </option>
-                                    <option value="eye" {{ old('spec') == 'eye' ? 'selected' : '' }}>eye</option>
-                                    <option value="nose" {{ old('spec') == 'nose' ? 'selected' : '' }}>nose</option>
+                                    <option value="usa" {{ old('country') == 'usa' ? 'selected' : '' }}>usa
+                                    </option>
+                                    <option value="tunisia" {{ old('country') == 'tunisia' ? 'selected' : '' }}>
+                                        tunisia</option>
+                                    <option value="france" {{ old('country') == 'france' ? 'selected' : '' }}>france
+                                    </option>
                                 </select>
-                                @error('spec')
+                                @error('country')
                                     <div class="col-auto">
-                                        <span id="specHelpInline" class="form-text">
+                                        <span id="countryHelpInline" class="form-text">
                                             {{ $message = 'You Must Select One' }}
                                         </span>
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label for="roomNo" class="form-label">Room No.</label>
-                                <input type="text" class="form-control" id="roomNo" name="roomNo"
-                                    aria-describedby="roomNoHelp" value="{{ old('roomNo') }}">
-                                @error('roomNo')
+                                <label class="form-label">Gender</label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="male" value="male" name="gender"
+                                        @if (old('gender') == 'male') checked @endif>
+                                    Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" id="female" value="female" name="gender"
+                                        @if (old('gender') == 'female') checked @endif>
+                                    Female
+                                </label>
+                                @error('gender')
                                     <div class="col-auto">
-                                        <span id="roomNoHelpInline" class="form-text">
-                                            {{ $message = 'Room Number Is Required!' }}
+                                        <span id="genderHelpInline" class="form-text">
+                                            {{ $message }}
                                         </span>
                                     </div>
                                 @enderror
                             </div>
+
                             <div class="mb-3">
-                                <label class="form-label">Doctor Image</label>
+                                <label class="form-label">Profile Image</label>
                                 <label for="file-upload" class="custom-file-upload">
                                     <i class="fas fa-cloud-upload-alt"></i> Upload
                                 </label>
-                                <input id="file-upload" type="file" name="docImg" onchange="readURL(this);" />
-                                <img id="docImagePreview" src="" alt="your image" />
-                                @error('docImg')
+                                <input id="file-upload" type="file" name="usrImg" onchange="readURL(this);" />
+                                <img id="usrImgPreview" src="" alt="your image" />
+                                @error('usrImg')
                                     <div class="col-auto">
                                         <span id="ImgHelpInline" class="form-text">
                                             {{ $message }}
@@ -193,7 +237,7 @@
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">Add</button>
-                                <a href="{{ url('show_doctors') }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ url('showReceptionists') }}" class="btn btn-secondary">Cancel</a>
                             </div>
                         </form>
                     </div>
@@ -214,7 +258,7 @@
 </div>
 <!-- ./wrapper -->
 
-@include('admin.scripts')
+@include('manager.scripts')
 
 {{-- Show Image beside file input --}}
 <script>
@@ -224,7 +268,7 @@
 
             reader.onload = function(e) {
 
-                $('#docImagePreview').css('display', 'block')
+                $('#usrImgPreview').css('display', 'block')
                     .attr('src', e.target.result)
                     .height(120);
             };

@@ -21,7 +21,7 @@ class CreateRoomsTable extends Migration
                 ->max(4);
             $table->integer('capacity');
             $table->integer('price');
-            $table->string('status')->default('free');
+            $table->string('status');
             $table->bigInteger('creator_id')->unsigned();
             $table
                 ->foreign('creator_id')

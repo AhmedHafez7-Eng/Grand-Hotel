@@ -95,12 +95,14 @@
                                             <td>{{ $floor-> number }}</td>
 
                                             <td>
+                                            @if($floor->creator_id==Auth::user()->id)
                                                 <a class="btn btn-danger"
                                                     href="/deleteFloor/{{$floor -> number}}">Delete
                                                 </a>
                                                 <a class="btn btn-warning"
                                                     href="/updateFloor/{{$floor -> number}}">Update
                                                 </a>
+                                            @endif    
                                             </td>
                                         </tr>
                                         @endforeach

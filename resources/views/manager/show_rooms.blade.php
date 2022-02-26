@@ -55,12 +55,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Doctors</h1>
+                        <h1>Rooms</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="/home">Home</a></li>
-                            <li class="breadcrumb-item active">All Doctors</li>
+                            <li class="breadcrumb-item active">All Rooms</li>
                         </ol>
                     </div>
                 </div>
@@ -96,10 +96,12 @@
                                             <td>{{ $room-> price/100 }}$</td>
                                             <td>{{$room->RelatedFloor->name}}</td>
                                             <td>
+                                            @if($room->creator_id==Auth::user()->id)
                                                 <a class="btn btn-danger" href="/deleteRoom/{{$room -> number}}">Delete
                                                 </a>
                                                 <a class="btn btn-warning" href="/updateRoom/{{$room ->number}}">Update
                                                 </a>
+                                            @endif    
                                             </td>
                                         </tr>
                                         @endforeach

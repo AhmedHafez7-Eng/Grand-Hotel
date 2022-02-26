@@ -29,7 +29,18 @@ Route::get('/updatereceptionist/{id}', [reciptionController::class, 'change'])
     ->name('change')
     ->middleware(['auth'])
     ->middleware('receptionist');
-    
+
+    //////////////////////////////////////////////////////////
+
+    Route::get('/receptionistMan', [ManagerController::class, 'showapproved'])
+    ->name('receptionistMan')
+    ->middleware(['auth'])
+    ->middleware('manager');
+Route::get('/changeReceptionistMan/{id}', [ManagerController::class, 'change'])
+    ->name('changeReceptionistMan')
+    ->middleware(['auth'])
+    ->middleware('manager');
+        
 
 //====================== Redirection Routes [HomeController]
 Route::group(
@@ -103,7 +114,8 @@ Route::group(
         ])->name('floor.create');
     }
 );
-
+Route::get('/manager_add_receptionist', [ManagerController::class, 'add_receptionist'])->middleware(['auth'])->middleware('manager');
+Route::post('/manager_add_receptionist', [ManagerController::class, 'create_receptionist'])->middleware(['auth'])->middleware('manager');
 Route::middleware(['auth:sanctum', 'verified'])
     ->get('/dashboard', function () {
         return view('dashboard');
@@ -114,7 +126,7 @@ Route::get('/', [HomeController::class, 'index']);
 // Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);
 Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth']);
 Route::get('/updateProfile/{id}', [HomeController::class, 'updateProfile'])->middleware(['auth']);
-Route::put('/edit_profile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
+Route::put('/updateProfile/{id}', [HomeController::class, 'edit_profile'])->middleware(['auth']);
 // ---------- Client Reservations
 Route::post('/home/make_reservation', [HomeController::class, 'create_reservation'])->middleware(['auth']);
 Route::get('/my_reservations/{id}', [HomeController::class, 'my_reservations'])->middleware(['auth']);

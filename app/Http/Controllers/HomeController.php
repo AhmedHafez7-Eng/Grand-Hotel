@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Reservation;
 use App\Models\Floor;
 use App\Models\Room;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -30,11 +30,23 @@ class HomeController extends Controller
             }
             // Check if it's a Manager
             elseif (Auth::user()->role == 'manager') {
-                return view('manager.home');
+                $receptionist = User::all()->where('role', '=', 'receptionist');
+                return view('manager.home', [
+                    'receptionist' => $receptionist,
+                ]);
             }
             // Check if it's a Receptionist
             elseif (Auth::user()->role == 'receptionist') {
-                return view('receptionist.home');
+                $approved = DB::table('reservations')
+                    ->where('status', 'approve')
+                    ->get();
+                $inprogress = DB::table('reservations')
+                    ->where('status', 'In-Progress')
+                    ->get();
+                $nonapproved = DB::table('reservations')
+                    ->where('status', 'nonapproved')
+                    ->get();
+                return view('receptionist.home', compact('approved', 'nonapproved', 'inprogress'));
             }
             // Check if it's a Client
             else {

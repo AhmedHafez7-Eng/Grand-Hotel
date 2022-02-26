@@ -1,4 +1,4 @@
-@include('admin.links')
+@include('receptionist.links')
 <style>
     /* button {
         background-color: rgb(123, 255, 0) !important;
@@ -39,8 +39,8 @@
 
 
     
-
-    @include('admin.sidebar')
+    @include('receptionist.header')
+    @include('receptionist.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -220,4 +220,4 @@
 </div>
 <!-- ./wrapper -->
 
-@include('admin.scripts')
+@include('receptionist.scripts')

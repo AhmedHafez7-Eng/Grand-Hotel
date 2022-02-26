@@ -87,16 +87,8 @@
                                     </div>
                                     <input class="form-control mb-3" type="text" name="name">
                                     @if($errors->get('name'))
-                                    <span class="bg-danger py-2 px-5 ">@error('name'){{$message}}@enderror</span>
+                                    <span class="bg-danger py-2 px-5 ">@error('name'){{$message}}@enderror</span></br>
                                     @endif
-                                    <div class="input-group mt-3">
-                                        <span class="input-group-text "> Number</span>
-                                    </div>
-                                    <input class="form-control mb-3 " type="text" name="number">
-                                    @if($errors->get('number'))
-                                    <span class="bg-danger py-2 px-5 ">@error('number'){{$message}}@enderror</span>
-                                    @endif
-                                    <div>
                                         <input class="btn btn-primary mt-3" type="submit" value="Add floor">
                                     </div>
 
