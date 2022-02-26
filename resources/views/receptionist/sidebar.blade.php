@@ -50,7 +50,15 @@
                 
                 
                 
-                
+                <li class="nav-item">
+                    <a href="{{ url('home') }}" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-minus"></i>
+                        <p>
+                            Dashboard
+                            {{-- <span class="right badge badge-success">Doctors</span> --}}
+                        </p>
+                    </a>
+                </li>
                 
                 <li class="nav-item">
                     <a href="{{ url('receptionist') }}" class="nav-link">

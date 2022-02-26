@@ -49,9 +49,9 @@ Route::group(
         'middleware' => ['manager'],
     ],
     function () {
-        Route::get('/manager', function () {
-            return view('manager.home');
-        });
+        // Route::get('/manager', function () {
+        //     return view('manager.home');
+        // });
         Route::get('/room', [ManagerController::class, 'showRoom'])->name(
             'show_rooms'
         );
@@ -121,6 +121,12 @@ Route::middleware(['auth:sanctum', 'verified'])
         return view('dashboard');
     })
     ->name('dashboard');
+
+
+
+
+
+
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);
 // Route::get('/home', [HomeController::class, 'redirect'])->name('home')->middleware(['auth', 'verified']);

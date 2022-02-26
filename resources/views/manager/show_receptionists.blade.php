@@ -120,7 +120,7 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <a class="btn btn-primary" href="/manager_add_receptionist">Add new Room</a>
+                                <a class="btn btn-primary" href="/manager_add_receptionist">Add Receptionist</a>
                             </div>
                             <!-- /.card-body -->
                         </div>

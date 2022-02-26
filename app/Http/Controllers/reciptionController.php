@@ -23,7 +23,6 @@ class reciptionController extends Controller
     }
     public function change($id){
         $reservation=Reservation::find($id);
-        return $reservation;
         if($reservation->status=='approve')
         $reservation->status='nonapproved';
         

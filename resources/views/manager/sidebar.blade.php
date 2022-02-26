@@ -15,7 +15,7 @@
                 <img src="../../../usersImages/{{ Auth::user()->avatar_Img}} " class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="/user/profile" class="d-block">
+                <a href="{{url('updateProfile', Auth::user()->id)}}" class="d-block">
                     @if (Route::has('login'))
                     @auth
                     {{ Auth::user()->name }}

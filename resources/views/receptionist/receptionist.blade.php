@@ -40,6 +40,7 @@
 
     
 
+    @include('receptionist.header')
     @include('receptionist.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
