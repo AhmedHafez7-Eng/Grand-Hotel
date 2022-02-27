@@ -23,8 +23,8 @@ use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/receptionist',[reciptionController::class, 'showapproved'])->name('receptionist')->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
-Route::get('/updatereceptionist/{id}',[reciptionController::class, 'change'])->name('change')->middleware(['auth'])->middleware('receptionist')->middleware('admin')->middleware('manager');
+Route::get('/receptionist',[reciptionController::class, 'showapproved'])->name('receptionist');
+Route::get('/updatereceptionist/{id}',[reciptionController::class, 'change'])->name('change')->middleware(['auth'])->middleware('receptionist');
 
 //====================== Redirection Routes [HomeController]
 Route::get('/', [HomeController::class, 'index']);

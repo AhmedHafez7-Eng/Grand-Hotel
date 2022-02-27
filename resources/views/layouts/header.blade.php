@@ -49,7 +49,7 @@
 
                         @if (Route::has('login'))
                             @auth
-                                @if (Auth::user()->role == 'client')
+                                @if (Auth::user()->role == 'client' )
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('my_appointment') }}"
                                 style="background-color: rgb(12, 184, 12); color:#FFF;">My

@@ -9,15 +9,9 @@ class reciptionController extends Controller
 {
     //
     public function showapproved(){
-        $approved= DB::table('reservations')
-        ->where('status', 'approve')
-        ->get();
-        $inprogress= DB::table('reservations')
-        ->where('status', 'In-Progress')
-        ->get();
-        $nonapproved= DB::table('reservations')
-        ->where('status', 'nonapproved')
-        ->get();
+        $approved= Reservation::where('status', 'approve')->get();
+        $inprogress=Reservation::where('status', 'In-Progress')->get(); 
+        $nonapproved=Reservation::where('status', 'nonapproved')->get(); 
         return view('admin.receptionist',compact('approved','nonapproved','inprogress'));
         
     }
